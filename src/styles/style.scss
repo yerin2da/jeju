@@ -1,0 +1,417 @@
+ //Tailwind를 SCSS 파일에서도 사용하기
+ @use "tailwindcss/base";
+ @use "tailwindcss/components";
+ @use "tailwindcss/utilities";
+
+
+
+ // 변수 선언
+ $mainColor: #5600C0;
+ $subColor: #6B1FC8;
+ $subColor2: #9C59FF;
+ $lightPurple:#F7F1FF;
+ $subBurgundy: #C000B9;
+ $lightPink: #f1eefa;
+ $textBlack: #333;
+ $textGray: #9ca3af;
+ $textWhite: #fff;
+ $textDarkGray: #8e9097;
+ $midGray: #f2f3f7;
+ $textLightGray: #e6e6e6;
+ $lightBlack: #575757;
+
+ @mixin btn($color){
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   padding: 12px 20px;
+   border-radius: 6px;
+   background-color: $color;
+   color: white;
+   font-weight: 500;
+
+   &:hover {
+     background-color: lighten($color, 10%);
+   }
+ }
+
+ @mixin btnBorder($color){
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   padding: 12px 20px;
+   border-radius: 6px;
+   border: 1px solid $color;
+   color: $color;
+   font-weight: 500;
+ }
+
+ body {
+   position: relative;
+ }
+
+ body::after {
+   content: "";
+   display: block;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100vh;
+   //background: rgba(0, 0, 0, 0.3);
+   //background: rgba(255, 255, 255,F 0.9);
+   z-index: 9999;
+   pointer-events: none;
+ }
+ header{
+   //display: none!important;
+ }
+ footer{
+   display: none!important;
+ }
+  .contentsBox{
+    @apply w-full rounded-xl p-8 mb-3 shadow-shadowBase
+  }
+  .dotBorder{
+    @apply w-full h-20 flex items-center justify-center border border-dashed rounded-xl cursor-pointer
+  }
+
+  .btn-mainColor {
+    @include btn($mainColor);
+  }
+ .btnBorder-mainColor {
+    @include btnBorder($mainColor);
+  }
+  .btn-subColor {
+    @include btn($subColor);
+  }
+ .btnBorder-subColor {
+   @include btnBorder($subColor);
+ }
+  .btn-subColor2 {
+    @include btn($subColor2);
+  }
+ .btnBorder-subColor2 {
+   @include btnBorder($subColor2);
+ }
+
+ .btn-lightPurple {
+    @include btn($lightPurple);
+  }
+ .btnBorder-lightPurple {
+   @include btnBorder($lightPurple);
+ }
+
+  .btn-black {
+    @include btn($textBlack);
+  }
+ .btn-LightBlack {
+    @include btn($lightBlack);
+  }
+
+  .CTAComponent{
+    @apply  p-5 text-white rounded-2xl h-32 flex justify-between items-start hover:opacity-75;
+  }
+
+
+ // 스크롤바 숨기기
+ .scrollbar-hide::-webkit-scrollbar {
+   display: none;
+ }
+ .scrollbar-hide {
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
+ }
+
+ textarea, textarea:focus{
+   outline: none !important;
+   border: 1px solid transparent !important;
+ }
+
+ .SignUp button:focus {
+    @apply shadow-lightPurple
+  }
+
+
+ input, select{
+   @apply h-12 rounded-[0.4rem] placeholder-midGray px-2 py-1
+ }
+ input{
+   outline: none !important;
+   border: 1px solid $textLightGray;
+   background: white;
+ }
+
+ input:focus, select:focus {
+   border: 1px solid $subColor2 !important;
+ }
+ input::placeholder,
+ textarea::placeholder,
+ .rs__placeholder{
+   @apply text-sm font-normal text-textGray
+ }
+
+ /* 셀렉, 옵션 스타일 */
+ select {
+   appearance: none !important;
+   -webkit-appearance: none !important;
+   -moz-appearance: none !important;
+   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c4c4c4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") !important;
+   background-repeat: no-repeat !important;
+   background-position: right 8px center !important;
+   background-size: 16px !important;
+   padding-right: 1.5rem !important;
+   background-color: white !important;
+   outline: none !important;
+   border: 1px solid $textLightGray !important;
+   cursor: pointer;
+ }
+
+ select > option {
+   background: white !important;
+   font-weight: 300 !important;
+   color: $textDarkGray !important;
+ }
+
+ select:focus-visible{
+   outline: 1px solid transparent;
+  }
+
+  .search-input::placeholder {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  }
+
+ /* react-select 기본 높이, 테두리, 배경 등 */
+ .rs__control {
+   background-color: white !important;
+   border-radius: 0.4rem !important;
+   height: 48px !important;
+   padding: 0 0.5rem !important;
+   //font-size: 14px !important;
+   font-weight: 400 !important;
+   display: flex !important;
+   align-items: center !important;
+   border-color: $subColor2 !important;
+   cursor: pointer!important;
+  @apply shadow-shadowBase
+ }
+ .css-13cymwt-control{
+   transition: 0s;
+ }
+ //선택된 밸류값
+ .rs__single-value.css-1dimb5e-singleValue{
+   color: $subColor2 !important;
+   @apply text-base
+ }
+
+ //화살표
+ .css-1xc3v61-indicatorContainer{
+   transition: 0s;
+ }
+ .css-15lsz6c-indicatorContainer{
+   color: $textGray!important;
+   transition: 0s;
+ }
+
+ .rs__value-container{
+   height: 48px !important;
+ }
+ .rs__single-value{
+   line-height: 45px;
+   height: 48px !important;
+ }
+
+ .rs__control--is-focused {
+   box-shadow: none !important;
+   border: 1px solid $subColor2 !important;
+ }
+
+ /* 선택된 값 */
+ .rs__single-value {
+   color: $textBlack !important;
+   font-size: 0.875rem !important;
+   font-weight: 400 !important;
+ }
+
+ /* placeholder 스타일 */
+ .rs__placeholder{
+   height: 48px !important;
+   line-height: 45px !important;
+ }
+
+ /* 메뉴(dropdown 전체) */
+ .rs__menu {
+
+ }
+ //bar
+ .rs__indicator-separator{
+   display: none !important;
+ }
+
+ /* 옵션 항목 */
+ .rs__option {
+   font-size: 0.875rem !important;
+   padding: 0.5rem 0.75rem !important;
+   color: $textBlack !important;
+   background-color: white !important;
+
+   &:hover {
+     background-color: $lightPurple !important;
+   }
+ }
+
+
+ .rs__option--is-selected {
+   background-color: $lightPurple !important;
+   color: $subColor2 !important;
+ }
+
+ /* 입력 커서용 (is-focused 상태) */
+ .rs__input {
+   color: $textBlack !important;
+ }
+
+ /*===========================================================*/
+ //1줄까지만 보여주고 숨김
+ .multi-ellipsis {
+   display: -webkit-box;
+   -webkit-line-clamp: 1; /* 보여줄 줄 수 */
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+
+ //2줄까지만 보여주고 숨김
+ .multi-ellipsis2 {
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* 보여줄 줄 수 */
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+ /*===========================================================*/
+
+ /* 전체 달력 스타일 */
+ .react-datepicker { //인풋
+   border: none !important;
+   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+   font-size: clamp(15px, 0.9375rem + 0.25vw, 17px);
+ }
+.react-datepicker__month-container{
+  border-radius: 5px;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.react-datepicker__triangle{
+  display: none !important;
+}
+
+ /* 년, 월 네비게이션 */
+ .react-datepicker__header {
+   background: none !important;
+   border-bottom: none !important;
+   color: $textBlack;
+   font-weight: 400;
+   @apply text-base
+ }
+
+ /* 요일 스타일 */
+ .react-datepicker__day-name {
+   color: $textGray !important;
+   font-weight: 500 !important;
+   margin: 0.25rem !important;
+   @apply text-sm
+ }
+
+ //모든 요일
+ .react-datepicker__day{
+   margin: 0.25rem !important;
+   @apply text-sm
+ }
+
+ /* 주말 날짜 */
+ .react-datepicker__day--weekend {
+   color: $textGray !important;
+ }
+
+ /* 지난달, 다음달 날짜 */
+ .react-datepicker__day--outside-month {
+   color: $textLightGray !important;
+ }
+
+ /* 오늘 날짜 */
+ .react-datepicker__day--today {
+   background: $lightPurple !important;
+   font-weight: inherit;
+   border-radius: 5px;
+ }
+
+ /* 선택한 날짜 */
+ .react-datepicker__day--selected {
+   background: $subColor2 !important;
+   color: $textWhite !important;
+ }
+
+ /* 네비게이션에서 연도/월 변경 버튼 숨기기 */
+ .react-datepicker__navigation--years {
+   display: none !important;
+ }
+ .react-datepicker__navigation--months {
+   display: none !important;
+ }
+
+ //초기화 아이콘
+ .react-datepicker__close-icon{
+   display: none;
+ }
+
+ //마이데이트피커
+ .date_btn{
+   border:1px solid $textLightGray;
+ }
+
+ //타임피커
+.react-time-picker__wrapper{
+  border: none !important;
+}
+.react-time-picker__inputGroup__input{
+  width: 50px !important;
+  border: 1px solid $textLightGray;
+  text-align: center;
+  @apply h-11
+}
+.react-time-picker__inputGroup__amPm{//오전, 오후
+ width: 65px !important;
+ text-align: center;
+}
+.react-time-picker__inputGroup > span.react-time-picker__inputGroup__divider:nth-of-type(2)  {// 오전오후 바로 뒤
+ padding: 0 1px !important;
+}
+.react-time-picker__inputGroup > span.react-time-picker__inputGroup__divider:nth-of-type(3)  {// :
+ color: $textGray!important;
+ padding: 0 5px !important;
+}
+.react-time-picker__inputGroup__leadingZero{// 0
+ position: relative;
+ z-index: 2;
+ left:18px
+}
+.react-time-picker__inputGroup__input.react-time-picker__inputGroup__hour.react-time-picker__inputGroup__input--hasLeadingZero{
+  width: 41px !important;
+}
+.react-time-picker__inputGroup__input.react-time-picker__inputGroup__minute.react-time-picker__inputGroup__input--hasLeadingZero{
+  width: 41px !important;
+}
+
+//swal alert 얼러트 창
+.sm-alert{
+  @apply w-72 h-72
+}
+.sm-icon{
+  @apply w-20 h-20
+}
+
+section{
+  @apply w-full py-4
+}
