@@ -13,7 +13,7 @@ export default function MusicGalleryComponent({item,
     return (
         <div
             onClick={() => window.open(item.url, "_blank")}
-            className={`relative w-full h-100 flex flex-col`}>
+            className={`relative w-full h-80 flex flex-col`}>
 
             <div className="absolute bottom-0 left-0 w-full h-[60%] bg-white"></div>{/* 오버레이 */}
 
@@ -27,9 +27,9 @@ export default function MusicGalleryComponent({item,
             </div>
 
             {/* 설명 박스 */}
-            <div className={`relative z-2 py-4 flex flex-col justify-between flex-1 `}>
-                <p className={`font-semibold text-lg multi-ellipsis2 bg-[#46678f] h-full text-white py-3 px-4`}>{item.title}</p>
-                <p className={`text-lg font-medium py-2 border-b-2 border-[#86bdff] w-full px-4 text-[#003b83]`}>{item.period}</p>
+            <div className={`relative z-2 pt-2 pb-4 flex flex-col justify-between flex-1 `}>
+                <p className={`font-semibold text-base multi-ellipsis2 bg-[#46678f] h-full text-white  px-4`}>{item.title}</p>
+                <p className={`whitespace-nowrap text-sm font-medium py-2 border-b-2 border-[#86bdff] w-full px-4 text-[#003b83]`}>{item.period}</p>
             </div>
 
         </div>

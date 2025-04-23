@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter, HashRouter} from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import AuthWatcher from './hooks/AuthWatcher';
 import RouteMain from './routes/RouteMain';
@@ -14,7 +14,7 @@ const url = process.env.REACT_APP_API_MAP_KEY;//구글맵
 
 function App() {
     return (
-        <BrowserRouter>
+        <HashRouter>
 
             <APIProvider apiKey={url}>
                 <RecoilRoot>
@@ -36,7 +36,7 @@ function App() {
                         <RouteMain />
                 </RecoilRoot>
             </APIProvider>
-        </BrowserRouter>
+        </HashRouter>
 
     );
 }

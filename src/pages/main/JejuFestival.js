@@ -54,7 +54,7 @@ export default function JejuFestival() {
                 {tdata.map((item, idx) => {
                     const imgPath = item?.repPhoto?.photoid?.imgpath;
                     const imgThumPath = item?.repPhoto?.photoid?.thumbnailpath;
-                    const default2 = "img/default2.jpg";
+                    const default2 = `${process.env.PUBLIC_URL}/img/default2.jpg`;
 
                     return (
                         <li key={idx}>

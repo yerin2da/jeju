@@ -16,7 +16,7 @@ export default function InfoComponent6({title,
                 flex items-center justify-center
             `}
             style={{
-                backgroundImage: `url('/img/${icon_name}.jpg')`,
+                backgroundImage: `url('${process.env.PUBLIC_URL}/img/${icon_name}.jpg')`,
             }}>
             <div className={`absolute left-0 bottom-0 w-full h-full ${bg_Color} z-1`}/>
 
