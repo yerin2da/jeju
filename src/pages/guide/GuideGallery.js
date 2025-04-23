@@ -12,9 +12,9 @@ import NoResult from "../../components/NoResult";
 import PaginationSimple from "../../components/PaginationSimple";
 
 
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+// const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
-
+import apiBaseUrl from "../config";
 
 const GuideGallery = () => {
     const navigate = useNavigate();
