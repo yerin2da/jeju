@@ -8,7 +8,7 @@ import PaginationSimple from "../../components/PaginationSimple";
 import GalleryComponent from "../../components/GalleryComponent";
 import ExhibiGalleryComponent from "../../components/ExhibiGalleryComponent";
 
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+const apiBaseUrl = process.env.production.REACT_APP_API_BASE_URL;
 
 export default function ExhibiGallery() {
     const [tdata, setTdata] = useState([]);
@@ -18,15 +18,13 @@ export default function ExhibiGallery() {
     const itemsPerPage = 10;
 
     const [isLoading, setIsLoading] = useState(false);
-    const cultureApiBaseUrl = 'https://api.kcisa.kr/openapi/CNV_060/request';
 
 
     const getFetchData = async (pageNo = 1) => {
         try {
             setIsLoading(true);
-            const { data } = await axios.get(cultureApiBaseUrl, {
+            const { data } = await axios.get(`${apiBaseUrl}/api/jeju-culture`, {
                 params: {
-                    serviceKey: process.env.REACT_APP_API_CULTURE,
                     pageNo,
                     numOfRows: itemsPerPage,
                     dtype: "전시",
