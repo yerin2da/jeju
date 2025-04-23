@@ -18,7 +18,7 @@ export default function ExhibiGallery() {
     const itemsPerPage = 10;
 
     const [isLoading, setIsLoading] = useState(false);
-    const cultureApiBaseUrl = 'http://api.kcisa.kr/openapi/CNV_060/request';
+    const cultureApiBaseUrl = 'https://api.kcisa.kr/openapi/CNV_060/request';
 
 
     const getFetchData = async (pageNo = 1) => {
