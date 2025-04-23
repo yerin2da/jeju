@@ -8,6 +8,7 @@ import PaginationSimple from "../../components/PaginationSimple";
 import GalleryComponent from "../../components/GalleryComponent";
 import ExhibiGalleryComponent from "../../components/ExhibiGalleryComponent";
 
+const apiBaseUrl = process.env.production.REACT_APP_API_BASE_URL;
 
 export default function ExhibiGallery() {
     const [tdata, setTdata] = useState([]);
@@ -22,7 +23,7 @@ export default function ExhibiGallery() {
     const getFetchData = async (pageNo = 1) => {
         try {
             setIsLoading(true);
-            const { data } = await axios.get(`http://localhost:5000/api/jeju-culture`, {
+            const { data } = await axios.get(`${apiBaseUrl}/api/jeju-culture`, {
                 params: {
                     pageNo,
                     numOfRows: itemsPerPage,
