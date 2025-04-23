@@ -23,7 +23,7 @@ export default function ExhibiGallery() {
     const getFetchData = async (pageNo = 1) => {
         try {
             setIsLoading(true);
-            const { data } = await axios.get(`http://localhost:5000/api/jeju-culture`, {
+            const { data } = await axios.get(`${apiBaseUrl}/api/jeju-culture`, {
                 params: {
                     pageNo,
                     numOfRows: itemsPerPage,
