@@ -26,7 +26,7 @@ export default function ExhibiGallery() {
             setIsLoading(true);
             const { data } = await axios.get(cultureApiBaseUrl, {
                 params: {
-                    serviceKey: process.env.REACT_APP_API_BASE_URL,
+                    serviceKey: process.env.REACT_APP_API_CULTURE,
                     pageNo,
                     numOfRows: itemsPerPage,
                     dtype: "전시",
