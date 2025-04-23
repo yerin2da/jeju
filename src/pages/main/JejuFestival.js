@@ -5,14 +5,14 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {FiMapPin} from "react-icons/fi";
 
-
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 export default function JejuFestival() {
     const [tdata, setTdata] = useState([])//전체 데이터
 
     useEffect(() => {
         const getFetchData = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/api/jeju-festival`, {
+                const { data } = await axios.get(`${apiBaseUrl}/api/jeju-festival`, {
                     params: {
                         page:1,
                         locale:"ko",
