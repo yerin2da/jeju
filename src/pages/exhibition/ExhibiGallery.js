@@ -8,6 +8,7 @@ import PaginationSimple from "../../components/PaginationSimple";
 import GalleryComponent from "../../components/GalleryComponent";
 import ExhibiGalleryComponent from "../../components/ExhibiGalleryComponent";
 
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export default function ExhibiGallery() {
     const [tdata, setTdata] = useState([]);
@@ -25,7 +26,7 @@ export default function ExhibiGallery() {
             setIsLoading(true);
             const { data } = await axios.get(cultureApiBaseUrl, {
                 params: {
-                    serviceKey: process.env.REACT_APP_API_CULTURE,
+                    serviceKey: process.env.REACT_APP_API_BASE_URL,
                     pageNo,
                     numOfRows: itemsPerPage,
                     dtype: "전시",
