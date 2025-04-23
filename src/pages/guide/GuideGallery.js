@@ -12,9 +12,9 @@ import NoResult from "../../components/NoResult";
 import PaginationSimple from "../../components/PaginationSimple";
 
 
-// const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
-import apiBaseUrl from "../../config";
+// import apiBaseUrl from "../../config";
 
 const GuideGallery = () => {
     const navigate = useNavigate();
@@ -63,7 +63,7 @@ const GuideGallery = () => {
 
         try {
             // 1. 먼저 첫 페이지를 요청해서 총 페이지 수 알아냄
-            const firstPageUrl = `${apiBaseUrl}/api/jeju-festival?&locale=kr&category=${category}&page=1&pageSize=${pageSize}`;
+            const firstPageUrl = `${apiBaseUrl}/api/jeju-festival?locale=kr&category=${category}&page=1&pageSize=${pageSize}`;
             const { data: firstPageData } = await axios.get(firstPageUrl);
 
             allItems = [...firstPageData.items];
@@ -73,7 +73,7 @@ const GuideGallery = () => {
             const pagePromises = [];
 
             for (let page = 2; page <= totalPages; page++) {
-                const url = `${apiBaseUrl}/api/jeju-festival&locale=kr&category=${category}&page=${page}&pageSize=${pageSize}`;
+                const url = `${apiBaseUrl}/api/jeju-festival?locale=kr&category=${category}&page=${page}&pageSize=${pageSize}`;
                 pagePromises.push(axios.get(url));
             }
 
