@@ -65,7 +65,9 @@ const JejuWeather = () => {
     }, []);
 
     return (
-        <WeatherList data={tdata} />
+        <section>
+            <WeatherList data={tdata} />
+        </section>
     );
 };
 

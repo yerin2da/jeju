@@ -3,7 +3,7 @@ export default function InfoComponent3({title, txt, txt2, icon_name, wrapClass='
     return (
         <div
             onClick={onClick}
-            className={`p-4 bg-center bg-no-repeat text-white relative overflow-hidden ${wrapClass} bg-cover `}
+            className={` p-4 bg-center bg-no-repeat text-white relative overflow-hidden ${wrapClass} bg-cover `}
             style={{
                 backgroundImage: `url('${process.env.PUBLIC_URL}/img/${icon_name}.jpg')`,
             }}>

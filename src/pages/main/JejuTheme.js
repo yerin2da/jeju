@@ -4,6 +4,7 @@ import data from "../../db/data.json";
 import InfoComponent3 from "../../components/InfoComponent3";
 import {Autoplay} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
+import WFullButton from "../../components/WFullButton";
 
 export default function JejuTheme() {
     const navigate = useNavigate();
@@ -16,11 +17,14 @@ export default function JejuTheme() {
         <section className={``}>
             {/*섹션제목*/}
             <SectionTitle
-                icon={`🌿`}
+                icon={<picture>
+                    <source srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f308/512.webp" type="image/webp"/>
+                    <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f308/512.gif" alt="🌈" width="25" height="25"/>
+                </picture>}
                 title={<>이런 <span className={`text-mainColor`}>여행</span>어때요?</>}
             />
             <Swiper
-                className={` -mx-5 !overflow-visible`}
+                className={` -mx-l-5 !overflow-visible`}
                 modules={[Autoplay]}
                 direction="horizontal"
                 loop={false}  // 슬라이드 반복
@@ -28,7 +32,7 @@ export default function JejuTheme() {
                 slidesPerView={2.5}
                 slidesPerGroup={1}
                 autoplay={{
-                    delay: 8000,
+                    delay: 5000,
                     disableOnInteraction: false
                 }}
                 style={{ width: "100%", height: "fit-content" }}
@@ -39,11 +43,11 @@ export default function JejuTheme() {
                     },
                     // 화면 크기가 480px 이상일 때
                     480: {
-                        slidesPerView: 3.5,
+                        slidesPerView: 3,
                     },
                     // 화면 크기가 768px 이상일 때
                     768: {
-                        slidesPerView: 4.5,
+                        slidesPerView: 3.5,
                     },
                     // 화면 크기가 1024px 이상일 때
                     1024: {
@@ -70,6 +74,11 @@ export default function JejuTheme() {
             ))}
         </Swiper>
 
+        <WFullButton
+            onClick={()=> navigate(`theme/gallery`)}
+            tit={`테마여행모음`}
+            tit2={`전체보기`}
+        />
         </section>
     );
 };

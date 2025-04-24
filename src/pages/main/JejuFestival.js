@@ -4,6 +4,7 @@ import InfoComponent2 from "../../components/InfoComponent2";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {FiMapPin} from "react-icons/fi";
+import WFullButton from "../../components/WFullButton";
 
 const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 export default function JejuFestival() {
@@ -47,7 +48,20 @@ export default function JejuFestival() {
         <section>
             {/*섹션제목*/}
             <SectionTitle
-                icon={`🎡`}
+                icon={
+                <picture>
+                    <source
+                        srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3a1/512.webp"
+                        type="image/webp"
+                    />
+                    <img
+                        src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3a1/512.gif"
+                        alt="🎡"
+                        width="25"
+                        height="25"
+                    />
+                </picture>
+            }
                 title={<>제주에서 <span className={`text-mainColor`}>즐기자!</span></>}
             />
             <ul>
@@ -80,6 +94,13 @@ export default function JejuFestival() {
                     );
                 })}
             </ul>
+
+            <WFullButton
+                onClick={()=> navigate(`guide/gallery/c5`)}
+                tit={`축제&행사모음`}
+                tit2={`전체보기`}
+            />
+
         </section>
     );
 };

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import {matchPath, useLocation} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { validHash } from '../utils/validHash';
 import { useLogout } from './logoutHandler';
@@ -13,6 +13,7 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
 
         const checkStorage = () => {
             // 아래 페이지는 체크하지 않음
+            const path = location.pathname;
             if (
                 [
                     "/",
@@ -26,13 +27,17 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
                     "/wallet/myCoin",
                     "/exhibition/gallery",
                     "/guide/gallery",
+                    "/guide/gallery/:category",
+                    "/guide/gallery/:category/:cid",
                     "/music/gallery",
                     "/musical/gallery",
                     "/theme/gallery",
 
-                ].includes(location.pathname)) {
+                ].includes(path) || matchPath("/guide/gallery/:category/:cid", path) ||matchPath("/guide/gallery/:category", path)
+            ) {
                 return;
             }
+
             const storageAuth = localStorage.getItem('auth');
             const storedHash = localStorage.getItem('hash');
             const storedTime = localStorage.getItem('time');

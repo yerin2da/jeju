@@ -8,15 +8,18 @@ export default function JejuGuide() {
     const navigate = useNavigate();
 
     const handleClick = (code) => {
-        navigate(`guide/gallery?category=${code}`);
+        navigate(`/guide/gallery/${code}`);
     };
 
     return (
         <section>
             {/*섹션제목*/}
             <SectionTitle
-                icon={`✈️`}
-                title={<>제주 <span className={`text-mainColor`}>어디</span>부터 가볼까?</>}
+                icon={<picture>
+                    <source srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4f8/512.webp" type="image/webp"/>
+                    <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4f8/512.gif" alt="📸" width="25" height="25"/>
+                </picture>}
+                title={<div>제주 <span className={`text-mainColor`}>어디</span>부터 가볼까?</div>}
             />
 
             {/* 컨텐츠 박스 */}
@@ -37,6 +40,7 @@ export default function JejuGuide() {
                 </li>
                 )}
             </ul>
+
 
         </section>
     );

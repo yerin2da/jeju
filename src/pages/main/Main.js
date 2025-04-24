@@ -5,6 +5,7 @@ import MainVisual from "./MainVisual";
 import JejuFestival from "./JejuFestival";
 import JejuTheme from "./JejuTheme";
 import JejuMusic from "./JejuMusic";
+import JejuStage from "./JejuStage";
 
 export default function Main() {
 
@@ -14,6 +15,7 @@ export default function Main() {
             <JejuGuide/>
             <JejuTheme/>
             <JejuMusic/>
+            <JejuStage/>
             <JejuWeather/>
             <JejuFestival />
         </div>

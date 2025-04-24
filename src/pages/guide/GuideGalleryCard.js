@@ -1,4 +1,4 @@
-export default function GuideGalleryCard({item}) {
+export default function GuideGalleryCard({item,onClick}) {
 
     let sptags = [];
 
@@ -19,7 +19,10 @@ export default function GuideGalleryCard({item}) {
         : imgPath;
 
     return (
-        <div className={`contentsBox !p-0 overflow-hidden !rounded-2xl bg-white`}>
+        <div
+            className={`contentsBox !p-0 overflow-hidden !rounded-2xl bg-white`}
+            onClick={onClick}
+        >
              <img className={`h-48 w-full object-cover`}
                   src={typeof finalImgPath === 'string' && finalImgPath.includes('http')
                           ? finalImgPath.replace('http:', 'https:')

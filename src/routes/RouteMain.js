@@ -21,6 +21,7 @@ import JejuFestival from "../pages/main/JejuFestival";
 import ThemeGallery from "../pages/theme/ThemeGallery";
 import MusicalGallery from "../pages/music/MusicalGallery";
 import MusicGallery from "../pages/music/MusicGallery";
+import GuideDetail from "../pages/guide/GuideDetail";
 
 
 export default function RouteMain() {
@@ -39,6 +40,9 @@ export default function RouteMain() {
 
                 {/*가이드*/}
                 <Route path="/guide/gallery" element={<GuideGallery/>} />
+                <Route path="/guide/gallery/:category" element={<GuideGallery />} />
+                <Route path="/guide/gallery/:category/:cid" element={<GuideDetail />} />
+
 
                 {/*테마*/}
                 <Route path="/theme/gallery" element={<ThemeGallery/>} />

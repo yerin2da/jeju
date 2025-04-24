@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import axios from "axios";
 import GuideGalleryCard from "./GuideGalleryCard";
 import {useRecoilState} from "recoil";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {ImSpinner2} from "react-icons/im";
 import {pageState} from "../../store/noticeState";
 import TabMenuSlider from "../../components/TabMenuSlider";
@@ -22,9 +22,9 @@ const GuideGallery = () => {
 
     const [tdata, setTdata] = useState([])//전체 데이터
 
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const initCategory = queryParams.get("category") || 'c1';
+
+    const { category } = useParams();
+    const initCategory = category || 'c1';
 
     const [selC1, setSelC1] = useState(initCategory);
     const [selectedTag, setSelectedTag] = useState(null);//중메뉴
@@ -97,20 +97,18 @@ const GuideGallery = () => {
     };
 
     useEffect(() => {
-        const queryParams = new URLSearchParams(location.search);
-        const category = queryParams.get("category") || 'c1';
+        const currentCategory = category || 'c1';
 
-        setSelC1(category);
-        getFetchAllData(category);
-    }, [location.search]); // ✅ location.search 변경 감지
-
+        setSelC1(currentCategory);
+        getFetchAllData(currentCategory);
+    }, [category]); //  category 기준으로 패칭
 
 
     // 카테고리 변경
     const handleSelC1 = (code) => {
         setSelC1(code);
         setSelectedTag(null); // #태그 선택 초기화
-        navigate(`/guide/gallery?category=${code}`); //  URL 업데이트
+        navigate(`/guide/gallery/${code}`); //  URL 업데이트
         getFetchAllData(code);
 
         setCurrentPage(1); // 카테고리 변경 시 첫 페이지로
@@ -118,8 +116,8 @@ const GuideGallery = () => {
     };
 
     //게시글 클릭
-    const handleItemClick = (id) => {
-        // navigate(`/jeju/${id}`);
+    const handleItemClick = (id, code) => {
+        navigate(`/guide/gallery/${code}/${id}`, { state: { id } });
     }
 
     //검색어 입력
@@ -149,6 +147,23 @@ const GuideGallery = () => {
         setTotalPages(pagesCalc);
     }, [filteredData]);
 
+    //중메뉴 인기태그 모음
+    const extractedTags = Array.from(
+        new Set(
+            tdata
+                .flatMap(item =>
+                    item.alltag
+                        ?.split(/[,#]/)         // 쉼표나 # 기준으로 잘라서
+                        .map(tag => tag.trim()) // 공백 제거
+                        .filter(Boolean)        // 빈 값 제거
+                )
+        )
+    );
+
+    const popularTags = ['유네스코', '오름', '액티비티', '숲', '포토스팟'];
+
+    const displayTags = popularTags.filter(tag => extractedTags.includes(tag));
+
 
     return (
         <div>
@@ -162,6 +177,22 @@ const GuideGallery = () => {
                 fClass={`text-textBlack `}
             />
 
+            {/*중메뉴 탭*/}
+            <div className="flex flex-wrap gap-2 mb-4">
+                {displayTags.map((tag) => (
+                    <button
+                        key={tag}
+                        onClick={() => setSelectedTag(tag)}
+                        className={`py-1 rounded-full text-sm ${
+                            selectedTag === tag ? 'text-mainColor' : 'text-gray-600'
+                        }`}
+                    >
+                        #{tag}
+                    </button>
+                ))}
+            </div>
+
+
             {/* 검색창 */}
             <div className={`py-5 `}>
                 <SearchInput
@@ -174,7 +205,8 @@ const GuideGallery = () => {
             </div>
 
             {isLoading ? (
-                <div className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600 transition-opacity duration-700 opacity-100 pointer-events-none">
+                <div
+                    className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600 transition-opacity duration-700 opacity-100 pointer-events-none">
                     <ImSpinner2 className="animate-spin text-3xl text-gray-600"/>
                     <p>관광지 정보를 불러오고 있어요</p>
                 </div>
@@ -186,7 +218,7 @@ const GuideGallery = () => {
                             paginatedData.map((item) =>
                                 <GuideGalleryCard
                                     key={item.contentsid}
-                                    onClick={() => handleItemClick(item.contentsid)}
+                                    onClick={() => handleItemClick(item.contentsid, selC1)}
                                     item={item}
                                 />)
                         ) : (

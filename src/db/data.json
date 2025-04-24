@@ -81,6 +81,23 @@
         "img": "days2"
       }
 
+  ],
+  "jejuStageCategory" : [
+      { "label": "연극",
+        "txt": "감정으로 물드는 제주",
+        "code": "play",
+        "img": "play"
+      },
+      { "label": "국악",
+        "txt": "제주의 소리를 담다",
+        "code": "korMusic",
+        "img": "korMusic"
+      },
+      { "label": "뮤지컬",
+        "txt": "무대 위 감동의 한 편",
+        "code": "musical",
+        "img": "musical"
+      }
   ]
 
 }

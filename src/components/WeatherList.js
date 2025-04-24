@@ -41,7 +41,7 @@ export default function WeatherList({ data }) {
     };
 
     return (
-        <div className="w-full h-20 bg-white contentsBox !px-3 !py-0">
+        <div className="w-full h-20 bg-white contentsBox !px-3 !py-0 !m-0">
             <Swiper
                 modules={[Autoplay]}
                 direction="vertical"
