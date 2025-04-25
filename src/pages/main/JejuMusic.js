@@ -1,9 +1,7 @@
-import TailButton from "../../UI/TailButton";
+
 import {useNavigate} from "react-router-dom";
 import InfoComponent6 from "../../components/InfoComponent6";
-import SectionTitle from "../../components/SectionTitle";
-import BorderComponent from "../../components/BorderComponent";
-import { GiMusicalScore } from "react-icons/gi";
+
 
 export default function JejuMusic() {
     const navigate = useNavigate();
@@ -15,7 +13,7 @@ export default function JejuMusic() {
     return (
         <section className={`w-full`}>
 
-            <div className={`w-full h-40`}>
+            <div className={`w-full h-36`}>
                 <InfoComponent6
                     onClick={() => handleClick('music')}
                     icon_name={`music`}

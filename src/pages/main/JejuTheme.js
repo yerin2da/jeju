@@ -14,9 +14,10 @@ export default function JejuTheme() {
     };
 
     return (
-        <section className={``}>
+        <section className={`-mx-5 w-screen `}>
             {/*섹션제목*/}
             <SectionTitle
+                className={`pl-5`}
                 icon={<picture>
                     <source srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f308/512.webp" type="image/webp"/>
                     <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f308/512.gif" alt="🌈" width="25" height="25"/>
@@ -73,12 +74,14 @@ export default function JejuTheme() {
                 </SwiperSlide>
             ))}
         </Swiper>
+        <div className={`mx-5`}>
+            <WFullButton
+                onClick={()=> navigate(`theme/gallery`)}
+                tit={`테마여행모음`}
+                tit2={`전체보기`}
+            />
+        </div>
 
-        <WFullButton
-            onClick={()=> navigate(`theme/gallery`)}
-            tit={`테마여행모음`}
-            tit2={`전체보기`}
-        />
         </section>
     );
 };

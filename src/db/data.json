@@ -83,18 +83,19 @@
 
   ],
   "jejuStageCategory" : [
-      { "label": "연극",
-        "txt": "감정으로 물드는 제주",
-        "code": "play",
-        "img": "play"
-      },
       { "label": "국악",
-        "txt": "제주의 소리를 담다",
+        "txt": "푸른 바람을 타고 퍼지는 \n우리의 선율",
         "code": "korMusic",
         "img": "korMusic"
       },
+      { "label": "연극",
+        "txt": "감성으로 채워지는 제주\n그 깊은 울림",
+        "code": "play",
+        "img": "play"
+      },
+
       { "label": "뮤지컬",
-        "txt": "무대 위 감동의 한 편",
+        "txt": "자연과 예술이 맞닿는, \n마음을 울리는 감동",
         "code": "musical",
         "img": "musical"
       }

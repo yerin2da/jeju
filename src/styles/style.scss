@@ -413,5 +413,17 @@
 }
 
 section{
-  @apply w-full py-4
+  @apply w-full py-6
 }
+
+ .swiper-pagination {
+   @apply flex gap-3 justify-center items-center pt-4; /* 간격 조정 */
+ }
+
+ .swiper-pagination-bullet {
+   @apply bg-gray-500 w-2 h-2 rounded-full; /* 기본 동그라미 */
+ }
+
+ .swiper-pagination-bullet-active {
+   @apply bg-mainColor; /* 현재 활성화된 동그라미 */
+ }

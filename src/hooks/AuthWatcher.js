@@ -31,6 +31,7 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
                     "/guide/gallery/:category/:cid",
                     "/stage/gallery",
                     "/musical/gallery",
+                    "/music/gallery",
                     "/play/gallery",
                     "/korMusic/gallery",
                     "/theme/gallery",

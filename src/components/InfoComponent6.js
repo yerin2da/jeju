@@ -9,7 +9,7 @@ export default function InfoComponent6({title,
         <div
             onClick={onClick}
             className={`
-                rounded-xl bg-center bg-no-repeat 
+                rounded-2xl bg-center bg-no-repeat 
                 text-white relative overflow-hidden 
                 bg-cover w-full h-full
                 flex items-center justify-start p-5
