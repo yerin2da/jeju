@@ -8,7 +8,7 @@ import PaginationSimple from "../../components/PaginationSimple";
 import GalleryComponent from "../../components/GalleryComponent";
 import ExhibiGalleryComponent from "../../components/ExhibiGalleryComponent";
 
-const apiBaseUrl = process.env.REACT_APP_API_KOYEB;
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export default function ExhibiGallery() {
     const [tdata, setTdata] = useState([]);
