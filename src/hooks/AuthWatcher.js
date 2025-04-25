@@ -31,6 +31,8 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
                     "/guide/gallery/:category/:cid",
                     "/music/gallery",
                     "/musical/gallery",
+                    "/play/gallery",
+                    "/korMusic/gallery",
                     "/theme/gallery",
 
                 ].includes(path) || matchPath("/guide/gallery/:category/:cid", path) ||matchPath("/guide/gallery/:category", path)

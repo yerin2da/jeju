@@ -22,6 +22,8 @@ import ThemeGallery from "../pages/theme/ThemeGallery";
 import MusicalGallery from "../pages/music/MusicalGallery";
 import MusicGallery from "../pages/music/MusicGallery";
 import GuideDetail from "../pages/guide/GuideDetail";
+import PlayGallery from "../pages/music/PlayGallery";
+import KorMusic from "../pages/music/KorMusic";
 
 
 export default function RouteMain() {
@@ -49,6 +51,12 @@ export default function RouteMain() {
 
                 {/*뮤지컬*/}
                 <Route path="/musical/gallery" element={<MusicalGallery/>} />
+
+                {/*연극*/}
+                <Route path="/play/gallery" element={<PlayGallery/>} />
+
+                {/*국악*/}
+                <Route path="/korMusic/gallery" element={<KorMusic/>} />
 
                 {/*연주회*/}
                 <Route path="/music/gallery" element={<MusicGallery/>} />

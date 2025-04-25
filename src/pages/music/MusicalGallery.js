@@ -7,7 +7,7 @@ import NoResult from "../../components/NoResult";
 import PaginationSimple from "../../components/PaginationSimple";
 import GalleryComponent from "../../components/GalleryComponent";
 
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL_KOYEB;
 
 export default function MusicalGallery() {
     const [tdata, setTdata] = useState([]);
