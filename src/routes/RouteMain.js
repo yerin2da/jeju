@@ -19,11 +19,11 @@ import ExhibiGallery from "../pages/exhibition/ExhibiGallery";
 import GuideGallery from "../pages/guide/GuideGallery";
 import JejuFestival from "../pages/main/JejuFestival";
 import ThemeGallery from "../pages/theme/ThemeGallery";
-import MusicalGallery from "../pages/music/MusicalGallery";
-import MusicGallery from "../pages/music/MusicGallery";
+import MusicalGallery from "../pages/stage/MusicalGallery";
+import MusicGallery from "../pages/stage/MusicGallery";
 import GuideDetail from "../pages/guide/GuideDetail";
-import PlayGallery from "../pages/music/PlayGallery";
-import KorMusic from "../pages/music/KorMusic";
+import PlayGallery from "../pages/stage/PlayGallery";
+import KorMusic from "../pages/stage/KorMusic";
 
 
 export default function RouteMain() {
@@ -63,7 +63,6 @@ export default function RouteMain() {
 
                 {/*축제/행사*/}
                 <Route path="/festival/gallery" element={<JejuFestival/>} />
-
 
                 <Route path="/notice" element={<Notice />} />{/* 공지 */}
                 <Route path="/notice/:id" element={<NoticeView />} />{/* 공지 뷰 */ }
