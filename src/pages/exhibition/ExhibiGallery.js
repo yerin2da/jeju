@@ -23,10 +23,10 @@ export default function ExhibiGallery() {
     const getFetchData = async (pageNo = 1) => {
         try {
             setIsLoading(true);
-            const { data } = await axios.get(`https://api.kcisa.kr/openapi/CNV_060/request?serviceKey=386f66a1-ae62-4ae9-9fe9-b5625d6263bc&pageNo=1&numOfRows=10&type=json`, {
+            const { data } = await axios.get(`${apiBaseUrl}/api/jeju-culture`, {
                 params: {
-                    // pageNo,
-                    // numOfRows: itemsPerPage,
+                    pageNo,
+                    numOfRows: itemsPerPage,
                     dtype: "전시",
                     title: "제주",
                     type: "json"
