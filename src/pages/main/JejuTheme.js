@@ -47,7 +47,7 @@ export default function JejuTheme() {
                         slidesPerView: 3,
                     },
                     // 화면 크기가 768px 이상일 때
-                    768: {
+     ㅔㅁ               768: {
                         slidesPerView: 3.5,
                     },
                     // 화면 크기가 1024px 이상일 때
