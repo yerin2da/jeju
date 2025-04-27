@@ -18,7 +18,7 @@ export default function MusicGalleryComponent({item,
             <div className="absolute bottom-0 left-0 w-full h-[60%] bg-white"></div>{/* 오버레이 */}
 
             {/* 포스터 이미지 */}
-            <div className={` w-full h-80 overflow-hidden relative z-2`}>
+            <div className={` w-full h-80 overflow-hidden relative z-2 border`}>
                 <img
                     className={`w-full h-full object-cover`}
                     src={item.imageObject ? item.imageObject : `${process.env.PUBLIC_URL}/img/default.jpg`}

@@ -25,7 +25,7 @@ export default function JejuFestival() {
 
                 });
 
-                const data4 = data.items.slice(0, 4);//4개만 보여주기
+                const data4 = data.items.slice(0, 6);//4개만 보여주기
                 setTdata(data4);
                 console.log('축제&행사 응답데이터 : ', data4);
 
@@ -64,14 +64,14 @@ export default function JejuFestival() {
             }
                 title={<>제주에서 <span className={`text-mainColor`}>즐기자!</span></>}
             />
-            <ul>
+            <ul className={`grid grid-cols-2 gap-2 items-stretch`}>
                 {tdata.map((item, idx) => {
                     const imgPath = item?.repPhoto?.photoid?.imgpath;
                     const imgThumPath = item?.repPhoto?.photoid?.thumbnailpath;
                     const default2 = `${process.env.PUBLIC_URL}/img/default2.jpg`;
 
                     return (
-                        <li key={idx}>
+                        <li key={idx} className={`flex`}>
                             <InfoComponent2
                                 onClick={() => handleClick(item.contentsid)}
 
@@ -83,12 +83,6 @@ export default function JejuFestival() {
                                 </span>
                                 }
                                 txt2={item?.introduction}
-                                wrapClass="flex gap-4 items-center bg-white h-32 pb-3 "
-                                imgClass="w-24 h-full shadow-fit rounded-br-[1.8rem]"
-                                txtWrapClass="h-full flex flex-col justify-start"
-                                titleClass="font-bold multi-ellipsis pb-1"
-                                txtClass="multi-ellipsis pb-3 font-semibold text-gray-500"
-                                txt2Class="multi-ellipsis2 !text-sm font-medium"
                             />
                         </li>
                     );

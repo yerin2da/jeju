@@ -41,7 +41,7 @@ export default function MusicalGallery() {
             setTdata(items);
 
 
-            const totalCount = 50;
+            const totalCount = 10;
             const pages = Math.ceil(totalCount / itemsPerPage);
             setTotalPages(pages);
 
@@ -71,9 +71,14 @@ export default function MusicalGallery() {
                         <ul className="grid grid-cols-2 gap-2 items-stretch">
                             {tdata.map((item, idx) => {
                                 const match = item.title.match(/\[(.*?)\]\s*(.*)/);// match[0]전체 일치한 문자열
-                                const region = match ? match[1] : "";// match[1]첫 번째 캡처 그룹 (지역명)
+                                const regionSort = match ? match[1] : "";// match[1]첫 번째 캡처 그룹 (지역명)
                                 const title = match ? match[2] : item.title;// match[2]두 번째 캡처 그룹 (제목)
-
+                                let region = "기타"; // 기본값은 기타
+                                if (regionSort === "제주") {
+                                    region = "제주";
+                                } else if (regionSort === "제주 서귀포") {
+                                    region = "서귀포";
+                                }
                                 return (
                                     <li
                                         key={idx}

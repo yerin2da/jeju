@@ -63,7 +63,7 @@ export default function PlayGallery() {
             {isLoading ? (
                 <div className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600 transition-opacity duration-700 opacity-100 pointer-events-none">
                     <ImSpinner2 className="animate-spin text-3xl text-gray-600" />
-                    <p>뮤지컬 정보를 불러오고 있어요</p>
+                    <p>연극 정보를 불러오고 있어요</p>
                 </div>
             ) : (
                 <>
@@ -71,9 +71,14 @@ export default function PlayGallery() {
                         <ul className="grid grid-cols-2 gap-2 items-stretch">
                             {tdata.map((item, idx) => {
                                 const match = item.title.match(/\[(.*?)\]\s*(.*)/);// match[0]전체 일치한 문자열
-                                const region = match ? match[1] : "";// match[1]첫 번째 캡처 그룹 (지역명)
+                                const regionSort = match ? match[1] : "";// match[1]첫 번째 캡처 그룹 (지역명)
                                 const title = match ? match[2] : item.title;// match[2]두 번째 캡처 그룹 (제목)
-
+                                let region = "기타"; // 기본값은 기타
+                                if (regionSort === "제주") {
+                                    region = "제주";
+                                } else if (regionSort === "제주 서귀포") {
+                                    region = "서귀포";
+                                }
                                 return (
                                     <li
                                         key={idx}

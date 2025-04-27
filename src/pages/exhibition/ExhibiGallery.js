@@ -68,7 +68,7 @@ export default function ExhibiGallery() {
             ) : (
                 <div>
                     {tdata && tdata.length > 0 ? (
-                        <ul className={`xs:grid grid-cols-2 gap-2 items-stretch`}>
+                        <ul className={`grid grid-cols-2 gap-2 items-stretch`}>
                             {tdata.map((item, idx) => (
                             <li key={idx}
                                 className="h-full flex"
