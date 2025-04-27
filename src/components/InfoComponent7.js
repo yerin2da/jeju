@@ -6,7 +6,7 @@ export default function InfoComponent7({title,
                                            onClick=null})
 {
     return (
-        <div className={`h-56 space-y-3`}>
+        <div className={`h-56 space-y-3 bg-white`}>
             <div
                 onClick={onClick}
                 className={`
