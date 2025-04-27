@@ -19,7 +19,7 @@ export default function JejuStage() {
     };
 
     return (
-        <section className={` bg-mainBg w-screen -mx-5`}>
+        <section className={` bg-mainBg w-screen max-w-screen-md  -mx-5`}>
             {/*섹션제목*/}
             <SectionTitle
                 className={`pl-5`}
