@@ -14,7 +14,7 @@ export default function JejuTheme() {
     };
 
     return (
-        <section className={`-mx-5 w-screen `}>
+        <section className={`-mx-5 w-screen max-w-screen-md `}>
             {/*섹션제목*/}
             <SectionTitle
                 className={`pl-5`}
@@ -52,7 +52,7 @@ export default function JejuTheme() {
                     },
                     // 화면 크기가 1024px 이상일 때
                     1024: {
-                        slidesPerView: 5.5,
+                        slidesPerView: 3.5,
                     }
                 }}
             >
