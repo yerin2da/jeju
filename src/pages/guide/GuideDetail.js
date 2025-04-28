@@ -5,7 +5,7 @@ import GuideGalleryCard from "./GuideGalleryCard";
 import GuideDetailCard from "./GuideDetailCard";
 import Comment from "../../13paging/Comment";
 
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL_KOYEB;
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL_RENDER;
 
 export default function GuideDetail() {
     const location = useLocation();

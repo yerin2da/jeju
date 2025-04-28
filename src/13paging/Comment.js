@@ -174,14 +174,13 @@ export default function Comment({ postId }) {
                     <input
                         id="txt1"
                         type="text"
-                        className="w-full h-12 bg-gray-100 rounded-full pr-12 !border-0" // 👉 오른쪽 패딩 추가!
+                        className="w-full h-12 bg-gray-100 rounded-full pr-12 !border-0"
                         ref={txt1Ref}
                         placeholder="댓글을 입력해주세요"
                     />
 
                     <TailButton
-                        caption={<IoMdSend className="w-5 h-5 text-white"/>} // 👉 아이콘 크기 조정
-                        bcolor="" // 👉 이미 bg-mainColor 있으니 비움
+                        caption={<IoMdSend className="w-5 h-5 text-white"/>}
                         handleClick={handleOk}
                         className="w-10 h-10 bg-mainColor rounded-full flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2"
                     />
@@ -199,7 +198,7 @@ export default function Comment({ postId }) {
                             {/* 도트 아이콘 */}
                             <div
                                 tabIndex={0}
-                                onBlur={() => setTimeout(() => setShowOptionsId(null), 100)} // 👑 딜레이 추가!
+                                onBlur={() => setTimeout(() => setShowOptionsId(null), 100)} // 딜레이
                                 className="cursor-pointer relative z-10"
                                 onClick={() => toggleOptions(item.id)}
                             >
