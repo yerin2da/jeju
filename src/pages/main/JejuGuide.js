@@ -29,7 +29,7 @@ export default function JejuGuide() {
                 <li key={idx}
                     className={`relative`}
                 >
-                    {idx === 1 ? (<div className={`absolute -top-2 left-1/2 -translate-x-1/2 w-1/2  py-0.5 xs:py-1 
+                    {idx === 1 ? (<div className={`absolute -top-2 left-1/2 -translate-x-1/2 w-3/4 xs:w-1/2  py-0.5 xs:py-1 
                     bg-gradient-to-r from-purple-500 to-pink-500 min-w-fit
                     text-white rounded-full text-center text-xs xs:text-sm`}>hot</div>) : ("")}
                     <InfoComponent4
