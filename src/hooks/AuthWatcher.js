@@ -25,11 +25,11 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
                     "/findCurrency",
                     "/buy",
                     "/wallet/myCoin",
+
                     "/exhibition/gallery",
                     "/guide/gallery",
                     "/guide/gallery/:category",
                     "/guide/gallery/:category/:cid",
-                    "/stage/gallery",
                     "/musical/gallery",
                     "/music/gallery",
                     "/play/gallery",

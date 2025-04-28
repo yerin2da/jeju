@@ -14,73 +14,29 @@
       "id": "f5fd",
       "title": "1",
       "author": "1"
-    },
-    {
-      "id": "416a",
-      "title": "1",
-      "author": "1"
-    },
-    {
-      "id": "074f",
-      "title": "1111",
-      "author": "1111"
-    },
-    {
-      "id": "60b5",
-      "title": "12",
-      "author": "1212"
-    },
-    {
-      "id": "0c92",
-      "title": "1212",
-      "author": "1212"
-    },
-    {
-      "id": "c272",
-      "title": "가나",
-      "author": "가나"
-    },
-    {
-      "id": "7a71",
-      "title": "32",
-      "author": "23"
-    },
-    {
-      "id": "c547",
-      "title": "ㄷㅇ",
-      "author": "ㅈㄷㅈㄷ"
-    },
-    {
-      "id": "0616",
-      "title": "다다",
-      "author": "다다"
-    },
-    {
-      "id": "0403",
-      "title": "응응",
-      "author": "응응"
-    },
-    {
-      "id": "76a9",
-      "title": "ㅇㅇ",
-      "author": "ㅇㅇ"
-    },
-    {
-      "id": "07de",
-      "title": "",
-      "author": ""
     }
   ],
   "comments": [
     {
-      "id": "1",
-      "body": "This is a comment1.",
-      "postId": 1
+      "id": "b8c3",
+      "title": "예술상점ㅇㅇ",
+      "postId": "CNTS_200000000015093"
     },
     {
-      "id": "2",
-      "body": "This is a comment2.",
-      "postId": 1
+      "id": "d9fd",
+      "title": "세화점방",
+      "author": "세화점뱅",
+      "postId": "CNTS_200000000015055"
+    },
+    {
+      "id": "629f",
+      "title": "ㅇㅇㅇㅇㅇㅇㅇㅇ",
+      "postId": "CNTS_200000000015093"
+    },
+    {
+      "id": "2a7c",
+      "title": "오 대박",
+      "postId": "CNTS_200000000009098"
     }
   ],
   "users": [

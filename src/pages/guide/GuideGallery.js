@@ -88,6 +88,7 @@ const GuideGallery = () => {
 
             setTdata(allItems);
             console.log(` 전체 ${allItems.length}개 데이터 병렬 로드 완료`);
+            console.log("가이드 응답 :", results);
 
         } catch (error) {
             console.error(' 전체 데이터 병렬 로딩 실패:', error);
@@ -166,42 +167,43 @@ const GuideGallery = () => {
 
 
     return (
+
         <div>
+            {/* 검색창 */}
+            <div className={`pb-5`}>
+                <SearchInput
+                    inputPlaceholder={`검색어를 입력해주세요`}
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    onSearch={handleSearch}
+                    className={`border-gray-300`}
+                />
+            </div>
+
             {/* 대분류 탭 */}
             <TabMenuSlider
                 spaceBetween={3}
                 data={data.jejuCategory}
                 onClick={handleSelC1}
                 selTab={selC1}
-                tClass={`bg-mainColor text-white`}
-                fClass={`text-textBlack `}
+                tClass={`bg-black text-white`}
+                fClass={`text-textBlack bg-gray-100`}
+                btnClass={``}
             />
 
             {/*중메뉴 탭*/}
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-4 mb-4">
                 {displayTags.map((tag) => (
                     <button
                         key={tag}
                         onClick={() => setSelectedTag(tag)}
-                        className={`py-1 rounded-full text-sm ${
-                            selectedTag === tag ? 'text-mainColor' : 'text-gray-600'
+                        className={`py-4 rounded-full text-sm tx ${
+                            selectedTag === tag ? 'text-mainColor' : 'text-gray-500'
                         }`}
                     >
                         #{tag}
                     </button>
                 ))}
-            </div>
-
-
-            {/* 검색창 */}
-            <div className={`py-5 `}>
-                <SearchInput
-                    inputPlaceholder={`검색어를 입력해주세요`}
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onSearch={handleSearch}
-                    className={`border-subColor2`}
-                />
             </div>
 
             {isLoading ? (

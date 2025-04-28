@@ -21,7 +21,7 @@ const SearchInput = forwardRef(function SearchInput(
             <div className="flex items-center justify-center h-full absolute right-3 top-0">
                 <IoSearch
                     onClick={onSearch}
-                    className="text-mainColor cursor-pointer text-2xl"
+                    className="text-gray-300 cursor-pointer text-2xl"
                 />
             </div>
         </div>

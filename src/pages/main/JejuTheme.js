@@ -25,7 +25,7 @@ export default function JejuTheme() {
                 title={<>이런 <span className={`text-mainColor`}>여행</span>어때요?</>}
             />
             <Swiper
-                className={` -mx-l-5 !overflow-visible`}
+                className={`pl-5 !overflow-visible`}
                 modules={[Autoplay]}
                 direction="horizontal"
                 loop={false}  // 슬라이드 반복

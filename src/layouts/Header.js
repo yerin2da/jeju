@@ -14,7 +14,28 @@ export default function Header() {
         "/register": "회원가입",
         "/guide": "이용가이드",
         "/wallet": "내지갑",
+
+        "/exhibition/gallery":"제주 BEST 전시",
+        "/guide/gallery":"여행 가이드",
+        "/guide/gallery/:category":"여행 가이드",
+        "/guide/gallery/:category/:cid":"상세 정보",
+        "/musical/gallery":"뮤지컬 모음",
+        "/music/gallery":"음악 모음",
+        "/play/gallery":"연극 모음",
+        "/korMusic/gallery":"국악 모음",
+        "/theme/gallery":"테마 여행",
     };
+
+    // 캡션 자동 매칭
+    let caption = captions[currentPath]; // 정확히 일치하는 경로 먼저 찾기
+    if (!caption) {// 못 찾았으면
+        for (const path in captions) {// captions의 모든 경로 순회!
+            if (matchPath({ path, end: true }, currentPath)) {// matchPath로 비교 - matchPath("/guide/gallery/:category", "/guide/gallery/c1")
+                caption = captions[path];// 찾으면 caption 설정
+                break;
+            }
+        }
+    }
 
     const showLogo = ["/", "/mypage"].includes(currentPath);
 
@@ -24,15 +45,10 @@ export default function Header() {
 
 
 
-    // 기본 caption + 동적 라우트 처리
-    let caption = captions[currentPath];
-    if (matchPath("/notice/:id", currentPath)) {// 현재 경로(currentPath)가 /notice/숫자 패턴과 같으면
-        caption = "공지사항";
-    }
 
     return (
 
-        <header className={`w-full text-2xl h-20 px-6 py-11 sticky top-0 left-0 z-[9999] 
+        <header className={`w-full text-2xl h-20 pr-6 pl-3 py-11 sticky top-0 left-0 z-[9999] 
                 ${bgBlack 
                     ? "bg-midBlack text-white"
                     : "bg-white"}

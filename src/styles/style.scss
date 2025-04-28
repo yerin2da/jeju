@@ -2,11 +2,7 @@
  @use "tailwindcss/base";
  @use "tailwindcss/components";
  @use "tailwindcss/utilities";
-
-
-
  // 변수 선언
- $mainColor: #5600C0;
  $subColor: #6B1FC8;
  $subColor2: #9C59FF;
  $lightPurple:#F7F1FF;
@@ -19,6 +15,13 @@
  $midGray: #f2f3f7;
  $textLightGray: #e6e6e6;
  $lightBlack: #575757;
+
+
+ $mainColor: #3BBD2A; // 메인컬러
+ $darkGreen: #266D00; //
+ $midGreen: #9EDE95; //
+ $lightGreen: #E6F8DD; //
+ $mainBg: #f6f6f6;//전체 배경색
 
  @mixin btn($color){
    display: inline-flex;
@@ -58,8 +61,8 @@
    left: 0;
    width: 100%;
    height: 100vh;
-   background: rgba(0, 0, 0, 0.3);
-   //background: rgba(255, 255, 255,F 0.9);
+   background: rgba(0, 0, 0, 0.5);
+   //background: rgba(255, 255, 255, 0.9);
    z-index: 9999;
    pointer-events: none;
  }
@@ -134,7 +137,8 @@
 
 
  input, select{
-   @apply h-12 rounded-[0.4rem] placeholder-midGray px-2 py-1
+   @apply h-12 rounded-[0.4rem]  px-2 py-1
+   //placeholder-gray-400
  }
  input{
    outline: none !important;
@@ -143,12 +147,12 @@
  }
 
  input:focus, select:focus {
-   border: 1px solid $subColor2 !important;
+   border: 1px solid $mainColor !important;
  }
  input::placeholder,
  textarea::placeholder,
  .rs__placeholder{
-   @apply text-sm font-normal text-textGray
+   @apply text-sm font-normal !text-gray-300
  }
 
  /* 셀렉, 옵션 스타일 */

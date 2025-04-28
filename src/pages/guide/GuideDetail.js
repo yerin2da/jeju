@@ -1,8 +1,11 @@
 import { useLocation, useParams } from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
+import GuideGalleryCard from "./GuideGalleryCard";
+import GuideDetailCard from "./GuideDetailCard";
+import Comment from "../../13paging/Comment";
 
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL_KOYEB;
 
 export default function GuideDetail() {
     const location = useLocation();
@@ -41,15 +44,20 @@ export default function GuideDetail() {
     return (
         <div>
             {tdata && tdata.length > 0 ? (
-                tdata.map(item => (
-                    <div key={item.contentsid}>
-                        <h1>{item.title}</h1>
-                        <p>{item.alltag}</p>
+                <>
+                    {tdata.map(item => (
+                        <GuideDetailCard key={item.contentsid} item={item}/>
+                    ))}
+
+                    <div className={`py-2`}>
+                        <Comment postId={cid}/>
                     </div>
-                ))
+
+                </>
             ) : (
                 <p>데이터가 없습니다.</p>
             )}
+
         </div>
 
     );
