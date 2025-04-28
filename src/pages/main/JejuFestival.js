@@ -64,7 +64,7 @@ export default function JejuFestival() {
             }
                 title={<>제주에서 <span className={`text-mainColor`}>즐기자!</span></>}
             />
-            <ul className={`grid grid-cols-2 gap-2 items-stretch`}>
+            <ul className={`grid grid-cols-2 xs:grid-cols-3 gap-x-2 gap-y-4 items-stretch`}>
                 {tdata.map((item, idx) => {
                     const imgPath = item?.repPhoto?.photoid?.imgpath;
                     const imgThumPath = item?.repPhoto?.photoid?.thumbnailpath;
