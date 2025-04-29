@@ -10,7 +10,7 @@ const SearchInput = forwardRef(function SearchInput(
         <div className="flex w-full items-center justify-center relative text-base">
             <input
                 ref={ref}
-                className={`w-full h-10 rounded pl-4 pr-10 border text-textBlack placeholder-gray-300 ${className}`}
+                className={`w-full h-10 rounded pl-4 pr-10 border text-textBlack placeholder-gray-300 border-gray-300 ${className}`}
                 type="text"
                 placeholder={inputPlaceholder}
                 value={value}

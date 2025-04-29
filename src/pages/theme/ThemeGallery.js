@@ -161,7 +161,6 @@ const JejuThemeGallery = () => {
                     value={inputValue}
                     onChange={handleInputChange}
                     onSearch={handleSearch}
-                    className={`border-subColor2`}
                 />
             </div>
 

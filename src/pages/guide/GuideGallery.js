@@ -176,7 +176,6 @@ const GuideGallery = () => {
                     value={inputValue}
                     onChange={handleInputChange}
                     onSearch={handleSearch}
-                    className={`border-gray-300`}
                 />
             </div>
 
