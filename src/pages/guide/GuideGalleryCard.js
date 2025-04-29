@@ -35,8 +35,8 @@ export default function GuideGalleryCard({item,onClick}) {
                     {item.repPhoto.descseo}
                 </div>
                 <div className={`text-gray-700`}>
-                    <p className={`text-sm font-medium multi-ellipsis`}>{item.introduction}</p>
-                    <p className={`text-xs text-gray-500`}>{item.address}</p>
+                    <p className={`text-sm xs:text-base font-medium multi-ellipsis`}>{item.introduction}</p>
+                    <p className={`text-xs xs:text-sm text-gray-500`}>{item.address}</p>
                 </div>
                 <div className={`pt-4 pb-2`}>
                     {sptags.map(((kw, idx) =>

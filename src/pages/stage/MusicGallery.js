@@ -9,7 +9,7 @@ import GalleryComponent from "../../components/GalleryComponent";
 import ExhibiGalleryComponent from "../../components/ExhibiGalleryComponent";
 import MusicGalleryComponent from "../../components/MusicGalleryComponent";
 
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL_KOYEB;
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export default function MusicGallery() {
     const [tdata, setTdata] = useState([]);

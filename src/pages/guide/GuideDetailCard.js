@@ -38,7 +38,7 @@ export default function GuideDetailCard({item,onClick}) {
                     <div className={`font-bold text-xl pb-1`}>
                         {item.repPhoto.descseo}
                     </div>
-                    <p className={`text-sm text-gray-500`}>{item.address}</p>
+                    <p className={`text-sm xs:text-base text-gray-500`}>{item.address}</p>
                 </div>
 
                 <p className={`text-lg text-center`}>"{item.introduction}"</p>

@@ -36,8 +36,6 @@ export default function JejuGuide() {
                         onClick={() => handleClick(item.code)}
                         icon_name={item.img}
                         title={item.label}
-                        wrapClass={``}
-                        imgClass={``}
                         titleClass={`text-sm font-semibold`}
                     />
                 </li>
