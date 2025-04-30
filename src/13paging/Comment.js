@@ -6,7 +6,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { FaPencilAlt } from "react-icons/fa";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 
-
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 export default function Comment({ postId }) {
     const [tdata, setTdata] = useState([]);
     // const [tags, setTags] = useState();
@@ -24,12 +24,15 @@ export default function Comment({ postId }) {
 
 
     //1. json데이터 가져오기
-    const url = `${process.env.REACT_APP_API_BASE_URL}/api/comments`;
+    const url = `${apiBaseUrl}/api/comments`;
     // const url = '/comments';
     const getFetchData = async (page = 1) => {
         try {
             const response = await axios.get(url,{
-                params: { postId }
+                params: { postId },
+                headers: {
+                    Accept: "application/json"
+                }
             });
 
             console.log("응답 데이터 구조 확인:", response.data); // 데이터 구조 확인
@@ -97,7 +100,12 @@ export default function Comment({ postId }) {
             postId: postId
         }
 
-        const {data} = await axios.post(url, postData)
+        const {data} = await axios.post(url, postData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
 
         // 최신 데이터 맨 앞에 추가하고, 최대 5개까지만 유지
         setTdata(prevData => [data, ...prevData].slice(0, 5));
@@ -109,7 +117,12 @@ export default function Comment({ postId }) {
 
     const jsonDelete = async (id) => {
 
-        await axios.delete(`${url}/${id}`);
+        await axios.delete(`${url}/${id}`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
         setTdata(tdata.filter(item => item.id !== id));
 
         txt1Ref.current.value = '';
@@ -133,7 +146,12 @@ export default function Comment({ postId }) {
             postId: postId
         }
 
-        const {data} = await axios.put(`${url}/${isUpdateId}`, putData);
+        const {data} = await axios.put(`${url}/${isUpdateId}`, putData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
 
         setTdata(tdata.map(item => item.id === isUpdateId ? data : item));
 
