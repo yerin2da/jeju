@@ -24,8 +24,8 @@ export default function Comment({ postId }) {
 
 
     //1. json데이터 가져오기
-    const url = process.env.REACT_APP_API_BASE_URL + '/comments';
-
+    const url = `${process.env.REACT_APP_API_BASE_URL}/comments`;
+    // const url = '/comments';
     const getFetchData = async (page = 1) => {
         try {
             const response = await axios.get(url,{
@@ -176,7 +176,7 @@ export default function Comment({ postId }) {
                         type="text"
                         className="w-full h-12 bg-gray-100 rounded-full pr-12 !border-0"
                         ref={txt1Ref}
-                        placeholder="댓글을 입력해주세요"
+                        placeholder="댓글을 입력해주세요gg"
                     />
 
                     <TailButton
