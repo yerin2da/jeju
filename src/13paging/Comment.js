@@ -24,7 +24,7 @@ export default function Comment({ postId }) {
 
 
     //1. json데이터 가져오기
-    const url = `${process.env.REACT_APP_API_BASE_URL}/comments`;
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/comments`;
     // const url = '/comments';
     const getFetchData = async (page = 1) => {
         try {
