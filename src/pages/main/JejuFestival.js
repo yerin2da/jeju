@@ -40,7 +40,7 @@ export default function JejuFestival() {
     const navigate = useNavigate();
 
     const handleClick = (code) => {
-        navigate(`festival/gallery?category=c5&content=${code}`);
+        navigate(`guide/gallery/c5/${code}`);
     };
 
 
@@ -71,11 +71,12 @@ export default function JejuFestival() {
                     const default2 = `${process.env.PUBLIC_URL}/img/default2.jpg`;
 
                     return (
-                        <li key={idx} className={`flex`}>
+                        <li key={idx} className={`flex cursor-pointer `}>
                             <InfoComponent2
                                 onClick={() => handleClick(item.contentsid)}
-
                                 imageSrc={imgThumPath || imgPath || default2}
+
+                                // imageSrc={imgThumPath? imgThumPath : imgPath || imgPath || default2}
                                 title={item?.title}
                                 txt={
                                 <span className={`flex items-center`}>

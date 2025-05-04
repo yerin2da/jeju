@@ -6,7 +6,7 @@ export default function InfoComponent7({title,
                                            onClick=null})
 {
     return (
-        <div className={`h-fit w-full bg-white rounded-xl overflow-hidden`}>
+        <div className={` cursor-pointer h-fit w-full bg-white rounded-xl overflow-hidden`}>
             <div
                 onClick={onClick}
                 className={`w-full
@@ -20,8 +20,8 @@ export default function InfoComponent7({title,
                 <div className={`relative z-2 w-fit text-sm bg-mainColor text-white px-4 py-1 rounded-sm`}>{title}</div>
             </div>
 
-            <div className={`flex items-center justify-between p-4 h-fit`}>
-                <div className={`text-base font-semibold whitespace-pre-line `}>{txt}</div>
+            <div className={`flex items-center justify-between p-5 h-fit`}>
+                <div className={`text-base font-semibold whitespace-pre-line leading-tight`}>{txt}</div>
                 <MoreButton className={`border border-mainColor rounded`}/>
             </div>
         </div>

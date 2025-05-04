@@ -15,10 +15,8 @@ export default function Layout() {
             <Header />
 
             <main
-                className={`w-full p-5 overflow-y-auto scrollbar-hide h-full border bg-white overflow-x-hidden`} >
-                {/* ${*/}
-                {/* !hiddenMainBar ? "mb-[96px] bg-mainBg " : "bg-white"*/}
-                {/* }*/}
+                className={`w-full p-5 overflow-y-auto scrollbar-hide h-full border bg-white overflow-x-hidden
+                 ${!hiddenMainBar ? "mb-[96px] " : ""}`}>
 
                 <Outlet/> {/* 각 페이지 렌더링 */}
             </main>

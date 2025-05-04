@@ -4,13 +4,14 @@ import axios from "axios";
 import GuideGalleryCard from "./GuideGalleryCard";
 import GuideDetailCard from "./GuideDetailCard";
 import Comment from "../../13paging/Comment";
+import {ImSpinner2} from "react-icons/im";
 
 const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
 
 export default function GuideDetail() {
     const location = useLocation();
     const [tdata, setTdata] = useState([])//전체 데이터
-
+    const [isLoading, setIsLoading] = useState(true);
     const { cid,  category } = useParams();  // URL 파라미터로 cid 받기
     console.log("params category:", category);
     console.log("params cid:", cid);
@@ -35,6 +36,8 @@ export default function GuideDetail() {
 
             } catch (error) {
                 console.error('api응답 실패 :', error);
+            }  finally {
+                setIsLoading(false); // 로딩 종료
             }
         };
 
@@ -43,22 +46,28 @@ export default function GuideDetail() {
 
     return (
         <div>
-            {tdata && tdata.length > 0 ? (
-                <>
-                    {tdata.map(item => (
-                        <GuideDetailCard key={item.contentsid} item={item}/>
-                    ))}
-
-                    <div className={`py-2`}>
-                        <Comment postId={cid}/>
-                    </div>
-
-                </>
+            {isLoading ? (
+                <div className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600 transition-opacity duration-700 opacity-100 pointer-events-none">
+                    <ImSpinner2 className="animate-spin text-3xl text-gray-600" />
+                    <p>상세 정보를 불러오고 있어요</p>
+                </div>
             ) : (
-                <p>데이터가 없습니다.</p>
+                <>
+                    {tdata && tdata.length > 0 ? (
+                        <>
+                            {tdata.map((item) => (
+                                <GuideDetailCard key={item.contentsid} item={item} />
+                            ))}
+
+                            <div className="py-2">
+                                <Comment postId={cid} />
+                            </div>
+                        </>
+                    ) : (
+                        <p className="text-center py-10 text-gray-500">데이터가 없습니다.</p>
+                    )}
+                </>
             )}
-
         </div>
-
     );
 }

@@ -8,7 +8,7 @@ export default function InfoComponent6({title,
     return (
         <div
             onClick={onClick}
-            className={`
+            className={` cursor-pointer 
                 rounded-2xl bg-center bg-no-repeat 
                 text-white relative overflow-hidden 
                 bg-cover w-full h-full

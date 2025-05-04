@@ -28,13 +28,13 @@
     { "code": "exchangeList", "label": "거래내역" }
   ],
   "jejuCategory" : [
-    { "label": "관광지",
-      "code": "c1",
-      "img": "map"
-    },
     { "label": "쇼핑",
       "code": "c2",
       "img": "shop"
+    },
+    { "label": "관광지",
+      "code": "c1",
+      "img": "map"
     },
     { "label": "숙소",
       "code": "c3",
@@ -98,6 +98,14 @@
         "txt": "자연과 예술이 맞닿는, \n마음을 울리는 감동",
         "code": "musical",
         "img": "musical"
+      },
+      { "label": "전시",
+        "code": "exhibition",
+        "img": "exhibition"
+      },
+      { "label": "음악회",
+        "code": "music",
+        "img": "music"
       }
   ]
 

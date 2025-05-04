@@ -6,7 +6,7 @@ export default function MainVisual() {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/exhibition/gallery?`);
+        navigate(`/stage/gallery/exhibition`);
     };
 
     return (

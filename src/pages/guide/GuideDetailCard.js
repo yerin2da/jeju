@@ -14,34 +14,38 @@ export default function GuideDetailCard({item,onClick}) {
         )];
     }
 
-    let imgPath = item.repPhoto.photoid.imgpath;//이미지
-    let imgThumPath = item.repPhoto.photoid.thumbnailpath;//썸네일 이미지
+    const imgPath = item?.repPhoto?.photoid?.imgpath;
+    const imgThumPath = item?.repPhoto?.photoid?.thumbnailpath;
+    const default2 = `${process.env.PUBLIC_URL}/img/default2.jpg`;
 
-    // 이미지 없으면 썸네일 사용
-    let finalImgPath = (typeof imgThumPath === 'string' && imgThumPath.trim())
-        ? imgPath
-        : imgThumPath;
+    // // 이미지 없으면 썸네일 사용
+    // let finalImgPath = (typeof imgThumPath === 'string' && imgThumPath.trim())
+    //     ? imgPath
+    //     : imgThumPath;
 
     return (
         <div
             className={`-mx-5 -mt-5 w-screen max-w-screen-md`}
         >
             <img className={`h-52 xs:h-72 sm:h-[24rem] w-full object-cover`}
-                 src={typeof finalImgPath === 'string' && finalImgPath.includes('http')
-                     ? finalImgPath.replace('http:', 'https:')
-                     : finalImgPath}
-                 alt={item.repPhoto.descseo}
+                 // src={typeof finalImgPath === 'string' && finalImgPath.includes('http')
+                 //     ? finalImgPath.replace('http:', 'https:')
+                 //     : finalImgPath}
+
+                 src={imgThumPath || imgPath || default2}
+
+                 alt={item.repPhoto?.descseo}
             />
 
             <div className={`p-5 space-y-6`}>
                 <div className={``}>
                     <div className={`font-bold text-xl pb-1`}>
-                        {item.repPhoto.descseo}
+                        {item.repPhoto?.descseo}
                     </div>
                     <p className={`text-sm xs:text-base text-gray-500`}>{item.address}</p>
                 </div>
 
-                <p className={`text-lg text-center`}>"{item.introduction}"</p>
+                <p className={`text-lg `}>"{item.introduction}"</p>
 
                 <div className={`py-2`}>
                     <div className={`font-bold text-base pb-4`}>장소 정보</div>
@@ -57,8 +61,10 @@ export default function GuideDetailCard({item,onClick}) {
                         </span>
                     ))}
                 </div>
-
             </div>
+
+            {/* 선 */}
+            <div className={`border-t w-full pb-2`}></div>
 
         </div>
     );

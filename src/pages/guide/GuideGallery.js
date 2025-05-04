@@ -14,7 +14,7 @@ import PaginationSimple from "../../components/PaginationSimple";
 
 const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
-// import apiBaseUrl from "../../config";
+
 
 const GuideGallery = () => {
     const navigate = useNavigate();
@@ -212,7 +212,7 @@ const GuideGallery = () => {
                     <p>관광지 정보를 불러오고 있어요</p>
                 </div>
             ) : (
-                <>
+                <div className={` cursor-pointer `}>
                     {/*글 목록*/}
                     {paginatedData.length !== 0 ?
                         (
@@ -232,7 +232,7 @@ const GuideGallery = () => {
                         totalPages={totalPages}
                         setCurrentPage={setCurrentPage}
                     />
-                </>
+                </div>
             )}
         </div>
     );

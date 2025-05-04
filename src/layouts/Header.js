@@ -1,6 +1,10 @@
-import {Link, useLocation, matchPath} from "react-router-dom";
+import {Link, useLocation, matchPath, useNavigate} from "react-router-dom";
 import BackButton from "../UI/BackButton";
 import HambergerButton from "../UI/HambergerButton";
+import {IoSearch} from "react-icons/io5";
+import React, {useRef} from "react";
+import SearchInput from "../components/SearchInput";
+import { LuBell } from "react-icons/lu";
 
 export default function Header() {
     const location = useLocation();
@@ -41,14 +45,18 @@ export default function Header() {
 
     const bgBlack = ["/findCurrency", "/buy"].includes(currentPath);//헤더 블랙
 
-    const hiddenHamberger = ["/login", "/register"].includes(currentPath);
+    const hiddenHamberger = ["/login", "/register", "/mainSearch"].includes(currentPath);
 
+    //메인서치일때
+    const mainSearch = ["/mainSearch"].includes(currentPath);
 
+    const navigate = useNavigate();
 
+    const inputRef = useRef(null);
 
     return (
 
-        <header className={`w-full text-2xl h-20 pr-6 pl-3 py-11 sticky top-0 left-0 z-[9999] 
+        <header className={`w-full text-2xl h-20 pr-6 pl-4 py-11 sticky top-0 left-0 z-[9999] 
                 ${bgBlack 
                     ? "bg-midBlack text-white"
                     : "bg-white"}
@@ -56,20 +64,46 @@ export default function Header() {
 
             <div className={`h-full flex items-center justify-between`}>
                 {showLogo ? (
-                    <h1 className="text-3xl font-semibold text-mainColor">
-                        <Link to="/">cmsj</Link>
-                    </h1>
-                ) : (
-                    <BackButton caption={caption} />
-                )}
-
-                {!hiddenHamberger && (
-                    // iconBlackColor
-                    //     ?
-                    <HambergerButton className="" />
-                        // : <HambergerButton className="text-subColor" />
-                )
+                    <div className={` w-full pr-6 flex items-center justify-between`}>
+                        <h1 className="text-3xl font-semibold text-mainColor">
+                            <Link to="/">Jejucom</Link>
+                        </h1>
+                        <IoSearch
+                            className={`cursor-pointer`}
+                            onClick={() => navigate("/mainSearch")}
+                        />
+                    </div>
+                ) :
+                    // 메인 서치페이지
+                    mainSearch
+                        ? (
+                        <>
+                            {/*백버튼+검색*/}
+                            <BackButton caption={caption} />
+                            <SearchInput
+                                className={`!rounded-full !bg-gray-100 !border-0 !placeholder-gray-400`}
+                                inputPlaceholder={`제주 어디부터 가볼까?`}
+                                btnClassName={`text-gray-400`}
+                                ref={inputRef}
+                                onSearch={() => {
+                                    const keyword = inputRef.current?.value;
+                                    if (!keyword) return;
+                                    navigate("/mainSearch", { state: { keyword }, replace: true }); // 현재 경로에 state만 갱신
+                                }}
+                            />
+                        </>
+                        ) : (
+                            <BackButton caption={caption} />
+                        )
                 }
+                {!hiddenHamberger && (
+                    // 공지사항
+                    <LuBell
+                        onClick={()=> navigate("/notice")}
+
+                        className={`cursor-pointer`} />
+                )}
+                {/*    <HambergerButton className="" />*/}
             </div>
         </header>
     );

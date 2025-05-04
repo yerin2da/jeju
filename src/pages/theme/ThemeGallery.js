@@ -4,7 +4,7 @@ import axios from "axios";
 
 import {useRecoilState} from "recoil";
 
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 
 import {ImSpinner2} from "react-icons/im";
 import {pageState} from "../../store/noticeState";
@@ -88,21 +88,22 @@ const JejuThemeGallery = () => {
             setIsLoading(false);
         }
     };
+    const { category } = useParams();
 
     useEffect(() => {
-        const queryParams = new URLSearchParams(location.search);
-        const category = queryParams.get("category") || '163';
+        // const queryParams = new URLSearchParams(location.search);
+        const currentCategory = category || '163';
 
-        setSelC1(category);
-        getFetchAllData(category);
-    }, [location.search]); // ✅ location.search 감지
+        setSelC1(currentCategory);
+        getFetchAllData(currentCategory);
+    }, [category]); //  category 기준으로 패칭
 
 
     // 카테고리 변경
     const handleSelC1 = (code) => {
         setSelC1(code);
-        // setSelectedTag(null); // #태그 선택 초기화
-        navigate(`/theme/gallery?category=${code}`); //  URL 업데이트
+        setSelectedTag(null); // #태그 선택 초기화
+        navigate(`/theme/gallery/${code}`); //  URL 업데이트
         getFetchAllData(code);
 
         setCurrentPage(1); // 카테고리 변경 시 첫 페이지로
@@ -177,7 +178,7 @@ const JejuThemeGallery = () => {
                             paginatedData.map((item, spotAreaId) =>
                                 <JejuThemeGalleryCard
                                     key={item.spotAreaId}
-                                    onClick={() => handleItemClick(item.spotAreaId)}
+                                    // onClick={() => handleItemClick(item.spotAreaId)}
                                     item={item}
                                 />)
                         ) : (

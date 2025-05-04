@@ -65,7 +65,7 @@ export default function MusicGallery() {
             {isLoading ? (
                 <div className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600 transition-opacity duration-700 opacity-100 pointer-events-none">
                     <ImSpinner2 className="animate-spin text-3xl text-gray-600" />
-                    <p>뮤지컬 정보를 불러오고 있어요</p>
+                    <p>음악회 정보를 불러오고 있어요</p>
                 </div>
             ) : (
                 <>
@@ -83,12 +83,6 @@ export default function MusicGallery() {
                                     >
                                         <MusicGalleryComponent
                                             item={{ ...item }}
-                                            tit={`multi-ellipsis`}
-                                            wrapClass={`!rounded-xl`}
-                                            imgClass={``}
-
-                                            tel="!hidden"
-                                            date="hidden "
                                         />
                                     </li>
                                 );

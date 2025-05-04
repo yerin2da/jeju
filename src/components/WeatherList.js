@@ -93,7 +93,9 @@ export default function WeatherList({ data }) {
                             <div className="h-20 flex items-center justify-between">
                                 {/* 왼쪽: 날씨 아이콘과 설명 */}
                                 <div className="flex items-center gap-3">
+                                    {/*아이콘*/}
                                     <div className="text-3xl">{getIcon()}</div>
+
                                     <div className="text-sm ">
                                         <p className="">{item.location} 날씨</p>
                                         <p className="text-gray-500">{getDescription()}</p>

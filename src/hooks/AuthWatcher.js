@@ -26,17 +26,25 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
                     "/buy",
                     "/wallet/myCoin",
 
-                    "/exhibition/gallery",
+
                     "/guide/gallery",
-                    "/guide/gallery/:category",
-                    "/guide/gallery/:category/:cid",
-                    "/musical/gallery",
-                    "/music/gallery",
-                    "/play/gallery",
-                    "/korMusic/gallery",
                     "/theme/gallery",
+                    "/guide/gallery/:category",
+                    "/theme/gallery/:category",
+                    "/guide/gallery/:category/:cid",
+
+                    "/stage/gallery/exhibition",
+                    "/stage/gallery/musical",
+                    "/stage/gallery/play",
+                    "/stage/gallery/korMusic",
+                    "/stage/gallery/music",
+
+                    "/theme/gallery",
+                    "/mainSearch",
+                    "/mainMenu"
 
                 ].includes(path) || matchPath("/guide/gallery/:category/:cid", path) ||matchPath("/guide/gallery/:category", path)
+                ||matchPath("/theme/gallery/:category", path)
             ) {
                 return;
             }

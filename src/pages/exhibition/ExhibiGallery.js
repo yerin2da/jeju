@@ -71,7 +71,7 @@ export default function ExhibiGallery() {
                         <ul className={`grid grid-cols-2  gap-x-2 gap-y-4 items-stretch`}>
                             {tdata.map((item, idx) => (
                             <li key={idx}
-                                className="h-full flex"
+                                className="h-full flex cursor-pointer"
                             >
                                 <ExhibiGalleryComponent
                                     item={item}

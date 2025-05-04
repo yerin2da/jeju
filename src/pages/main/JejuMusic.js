@@ -7,11 +7,11 @@ export default function JejuMusic() {
     const navigate = useNavigate();
 
     const handleClick = (code) => {
-        navigate(`/${code}/gallery?`);
+        navigate(`/stage/gallery/${code}`);
     };
 
     return (
-        <section className={`w-full`}>
+        <section className={`w-full `}>
 
             <div className={`w-full h-36`}>
                 <InfoComponent6

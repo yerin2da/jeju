@@ -23,15 +23,19 @@ export default function JejuGuide() {
             />
 
             {/* 컨텐츠 박스 */}
-            <ul className={`w-full grid grid-cols-4 gap-2`}>
+            <ul className={`w-full grid grid-cols-4 gap-2 xs:gap-4 sm:gap-8`}>
 
                 {data.jejuCategory.slice(0,4).map((item, idx) =>
                 <li key={idx}
-                    className={`relative`}
+                    className={`relative cursor-pointer `}
                 >
-                    {idx === 1 ? (<div className={`absolute -top-2 left-1/2 -translate-x-1/2 w-3/4 xs:w-1/2  py-0.5 xs:py-1 
-                    bg-gradient-to-r from-purple-500 to-pink-500 min-w-fit
-                    text-white rounded-full text-center text-xs xs:text-sm`}>hot</div>) : ("")}
+                    {item.code === "c2"
+                        ? (<div className={`absolute -top-2 left-1/2 -translate-x-1/2
+                             bg-gradient-to-r from-purple-500 to-pink-500 min-w-fit
+                             text-white rounded-full text-center px-3 py-0.5 
+                             text-xs xs:text-sm floating`}
+                        >hot</div>)
+                        : ("")}
                     <InfoComponent4
                         onClick={() => handleClick(item.code)}
                         icon_name={item.img}

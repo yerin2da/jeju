@@ -15,11 +15,11 @@ export default function JejuStage() {
     const navigate = useNavigate();
 
     const handleClick = (code) => {
-        navigate(`/${code}/gallery?`);
+        navigate(`/stage/gallery/${code}`);
     };
 
     return (
-        <section className={` bg-mainBg w-screen max-w-screen-md  -mx-5`}>
+        <section className={` bg-mainBg w-screen max-w-screen-md -mx-5`}>
             {/*섹션제목*/}
             <SectionTitle
                 className={`pl-5`}
@@ -31,7 +31,7 @@ export default function JejuStage() {
             />
             <div className={`px-5`}>
                 <Swiper
-                    className={`w-full h-full`}
+                    className={` w-full h-full`}
                     modules={[Pagination]}
                     direction="horizontal"
                     loop={true}  // 슬라이드 반복
@@ -49,7 +49,7 @@ export default function JejuStage() {
                 >
 
                     {/* 컨텐츠 박스 */}
-                    {data.jejuStageCategory.map((item, idx) => (
+                    {data.jejuStageCategory.slice(0,3).map((item, idx) => (
                         <SwiperSlide key={idx}>
                             <InfoComponent7
                                 onClick={() => handleClick(item.code)}

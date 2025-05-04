@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 import { IoSearch } from "react-icons/io5";
 
 const SearchInput = forwardRef(function SearchInput(
-    { inputPlaceholder, className = "", value, onChange, onSearch },
+    { inputPlaceholder, className = "", value, onChange, onSearch, btnClassName = ""},
     ref
 ) {
     return (
@@ -18,10 +18,10 @@ const SearchInput = forwardRef(function SearchInput(
                 onKeyDown={(e) => e.key === 'Enter' && onSearch?.()}
                 autoComplete="off"
             />
-            <div className="flex items-center justify-center h-full absolute right-3 top-0">
+            <div className="flex items-center cursor-pointer justify-center h-full absolute right-3 top-0">
                 <IoSearch
                     onClick={onSearch}
-                    className="text-gray-300 cursor-pointer text-2xl"
+                    className={`text-gray-300 cursor-pointer text-2xl ${btnClassName}`}
                 />
             </div>
         </div>

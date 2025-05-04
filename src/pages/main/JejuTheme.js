@@ -10,7 +10,7 @@ export default function JejuTheme() {
     const navigate = useNavigate();
 
     const handleClick = (code) => {
-        navigate(`theme/gallery?category=${code}`);
+        navigate(`theme/gallery/${code}`);
     };
 
     return (
@@ -65,7 +65,7 @@ export default function JejuTheme() {
                         icon_name={item.img}
                         title={item.label} 
                         txt={item.txt}
-                        wrapClass=" h-36 xs:h-40 rounded-xl"
+                        wrapClass=" h-36 xs:h-40 rounded-xl  cursor-pointer "
                         imgClass="w-24 h-full shadow-fit rounded-br-[1.8rem] "
                         txtWrapClass="text-white font-bold text-sm relative z-2"
                         titleClass="font-semibold multi-ellipsis"
@@ -76,7 +76,7 @@ export default function JejuTheme() {
         </Swiper>
         <div className={`mx-5`}>
             <WFullButton
-                onClick={()=> navigate(`theme/gallery`)}
+                onClick={()=> navigate(`/theme/gallery/`)}
                 tit={`테마여행모음`}
                 tit2={`전체보기`}
             />

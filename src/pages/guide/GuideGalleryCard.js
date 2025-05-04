@@ -10,13 +10,15 @@ export default function GuideGalleryCard({item,onClick}) {
             .filter(Boolean)           // 빈 문자열 제거
     )];}
 
-    let imgPath = item.repPhoto.photoid.imgpath;//이미지
-    let imgThumPath = item.repPhoto.photoid.thumbnailpath;//썸네일 이미지
+    let imgPath = item.repPhoto?.photoid.imgpath;//이미지
+    let imgThumPath = item.repPhoto?.photoid.thumbnailpath;//썸네일 이미지
 
     // 썸네일이 없으면 imagepath 사용
     let finalImgPath = (typeof imgThumPath === 'string' && imgThumPath.trim())
         ? imgThumPath
         : imgPath;
+
+
 
     return (
         <div
@@ -27,12 +29,12 @@ export default function GuideGalleryCard({item,onClick}) {
                   src={typeof finalImgPath === 'string' && finalImgPath.includes('http')
                           ? finalImgPath.replace('http:', 'https:')
                           : finalImgPath}
-                  alt = {item.repPhoto.descseo}
+                  alt = {item.repPhoto?.descseo}
              />
 
             <div className={`px-6 py-4`}>
                 <div className={`font-bold text-xl mb-2`}>
-                    {item.repPhoto.descseo}
+                    {item.repPhoto?.descseo}
                 </div>
                 <div className={`text-gray-700`}>
                     <p className={`text-sm xs:text-base font-medium multi-ellipsis`}>{item.introduction}</p>

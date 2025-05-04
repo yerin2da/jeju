@@ -1,13 +1,7 @@
 import React from 'react';
 
 export default function MusicGalleryComponent({item,
-                                               tit='',
-                                               wrapClass='',
-                                               imgClass='',
-                                               region='',
-                                               regiClass='',
-                                               tel='',
-                                               date=''
+
                                                })
 {
     return (
@@ -27,10 +21,21 @@ export default function MusicGalleryComponent({item,
             </div>
 
             {/* 설명 박스 */}
-            <div className={`relative z-2 pt-2 pb-4 flex flex-col justify-between flex-1 `}>
-                <p className={`font-semibold text-base multi-ellipsis2 bg-[#46678f] h-full text-white  px-4`}>{item.title}</p>
-                <p className={`whitespace-nowrap text-sm font-medium py-2 border-b-2 border-[#86bdff] w-full px-4 text-[#003b83]`}>{item.period}</p>
+            <div className="relative z-2 pt-2 pb-4">
+
+                {/* 제목 */}
+                <div className="bg-[#46678f] px-4 h-14 flex items-center">
+                    <p className="text-white font-semibold text-base leading-tight line-clamp-2 w-full">
+                        {item.title}
+                    </p>
+                </div>
+
+                {/* 기간 */}
+                <p className="whitespace-nowrap text-sm font-medium py-2 border-b-2 border-[#86bdff] w-full px-4 text-[#003b83]">
+                    {item.period}
+                </p>
             </div>
+
 
         </div>
     );
