@@ -218,7 +218,7 @@ export default function Guide() {
             {paginatedData.map((item) => (
                 <div key={item.id}
                      onClick={() => handleItemClick(item.id)}
-                     className={`border-t border-textLightGray py-6 flex flex-col gap-3`}>
+                     className={`cursor-pointer border-t border-textLightGray py-6 flex flex-col gap-3`}>
                     <p className="text-base font-normal multi-ellipsis">
                         [{data.guideCategory?.find(cat => cat.code === item.code)?.label}]
                         <span className="pl-1">{item.title}</span>

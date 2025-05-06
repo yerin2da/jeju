@@ -22,7 +22,7 @@ export default function Layout() {
 
             <main
                 className={`w-full p-5 overflow-y-auto scrollbar-hide h-full border bg-white overflow-x-hidden
-                 ${!hiddenMainBar ? "mb-[96px] " : ""}
+                 ${!hiddenMainBar ? "mb-[70px] " : ""}
                  ${pt0 ? "!py-0 !pb-5 " : ""}
                  
                  `}>

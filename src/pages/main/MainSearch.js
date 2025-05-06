@@ -1,9 +1,6 @@
-import SearchInput from "../../components/SearchInput";
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import GuideGalleryCard from "../guide/GuideGalleryCard";
-import ExhibiGalleryComponent from "../../components/ExhibiGalleryComponent";
 import AllSearchCard from "../../components/AllSearchCard";
 
 const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
@@ -43,13 +40,34 @@ export default function MainSearch() {
             ) : tdata.length === 0 ? (
                 <p className="text-gray-400">검색 결과가 없습니다.</p>
             ) : (
-                <ul className="grid grid-cols-1 gap-4">
-                    {tdata.map((item, idx) => (
-                        <li key={idx}>
-                            <AllSearchCard item={item} />
-                        </li>
-                    ))}
+                <ul className="grid grid-cols-2 gap-2">
+                    {tdata.some(item => item.source === 'festival') && (
+                        <>
+                            <li><p className="text-xl font-bold">제주 가이드</p></li>
+                            {tdata
+                                .filter(item => item.source === 'festival')
+                                .map((item, idx) => (
+                                    <li key={`festival-${idx}`}>
+                                        <AllSearchCard item={item}/>
+                                    </li>
+                                ))}
+                        </>
+                    )}
+
+                    {tdata.some(item => item.source === 'culture') && (
+                        <>
+                            <li><p className="text-xl font-bold">제주 테마여행</p></li>
+                            {tdata
+                                .filter(item => item.source === 'culture')
+                                .map((item, idx) => (
+                                    <li key={`culture-${idx}`}>
+                                        <AllSearchCard item={item}/>
+                                    </li>
+                                ))}
+                        </>
+                    )}
                 </ul>
+
             )}
         </div>
     );

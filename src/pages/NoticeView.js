@@ -86,14 +86,16 @@ export default function NoticeView() {
     //  3. 데이터 가져오기
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const { data } = await axios.get(url);
-                console.log("응답 데이터 구조 확인:", data);
-                setTdata(data);
-            } catch (error) {
-                console.warn("더미 데이터로 대체합니다.");
-                setTdata(noticeList);
-            }
+            // try {
+            //     const { data } = await axios.get(url);
+            //     console.log("응답 데이터 구조 확인:", data);
+            //     setTdata(data);
+            // } catch (error) {
+            //     console.warn("더미 데이터로 대체합니다.");
+            //     setTdata(noticeList);
+            // }
+            setTdata(noticeList);
+
         };
 
         fetchData();
@@ -116,7 +118,6 @@ export default function NoticeView() {
 
 
             <p className="text-sm xs:text-base break-all flex-1"> {notice.content}
-                dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
             </p>
 
             <TailButton
@@ -125,7 +126,7 @@ export default function NoticeView() {
                 caption={`목록으로`}
                 className={`text-xs xs:text-sm mt-2`}
             />
-            <p>카테고리: {selC1}, 페이지: {currentPage}</p>
+            {/*<p>카테고리: {selC1}, 페이지: {currentPage}</p>*/}
 
         </div>
 

@@ -43,7 +43,10 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
                     "/mainSearch",
                     "/mainMenu"
 
-                ].includes(path) || matchPath("/guide/gallery/:category/:cid", path) ||matchPath("/guide/gallery/:category", path)
+                ].includes(path)
+                || matchPath("/notice/:id", path)
+                || matchPath("/guide/gallery/:category/:cid", path)
+                ||matchPath("/guide/gallery/:category", path)
                 ||matchPath("/theme/gallery/:category", path)
             ) {
                 return;

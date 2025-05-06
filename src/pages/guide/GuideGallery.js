@@ -168,9 +168,9 @@ const GuideGallery = () => {
 
     return (
         <div>
-            <div className="sticky top-0 bg-white">
+            <div className="sticky top-0 bg-white py-5 z-10">
                 {/* 검색창 */}
-                <div className={`py-5`}>
+                <div className={`pb-5`}>
                     <SearchInput
                         inputPlaceholder={`검색어를 입력해주세요`}
                         value={inputValue}
