@@ -83,7 +83,7 @@ const noticeList = [
 
 export default function Guide() {
 
-    const url = "";
+    const url = "guide";
     const [tdata, setTdata] = useState(noticeList); // 전체 데이터 (목록)
     const [selC1, setSelC1] = useRecoilState(categoryState);      // 선택한 카테고리
 
@@ -160,25 +160,25 @@ export default function Guide() {
     }, []);
 
     // 4. 데이터 필터링 및 페이징
-    const filteredData = tdata.filter(item => {
-        const matchCategory = selC1 === "all" || item.code === selC1;
-        const matchKeyword =
-            searchKeyword === "" ||
-            item.title.includes(searchKeyword) ||
-            item.content.includes(searchKeyword);
+    // const filteredData = tdata.filter(item => {
+    //     const matchCategory = selC1 === "all" || item.code === selC1;
+    //     const matchKeyword =
+    //         searchKeyword === "" ||
+    //         item.title.includes(searchKeyword) ||
+    //         item.content.includes(searchKeyword);
+    //
+    //     return matchCategory && matchKeyword;
+    // });
 
-        return matchCategory && matchKeyword;
-    });
-
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);//시작 인덱스, 마지막 인덱스
-
-    // 5. 페이지 수 업데이트
-    useEffect(() => {
-        const total = filteredData.length;
-        const pagesCalc = Math.ceil(total / itemsPerPage);//페이징
-        setTotalPages(pagesCalc);
-    }, [filteredData]);
+    // const startIndex = (currentPage - 1) * itemsPerPage;
+    // const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);//시작 인덱스, 마지막 인덱스
+    //
+    // // 5. 페이지 수 업데이트
+    // useEffect(() => {
+    //     const total = filteredData.length;
+    //     const pagesCalc = Math.ceil(total / itemsPerPage);//페이징
+    //     setTotalPages(pagesCalc);
+    // }, [filteredData]);
 
     // 6. 페이지 이동 시 스크롤 최상단
     useEffect(() => {
@@ -187,9 +187,9 @@ export default function Guide() {
 
 
     return (
-        <div className="w-full px-5 bg-white pb-8 relative">
+        <div className="-mt-5 bg-white">
 
-            <div className="sticky top-0 bg-white z-10 pt-5 ">
+            <div className="sticky top-0 bg-white">
                 {/* 대분류 탭 */}
                 <TabMenuSlider
                     spaceBetween={3}
@@ -210,13 +210,12 @@ export default function Guide() {
                         //     if (e.key === 'Enter') handleSearch();
                         // }}
                         onSearch={handleSearch}
-                        className={`border-subColor2`}
                     />
                 </div>
             </div>
 
             {/* 글 목록 */}
-            {paginatedData.map((item) => (
+            {tdata.map((item) => (
                 <div key={item.id}
                      onClick={() => handleItemClick(item.id)}
                      className={`border-t border-textLightGray py-6 flex flex-col gap-3`}>

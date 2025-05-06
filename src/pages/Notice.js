@@ -83,7 +83,7 @@ const noticeList = [
 
 export default function Guide() {
 
-    const url = "";
+    const url = "guide";
     const [tdata, setTdata] = useState(noticeList); // 전체 데이터 (목록)
     const [selC1, setSelC1] = useRecoilState(categoryState);      // 선택한 카테고리
 
@@ -187,9 +187,9 @@ export default function Guide() {
 
 
     return (
-        <div className="w-full px-5 bg-white pb-8 relative">
+        <div className="">
 
-            <div className="sticky top-0 bg-white z-10 pt-5 ">
+            <div className="sticky top-0 pt-5 bg-white">
                 {/* 대분류 탭 */}
                 <TabMenuSlider
                     spaceBetween={3}
@@ -206,11 +206,10 @@ export default function Guide() {
                         inputPlaceholder={`검색어를 입력해주세요`}
                         value={inputValue}
                         onChange={handleInputChange}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter') handleSearch();
-                        }}
+                        // onKeyDown={(e) => {
+                        //     if (e.key === 'Enter') handleSearch();
+                        // }}
                         onSearch={handleSearch}
-                        className={`border-subColor2`}
                     />
                 </div>
             </div>

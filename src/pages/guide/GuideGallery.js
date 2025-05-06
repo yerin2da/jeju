@@ -167,75 +167,78 @@ const GuideGallery = () => {
 
 
     return (
-
         <div>
-            {/* 검색창 */}
-            <div className={`pb-5`}>
-                <SearchInput
-                    inputPlaceholder={`검색어를 입력해주세요`}
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onSearch={handleSearch}
-                />
-            </div>
-
-            {/* 대분류 탭 */}
-            <TabMenuSlider
-                spaceBetween={3}
-                data={data.jejuCategory}
-                onClick={handleSelC1}
-                selTab={selC1}
-                tClass={`bg-black text-white`}
-                fClass={`text-textBlack bg-gray-100`}
-                btnClass={``}
-            />
-
-            {/*중메뉴 탭*/}
-            <div className="flex flex-wrap gap-4 mb-4">
-                {displayTags.map((tag) => (
-                    <button
-                        key={tag}
-                        onClick={() => setSelectedTag(tag)}
-                        className={`py-4 rounded-full text-sm tx ${
-                            selectedTag === tag ? 'text-mainColor' : 'text-gray-500'
-                        }`}
-                    >
-                        #{tag}
-                    </button>
-                ))}
-            </div>
-
-            {isLoading ? (
-                <div
-                    className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600 transition-opacity duration-700 opacity-100 pointer-events-none">
-                    <ImSpinner2 className="animate-spin text-3xl text-gray-600"/>
-                    <p>관광지 정보를 불러오고 있어요</p>
-                </div>
-            ) : (
-                <div className={` cursor-pointer `}>
-                    {/*글 목록*/}
-                    {paginatedData.length !== 0 ?
-                        (
-                            paginatedData.map((item) =>
-                                <GuideGalleryCard
-                                    key={item.contentsid}
-                                    onClick={() => handleItemClick(item.contentsid, selC1)}
-                                    item={item}
-                                />)
-                        ) : (
-                            <NoResult/>
-                        )}
-
-                    {/*페이지네이션*/}
-                    <PaginationSimple
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        setCurrentPage={setCurrentPage}
+            <div className="sticky top-0 bg-white">
+                {/* 검색창 */}
+                <div className={`py-5`}>
+                    <SearchInput
+                        inputPlaceholder={`검색어를 입력해주세요`}
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        onSearch={handleSearch}
                     />
                 </div>
-            )}
-        </div>
-    );
-};
 
-export default GuideGallery;
+                {/* 대분류 탭 */}
+                <TabMenuSlider
+                    spaceBetween={3}
+                    data={data.jejuCategory}
+                    onClick={handleSelC1}
+                    selTab={selC1}
+                    tClass={`bg-black text-white`}
+                    fClass={`text-textBlack bg-gray-100`}
+                    btnClass={``}
+                />
+
+                {/*중메뉴 탭*/}
+                <div className="flex flex-wrap gap-4 py-4">
+                    {displayTags.map((tag) => (
+                        <button
+                            key={tag}
+                            onClick={() => setSelectedTag(tag)}
+                            className={`py-4 rounded-full text-sm tx ${
+                                selectedTag === tag ? 'text-mainColor' : 'text-gray-500'
+                            }`}
+                        >
+                            #{tag}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+
+
+                {isLoading ? (
+                    <div
+                        className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600 transition-opacity duration-700 opacity-100 pointer-events-none">
+                        <ImSpinner2 className="animate-spin text-3xl text-gray-600"/>
+                        <p>관광지 정보를 불러오고 있어요</p>
+                    </div>
+                ) : (
+                    <div className={` cursor-pointer `}>
+                        {/*글 목록*/}
+                        {paginatedData.length !== 0 ?
+                            (
+                                paginatedData.map((item) =>
+                                    <GuideGalleryCard
+                                        key={item.contentsid}
+                                        onClick={() => handleItemClick(item.contentsid, selC1)}
+                                        item={item}
+                                    />)
+                            ) : (
+                                <NoResult/>
+                            )}
+
+                        {/*페이지네이션*/}
+                        <PaginationSimple
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            setCurrentPage={setCurrentPage}
+                        />
+                    </div>
+                )}
+            </div>
+            );
+            };
+
+            export default GuideGallery;

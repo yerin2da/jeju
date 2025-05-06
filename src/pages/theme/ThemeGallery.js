@@ -64,11 +64,11 @@ const JejuThemeGallery = () => {
 
     const getFetchAllData = async (courseId) => {
         setIsLoading(true);
-        const now = new Date();
-        const CURRENT_DATE = now.toISOString().slice(0, 10).replace(/-/g, '');
+        // const now = new Date();
+        // const CURRENT_DATE = now.toISOString().slice(0, 10).replace(/-/g, '');
 
         try {
-            const url = `https://apis.data.go.kr/1360000/TourStnInfoService1/getTourStnVilageFcst1?serviceKey=${apiKey}&dataType=JSON&CURRENT_DATE=${CURRENT_DATE}&HOUR=09&COURSE_ID=${courseId}`;
+            const url = `https://apis.data.go.kr/1360000/TourStnInfoService1/getTourStnVilageFcst1?serviceKey=${apiKey}&dataType=JSON&CURRENT_DATE=2025050409&HOUR=24&COURSE_ID=${courseId}`;
             console.log('요청 URL:', url);
 
             const { data } = await axios.get(url);
@@ -145,56 +145,60 @@ const JejuThemeGallery = () => {
 
     return (
         <div>
-            {/* 대분류 탭 */}
-            <TabMenuSlider
-                spaceBetween={3}
-                data={data.jejuThemeCategory}
-                onClick={handleSelC1}
-                selTab={selC1}
-                tClass={`bg-mainColor text-white`}
-                fClass={`text-textBlack `}
-            />
+            <div className="sticky top-0 bg-white">
 
-            {/* 검색창 */}
-            <div className={`py-5 `}>
-                <SearchInput
-                    inputPlaceholder={`검색어를 입력해주세요`}
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onSearch={handleSearch}
+                {/* 검색창 */}
+                <div className={`py-5 `}>
+                    <SearchInput
+                        inputPlaceholder={`검색어를 입력해주세요`}
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        onSearch={handleSearch}
+                    />
+                </div>
+
+                {/* 대분류 탭 */}
+                <TabMenuSlider
+                    spaceBetween={3}
+                    data={data.jejuThemeCategory}
+                    onClick={handleSelC1}
+                    selTab={selC1}
+                    tClass={`bg-mainColor text-white`}
+                    fClass={`text-textBlack `}
                 />
             </div>
 
-            {isLoading ? (
-                <div className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600 transition-opacity duration-700 opacity-100 pointer-events-none">
-                    <ImSpinner2 className="animate-spin text-3xl text-gray-600"/>
-                    <p>테마별 관광지 정보를 불러오고 있어요</p>
-                </div>
-            ) : (
-                <>
-                    {/*글 목록*/}
-                    {paginatedData.length !== 0 ?
-                        (
-                            paginatedData.map((item, spotAreaId) =>
-                                <JejuThemeGalleryCard
-                                    key={item.spotAreaId}
-                                    // onClick={() => handleItemClick(item.spotAreaId)}
-                                    item={item}
-                                />)
-                        ) : (
-                            <NoResult/>
-                        )}
+                {isLoading ? (
+                    <div
+                        className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600 transition-opacity duration-700 opacity-100 pointer-events-none">
+                        <ImSpinner2 className="animate-spin text-3xl text-gray-600"/>
+                        <p>테마별 관광지 정보를 불러오고 있어요</p>
+                    </div>
+                ) : (
+                    <>
+                        {/*글 목록*/}
+                        {paginatedData.length !== 0 ?
+                            (
+                                paginatedData.map((item, spotAreaId) =>
+                                    <JejuThemeGalleryCard
+                                        key={item.spotAreaId}
+                                        // onClick={() => handleItemClick(item.spotAreaId)}
+                                        item={item}
+                                    />)
+                            ) : (
+                                <NoResult/>
+                            )}
 
-                    {/*페이지네이션*/}
-                    <PaginationSimple
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        setCurrentPage={setCurrentPage}
-                    />
-                </>
-            )}
-        </div>
-    );
-};
+                        {/*페이지네이션*/}
+                        <PaginationSimple
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            setCurrentPage={setCurrentPage}
+                        />
+                    </>
+                )}
+            </div>
+            );
+            };
 
-export default JejuThemeGallery;
+            export default JejuThemeGallery;

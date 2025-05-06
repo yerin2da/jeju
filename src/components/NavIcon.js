@@ -6,9 +6,9 @@ export default function NavIcon({ to, Icon, label, className }) {
     const isActive = location.pathname === to;
 
     return (
-        <div className="flex flex-col items-center justify-between p-5 cursor-pointer" onClick={() => navigate(to)}>
+        <div className="flex flex-col items-center justify-between p-3 cursor-pointer" onClick={() => navigate(to)}>
             <Icon
-                className={`w-8 h-8 transition-colors ${className} ${
+                className={`w-6 h-6 transition-colors ${className} ${
                     isActive ? "text-mainColor" : "text-[#D1D1D1]"
                 }`}
             />

@@ -46,6 +46,7 @@ export default function Header() {
     const bgBlack = ["/findCurrency", "/buy"].includes(currentPath);//헤더 블랙
 
     const hiddenHamberger = ["/login", "/register", "/mainSearch"].includes(currentPath);
+    const hiddenBell = ["/notice"].includes(currentPath);
 
     //메인서치일때
     const mainSearch = ["/mainSearch"].includes(currentPath);
@@ -96,11 +97,10 @@ export default function Header() {
                             <BackButton caption={caption} />
                         )
                 }
-                {!hiddenHamberger && (
+                {!hiddenHamberger && !hiddenBell &&(
                     // 공지사항
                     <LuBell
                         onClick={()=> navigate("/notice")}
-
                         className={`cursor-pointer`} />
                 )}
                 {/*    <HambergerButton className="" />*/}
