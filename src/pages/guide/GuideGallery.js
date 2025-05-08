@@ -1,4 +1,4 @@
-import data from "../../db/data.json";
+// import data from "../../db/data.json";
 import React, {useEffect, useRef, useState} from 'react';
 import axios from "axios";
 import GuideGalleryCard from "./GuideGalleryCard";
@@ -182,7 +182,7 @@ const GuideGallery = () => {
                 {/* 대분류 탭 */}
                 <TabMenuSlider
                     spaceBetween={3}
-                    data={data.jejuCategory}
+                    // data2={data2.jejuCategory}
                     onClick={handleSelC1}
                     selTab={selC1}
                     tClass={`bg-black text-white`}

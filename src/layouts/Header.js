@@ -5,6 +5,7 @@ import {IoSearch} from "react-icons/io5";
 import React, {useRef} from "react";
 import SearchInput from "../components/SearchInput";
 import { LuBell } from "react-icons/lu";
+import 'swiper/css';
 
 export default function Header() {
     const location = useLocation();
@@ -83,7 +84,7 @@ export default function Header() {
                             <BackButton caption={caption} />
                             <SearchInput
                                 className={`!rounded-full !bg-gray-100 !border-0 !placeholder-gray-400`}
-                                inputPlaceholder={`제주 어디부터 가볼까?`}
+                                inputPlaceholder={`제주에서 신나게 놀자!`}
                                 btnClassName={`text-gray-400`}
                                 ref={inputRef}
                                 onSearch={() => {

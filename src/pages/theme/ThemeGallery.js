@@ -1,4 +1,4 @@
-import data from "../../db/data.json";
+// import data from "../../public/db/data.json";
 import React, {useEffect, useRef, useState} from 'react';
 import axios from "axios";
 
@@ -94,6 +94,7 @@ const JejuThemeGallery = () => {
         // const queryParams = new URLSearchParams(location.search);
         const currentCategory = category || '163';
 
+
         setSelC1(currentCategory);
         getFetchAllData(currentCategory);
     }, [category]); //  category 기준으로 패칭
@@ -160,7 +161,7 @@ const JejuThemeGallery = () => {
                 {/* 대분류 탭 */}
                 <TabMenuSlider
                     spaceBetween={3}
-                    data={data.jejuThemeCategory}
+                    // data={data.jejuThemeCategory}
                     onClick={handleSelC1}
                     selTab={selC1}
                     tClass={`bg-mainColor text-white`}

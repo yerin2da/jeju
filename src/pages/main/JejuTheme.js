@@ -63,7 +63,7 @@ export default function JejuTheme() {
                     <InfoComponent3
                         onClick={() => handleClick(item.code)}
                         icon_name={item.img}
-                        title={item.label} 
+                        title={item.label}
                         txt={item.txt}
                         wrapClass=" h-36 xs:h-40 rounded-xl  cursor-pointer "
                         imgClass="w-24 h-full shadow-fit rounded-br-[1.8rem] "
@@ -76,7 +76,7 @@ export default function JejuTheme() {
         </Swiper>
         <div className={`mx-5`}>
             <WFullButton
-                onClick={()=> navigate(`/theme/gallery/`)}
+                onClick={()=> navigate(`/theme/gallery`)}
                 tit={`테마여행모음`}
                 tit2={`전체보기`}
             />

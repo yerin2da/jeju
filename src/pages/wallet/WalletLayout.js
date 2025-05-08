@@ -15,7 +15,7 @@
 
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import data from "../../db/data.json";
+// import data from "../../db/data.json";
 import TabMenuSlider from "../../components/TabMenuSlider";
 import {nicknameState} from "../../recoil/atoms";
 

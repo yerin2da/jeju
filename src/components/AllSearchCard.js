@@ -2,13 +2,30 @@ import React from 'react';
 import {useNavigate} from "react-router-dom";
 
 export default function AllSearchCard({ item }){
-let imgPath = item.repPhoto?.photoid.imgpath;//이미지
-let imgThumPath = item.repPhoto?.photoid.thumbnailpath;//썸네일 이미지
+
+    //이미지
+    function getImagePath(item) {
+        // 1. theme (내부 파일 배열)
+        if (Array.isArray(item.img) && item.img.length > 0) {
+            return `${process.env.PUBLIC_URL}/img/${item.img[0]}`;
+        }
+
+        // 2. guide: repPhoto의 imgpath or thumbnailpath
+        if (item.repPhoto?.photoid?.imgpath || item.repPhoto?.photoid?.thumbnailpath) {
+            const path = item.repPhoto.photoid.imgpath || item.repPhoto.photoid.thumbnailpath;
+            return path.replace('http:', 'https:');
+        }
+
+        // 3. stage: imageObject
+        if (item.imageObject) {
+            return item.imageObject.replace('http:', 'https:');
+        }
+
+        // 4. 대체이미지
+        return `${process.env.PUBLIC_URL}/img/default.jpg`;
+    }
 
 // 썸네일이 없으면 imagepath 사용
-let finalImgPath = (typeof imgThumPath === 'string' && imgThumPath.trim())
-    ? imgThumPath
-    : imgPath;
 
 //게시글 클릭
     const navigate = useNavigate();
@@ -26,18 +43,13 @@ let finalImgPath = (typeof imgThumPath === 'string' && imgThumPath.trim())
             onClick={handleClick}
 
         >
-            <img className={`h-48 w-full object-cover`}
-                 src={
-                typeof finalImgPath === 'string' && finalImgPath.includes('http')
-                     ? finalImgPath.replace('http:', 'https:')
-                     : finalImgPath ||
-                        item.imageObject ? item.imageObject : `${process.env.PUBLIC_URL}/img/default.jpg`
-            }
+            <img className={`aspect-[4/3] w-full object-cover border border-gray-100 rounded-md`}
+                 src={getImagePath(item)}
                  alt={item.repPhoto?.descseo || item.title}
             />
 
-            <div className={`px-6 py-4`}>
-                <div className={`font-bold text-xl mb-2`}>
+            <div className={`py-2`}>
+                <div className={`font-medium text-sm leading-tight line-clamp-2`}>
                     {item.repPhoto?.descseo || item.title}
                 </div>
             </div>

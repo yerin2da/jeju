@@ -8,7 +8,7 @@ import { categoryState, pageState } from "../store/noticeState";
 import {useRecoilState} from "recoil";
 
 import TabMenuSlider from "../components/TabMenuSlider";
-import data from "../db/data.json";
+// import data from "../db/data.json";
 import SearchInput from "../components/SearchInput";
 
 

@@ -5,7 +5,7 @@ import axios from "axios";
 import { categories } from "../constants/categories"; // 카테고리 import!
 import { categoryState, pageState } from "../store/noticeState";
 import TailButton from "../UI/TailButton";
-import data from "../db/data.json";
+// import data from "../db/data.json";
 
 const noticeList = [
     {

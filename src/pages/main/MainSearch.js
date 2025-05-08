@@ -2,6 +2,8 @@ import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import AllSearchCard from "../../components/AllSearchCard";
+import SearchCard from "../SearchCard";
+import SectionTitle from "../../components/SectionTitle";
 
 const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
@@ -18,7 +20,7 @@ export default function MainSearch() {
             setIsLoading(true);
 
             try{
-                const { data } = await axios.get(`${apiBaseUrl}/api/search`, {
+                const { data } = await axios.get(`${process.env.PUBLIC_URL}/db/all.json`, {
                     params : {keyword}
                 });
                 setTdata(data);
@@ -34,39 +36,66 @@ export default function MainSearch() {
     },[keyword])
 
     return (
-        <div className="px-4 py-6">
+        <div className="">
             {isLoading ? (
                 <p>검색 중...</p>
             ) : tdata.length === 0 ? (
-                <p className="text-gray-400">검색 결과가 없습니다.</p>
+                <p className="text-gray-400">당신만의 여행 키워드를 입력해보세요</p>
             ) : (
-                <ul className="grid grid-cols-2 gap-2">
-                    {tdata.some(item => item.source === 'festival') && (
-                        <>
-                            <li><p className="text-xl font-bold">제주 가이드</p></li>
-                            {tdata
-                                .filter(item => item.source === 'festival')
-                                .map((item, idx) => (
-                                    <li key={`festival-${idx}`}>
-                                        <AllSearchCard item={item}/>
-                                    </li>
-                                ))}
-                        </>
-                    )}
+                <div className={``}>
 
-                    {tdata.some(item => item.source === 'culture') && (
-                        <>
-                            <li><p className="text-xl font-bold">제주 테마여행</p></li>
-                            {tdata
-                                .filter(item => item.source === 'culture')
-                                .map((item, idx) => (
-                                    <li key={`culture-${idx}`}>
-                                        <AllSearchCard item={item}/>
-                                    </li>
+                    {/* 제주 가이드 */}
+                    <div className={`border-b mb-5 pb-5`}>
+                        <SectionTitle title="여행 가이드" />
+
+                        {(tdata.guide?.filter(item => item.title?.includes(keyword)) || []).length === 0 ? (
+                            <p className="text-gray-400">검색 결과가 없습니다.</p>
+                        ) : (
+                            <div className="grid grid-cols-2 xs:grid-cols-3 gap-2">
+                                {tdata.guide
+                                    .filter(item => item.title?.includes(keyword))
+                                    .map(item => (
+                                        <AllSearchCard key={item.title} item={item} />
+                                    ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* 제주테마 */}
+                    <div className={`border-b mb-5 pb-5`}>
+
+                        <SectionTitle title="테마 여행" />
+
+                        {tdata.theme?.filter(item => item.title?.includes(keyword)).length === 0 ? (
+                            <p className="text-gray-400">검색 결과가 없습니다.</p>
+                        ) : (
+                            <div className="grid grid-cols-2 xs:grid-cols-3 gap-2">
+                                {tdata.theme
+                                    .filter(item => item.title?.includes(keyword))
+                                    .map(item => (
+                                        <AllSearchCard key={item.title} item={item} />
+                                    ))}
+                            </div>
+                        )}
+                    </div>
+
+
+                    {/* 제주 스테이지 */}
+                    <SectionTitle title="무대 공연" />
+
+                    {(tdata.stage?.filter(item => item.title?.includes(keyword)) || []).length === 0 ? (
+                    <p className="text-gray-400">검색 결과가 없습니다.</p>
+                    ) : (
+                        <div className="grid grid-cols-2 xs:grid-cols-3 gap-2">
+                            {tdata.stage
+                                .filter(item => item.title?.includes(keyword))
+                                .map(item => (
+                                    <AllSearchCard key={item.title} item={item} />
                                 ))}
-                        </>
+                        </div>
                     )}
-                </ul>
+                </div>
+
 
             )}
         </div>

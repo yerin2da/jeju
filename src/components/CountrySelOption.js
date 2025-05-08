@@ -9,7 +9,7 @@ import {currencyAtom} from "../recoil/atoms";
 import {useRecoilState, useResetRecoilState} from "recoil";
 import {formatNumber, formatNumber2} from '../utils/formatNumber';
 
-import data from "../db/data.json";
+// import data from "../db/data.json";
 import Select from "react-select";
 import {LuCirclePlus} from "react-icons/lu";
 

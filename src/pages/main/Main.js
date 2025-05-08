@@ -16,7 +16,7 @@ export default function Main() {
             <JejuTheme/>
             <JejuMusic/>
             <JejuStage/>
-            <JejuWeather/>
+            {/*<JejuWeather/>*/}
             <JejuFestival />
         </div>
     );

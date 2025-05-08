@@ -19,18 +19,13 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
                     "/",
                     "/notice",
                     "/notice/:id",
-                    "/guide",
                     "/login",
                     "/register",
-                    "/findCurrency",
                     "/buy",
-                    "/wallet/myCoin",
 
-
+                    "/guide",
                     "/guide/gallery",
-                    "/theme/gallery",
                     "/guide/gallery/:category",
-                    "/theme/gallery/:category",
                     "/guide/gallery/:category/:cid",
 
                     "/stage/gallery/exhibition",
@@ -40,6 +35,8 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
                     "/stage/gallery/music",
 
                     "/theme/gallery",
+                    "/theme/gallery/:category",
+
                     "/mainSearch",
                     "/mainMenu"
 
