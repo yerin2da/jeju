@@ -15,25 +15,15 @@ export default function GuideDetailCard({item,onClick}) {
     }
 
     const imgPath = item?.repPhoto?.photoid?.imgpath;
-    const imgThumPath = item?.repPhoto?.photoid?.thumbnailpath;
     const default2 = `${process.env.PUBLIC_URL}/img/default2.jpg`;
 
-    // // 이미지 없으면 썸네일 사용
-    // let finalImgPath = (typeof imgThumPath === 'string' && imgThumPath.trim())
-    //     ? imgPath
-    //     : imgThumPath;
 
     return (
         <div
             className={`-mx-5 -mt-5 w-screen max-w-screen-md`}
         >
             <img className={`h-52 xs:h-72 sm:h-[24rem] w-full object-cover`}
-                 // src={typeof finalImgPath === 'string' && finalImgPath.includes('http')
-                 //     ? finalImgPath.replace('http:', 'https:')
-                 //     : finalImgPath}
-
-                 src={imgThumPath || imgPath || default2}
-
+                 src={imgPath || default2}
                  alt={item.repPhoto?.descseo}
             />
 

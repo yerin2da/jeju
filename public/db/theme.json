@@ -1,256 +1,55 @@
 [
-  {
-    "title": "에코랜드 테마파크",
-    "img": ["family_1.jpg", "family_2.jpg", "family_3.jpg"],
-    "code": "family"
-  },
-  {
-    "title": "넥슨컴퓨터박물관",
-    "img": ["family_4.jpg", "family_5.jpg", "family_6.jpg"],
-    "code": "family"
-  },
-  {
-    "title": "제주민속촌",
-    "img": ["family_7.jpg", "family_8.jpg", "family_9.jpg"],
-    "code": "family"
-  },
-  {
-    "title": "아쿠아플라넷 제주",
-    "img": ["family_10.jpg", "family_11.jpg", "family_12.jpg"],
-    "code": "family"
-  },
-  {
-    "title": "테디베어뮤지엄",
-    "img": ["family_13.jpg", "family_14.jpg", "family_15.jpg"],
-    "code": "family"
-  },
-  {
-    "title": "9.81 파크",
-    "img": ["family_16.jpg", "family_17.jpg", "family_18.jpg"],
-    "code": "family"
-  },
-  {
-    "title": "제주허브동산",
-    "img": ["family_19.jpg", "family_20.jpg", "family_21.jpg"],
-    "code": "family"
-  },
-  {
-    "title": "제주항공우주박물관",
-    "img": ["family_22.jpg", "family_23.jpg", "family_24.jpg"],
-    "code": "family"
-  },
+  { "id": "eco", "title": "에코랜드 테마파크", "code": "family" },
+  { "id": "nexon", "title": "넥슨컴퓨터박물관", "code": "family" },
+  { "id": "folk", "title": "제주민속촌", "code": "family" },
+  { "id": "aqua", "title": "아쿠아플라넷 제주", "code": "family" },
+  { "id": "teddy", "title": "테디베어뮤지엄", "code": "family" },
+  { "id": "park", "title": "9.81 파크", "code": "family" },
+  { "id": "herb", "title": "제주허브동산", "code": "family" },
+  { "id": "space", "title": "제주항공우주박물관", "code": "family" },
 
+  { "id": "dongbaek", "title": "동백포레스트", "code": "couple" },
+  { "id": "iho", "title": "이호테우해변", "code": "couple" },
+  { "id": "osulloc", "title": "오설록 티뮤지엄", "code": "couple" },
+  { "id": "sidol", "title": "성이시돌목장", "code": "couple" },
+  { "id": "camellia", "title": "카멜리아 힐", "code": "couple" },
+  { "id": "hanhyang", "title": "한라의향기", "code": "couple" },
+  { "id": "ttorabi", "title": "따라비오름", "code": "couple" },
+  { "id": "cheonji", "title": "천지연 폭포", "code": "couple" },
 
-    {
-      "title": "동백포레스트",
-      "img": ["couple_1.jpg", "couple_2.jpg", "couple_3.jpg"],
-      "code": "couple"
-    },
-    {
-      "title": "이호테우해변",
-      "img": ["couple_4.jpg", "couple_5.jpg", "couple_6.jpg"],
-      "code": "couple"
-    },
-    {
-      "title": "오설록 티뮤지엄",
-      "img": ["couple_7.jpg", "couple_8.jpg", "couple_9.jpg"],
-      "code": "couple"
-    },
-    {
-      "title": "성이시돌목장",
-      "img": ["couple_10.jpg", "couple_11.jpg", "couple_12.jpg"],
-      "code": "couple"
-    },
-    {
-      "title": "카멜리아 힐",
-      "img": ["couple_13.jpg", "couple_14.jpg", "couple_15.jpg"],
-      "code": "couple"
-    },
-    {
-      "title": "한라의향기",
-      "img": ["couple_16.jpg", "couple_17.jpg", "couple_18.jpg"],
-      "code": "couple"
-    },
-    {
-      "title": "따라비오름",
-      "img": ["couple_19.jpg", "couple_20.jpg", "couple_21.jpg"],
-      "code": "couple"
-    },
-    {
-      "title": "천지연 폭포",
-      "img": ["couple_22.jpg", "couple_23.jpg", "couple_24.jpg"],
-      "code": "couple"
-    },
+  { "id": "peace", "title": "4·3평화공원", "code": "tour" },
+  { "id": "museum", "title": "국립제주박물관", "code": "tour" },
+  { "id": "noru", "title": "노루생태관찰원", "code": "tour" },
+  { "id": "diver", "title": "제주 해녀박물관", "code": "tour" },
+  { "id": "seopjikoji", "title": "섭지코지", "code": "tour" },
+  { "id": "jungmun", "title": "중문관광단지", "code": "tour" },
+  { "id": "jejumok", "title": "제주목 관아", "code": "tour" },
+  { "id": "hallim", "title": "한림공원", "code": "tour" },
 
+  { "id": "forest", "title": "서귀포자연휴양림", "code": "hanra" },
+  { "id": "eoseung", "title": "어승생악", "code": "hanra" },
+  { "id": "cheonwang", "title": "천왕사", "code": "hanra" },
+  { "id": "arboretum", "title": "한라수목원", "code": "hanra" },
+  { "id": "witse", "title": "윗세오름", "code": "hanra" },
+  { "id": "baekrok", "title": "백록담", "code": "hanra" },
+  { "id": "sara", "title": "사라오름", "code": "hanra" },
+  { "id": "ecoForest", "title": "한라생태숲", "code": "hanra" },
 
+  { "id": "think", "title": "생각하는 정원", "code": "person" },
+  { "id": "samyang", "title": "삼양 검은모래해변", "code": "person" },
+  { "id": "leejung", "title": "이중섭 미술관", "code": "person" },
+  { "id": "chusa", "title": "제주 추사관", "code": "person" },
+  { "id": "gossi", "title": "고씨주택(사랑방, 책방)", "code": "person" },
+  { "id": "modern", "title": "제주 현대미술관", "code": "person" },
+  { "id": "wedol", "title": "외돌개", "code": "person" },
+  { "id": "cypress", "title": "편백포레스트", "code": "person" },
 
-    {
-      "title": "4·3평화공원",
-      "img": ["tour_1.jpg", "tour_2.jpg", "tour_3.jpg"],
-      "code": "tour"
-    },
-    {
-      "title": "국립제주박물관",
-      "img": ["tour_4.jpg", "tour_5.jpg", "tour_6.jpg"],
-      "code": "tour"
-    },
-    {
-      "title": "노루생태관찰원",
-      "img": ["tour_7.jpg", "tour_8.jpg", "tour_9.jpg"],
-      "code": "tour"
-    },
-    {
-      "title": "제주 해녀박물관",
-      "img": ["tour_10.jpg", "tour_11.jpg", "tour_12.jpg"],
-      "code": "tour"
-    },
-    {
-      "title": "섭지코지",
-      "img": ["tour_13.jpg", "tour_14.jpg", "tour_15.jpg"],
-      "code": "tour"
-    },
-    {
-      "title": "중문관광단지",
-      "img": ["tour_16.jpg", "tour_17.jpg", "tour_18.jpg"],
-      "code": "tour"
-    },
-    {
-      "title": "제주목 관아",
-      "img": ["tour_19.jpg", "tour_20.jpg", "tour_21.jpg"],
-      "code": "tour"
-    },
-    {
-      "title": "한림공원",
-      "img": ["tour_22.jpg", "tour_23.jpg", "tour_24.jpg"],
-      "code": "tour"
-    },
-
-
-  {
-    "title": "서귀포자연휴양림",
-    "img": ["hanra_1.jpg", "hanra_2.jpg", "hanra_3.jpg"],
-    "code": "hanra"
-  },
-  {
-    "title": "어승생악",
-    "img": ["hanra_4.jpg", "hanra_5.jpg", "hanra_6.jpg"],
-    "code": "hanra"
-  },
-  {
-    "title": "천왕사",
-    "img": ["hanra_7.jpg", "hanra_8.jpg", "hanra_9.jpg"],
-    "code": "hanra"
-  },
-  {
-    "title": "한라수목원",
-    "img": ["hanra_10.jpg", "hanra_11.jpg", "hanra_12.jpg"],
-    "code": "hanra"
-  },
-  {
-    "title": "윗세오름",
-    "img": ["hanra_13.jpg", "hanra_14.jpg", "hanra_15.jpg"],
-    "code": "hanra"
-  },
-  {
-    "title": "백록담",
-    "img": ["hanra_16.jpg", "hanra_17.jpg", "hanra_18.jpg"],
-    "code": "hanra"
-  },
-  {
-    "title": "사라오름",
-    "img": ["hanra_19.jpg", "hanra_20.jpg", "hanra_21.jpg"],
-    "code": "hanra"
-  },
-  {
-    "title": "한라생태숲",
-    "img": ["hanra_22.jpg", "hanra_23.jpg", "hanra_24.jpg"],
-    "code": "hanra"
-  },
-
-
-  {
-    "title": "생각하는 정원",
-    "img": ["person_1.jpg", "person_2.jpg", "person_3.jpg"],
-    "code": "person"
-  },
-  {
-    "title": "삼양 검은모래해변",
-    "img": ["person_4.jpg", "person_5.jpg", "person_6.jpg"],
-    "code": "person"
-  },
-  {
-    "title": "이중섭 미술관",
-    "img": ["person_7.jpg", "person_8.jpg", "person_9.jpg"],
-    "code": "person"
-  },
-  {
-    "title": "제주 추사관",
-    "img": ["person_10.jpg", "person_11.jpg", "person_12.jpg"],
-    "code": "person"
-  },
-  {
-    "title": "고씨주택(사랑방, 책방)",
-    "img": ["person_13.jpg", "person_14.jpg", "person_15.jpg"],
-    "code": "person"
-  },
-  {
-    "title": "제주 현대미술관",
-    "img": ["person_19.jpg", "person_20.jpg", "person_21.jpg"],
-    "code": "person"
-  },
-  {
-    "title": "외돌개",
-    "img": ["person_16.jpg", "person_17.jpg", "person_18.jpg"],
-    "code": "person"
-  },
-  {
-    "title": "편백포레스트",
-    "img": ["person_22.jpg", "person_23.jpg", "person_24.jpg"],
-    "code": "person"
-  },
-
-
-  {
-    "title": "비자림",
-    "img": ["days2_1.jpg", "days2_2.jpg", "days2_3.jpg"],
-    "code": "days2"
-  },
-  {
-    "title": "곶자왈 도립공원",
-    "img": ["days2_4.jpg", "days2_5.jpg", "days2_6.jpg"],
-    "code": "days2"
-  },
-  {
-    "title": "남원엉큰",
-    "img": ["days2_7.jpg", "days2_8.jpg", "days2_9.jpg"],
-    "code": "days2"
-  },
-  {
-    "title": "코난해변",
-    "img": ["days2_10.jpg", "days2_11.jpg", "days2_12.jpg"],
-    "code": "days2"
-  },
-  {
-    "title": "표선해수욕장",
-    "img": ["days2_13.jpg", "days2_14.jpg", "days2_15.jpg"],
-    "code": "days2"
-  },
-  {
-    "title": "하바다 통나무집",
-    "img": ["days2_16.jpg", "days2_17.jpg", "days2_18.jpg"],
-    "code": "days2"
-  },
-  {
-    "title": "제주플래티늄카라반",
-    "img": ["days2_19.jpg", "days2_20.jpg", "days2_21.jpg"],
-    "code": "days2"
-  },
-  {
-    "title": "휴림",
-    "img": ["days2_22.jpg", "days2_23.jpg", "days2_24.jpg"],
-    "code": "days2"
-  }
-
-
-
+  { "id": "bijarim", "title": "비자림", "code": "days2" },
+  { "id": "gotjawal", "title": "곶자왈 도립공원", "code": "days2" },
+  { "id": "namwon", "title": "남원엉큰", "code": "days2" },
+  { "id": "conan", "title": "코난해변", "code": "days2" },
+  { "id": "pyoseon", "title": "표선해수욕장", "code": "days2" },
+  { "id": "habada", "title": "하바다 통나무집", "code": "days2" },
+  { "id": "platinum", "title": "제주플래티늄카라반", "code": "days2" },
+  { "id": "hurim", "title": "휴림", "code": "days2" }
 ]

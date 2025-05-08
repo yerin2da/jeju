@@ -1,23 +1,27 @@
-export default function GuideGalleryCard({item,onClick}) {
+export default function GuideGalleryCard({item,onClick, onClickSpan}) {
 
     let sptags = [];
 
     if (item.alltag && typeof item.alltag === 'string') {
         sptags = [...new Set(
             item.alltag
-            .split(/[,#]/)         // ✅ 쉼표 또는 # 기준으로 분리
-            .map((kw) => kw.trim())      // 공백 제거
+            .split(/[,#]/)         // 쉼표 또는 # 기준으로 분리
+            .map((kw) => kw.trim()) // 공백 제거
             .filter(Boolean)           // 빈 문자열 제거
     )];}
 
-    let imgPath = item.repPhoto?.photoid.imgpath;//이미지
-    let imgThumPath = item.repPhoto?.photoid.thumbnailpath;//썸네일 이미지
+    //이미지
+    function getImageGuide(item) {
 
-    // 썸네일이 없으면 imagepath 사용
-    let finalImgPath = (typeof imgThumPath === 'string' && imgThumPath.trim())
-        ? imgThumPath
-        : imgPath;
+        // 2. guide: repPhoto의 imgpath or thumbnailpath
+        if (item.repPhoto?.photoid?.imgpath || item.repPhoto?.photoid?.thumbnailpath) {
+            const path = item.repPhoto.photoid.imgpath || item.repPhoto.photoid.thumbnailpath;
+            return path.replace('http:', 'https:');
+        }
 
+        // 4. 대체이미지
+        return `${process.env.PUBLIC_URL}/img/default.jpg`;
+    }
 
 
     return (
@@ -25,15 +29,13 @@ export default function GuideGalleryCard({item,onClick}) {
             className={`contentsBox !p-0 overflow-hidden !rounded-2xl bg-white`}
             onClick={onClick}
         >
-             <img className={`h-48 w-full object-cover`}
-                  src={typeof finalImgPath === 'string' && finalImgPath.includes('http')
-                          ? finalImgPath.replace('http:', 'https:')
-                          : finalImgPath}
+             <img className={`h-48 w-full object-cover cursor-pointer`}
+                  src={getImageGuide(item)}
                   alt = {item.repPhoto?.descseo}
              />
 
             <div className={`px-6 py-4`}>
-                <div className={`font-bold text-xl mb-2`}>
+                <div className={`font-bold text-xl mb-2 cursor-pointer`}>
                     {item.repPhoto?.descseo}
                 </div>
                 <div className={`text-gray-700`}>
@@ -44,11 +46,15 @@ export default function GuideGalleryCard({item,onClick}) {
                     {sptags.map(((kw, idx) =>
                         <span
                             key={idx}
-                            className={`inline-block bg-[#E7F0D2] rounded-full 
-                                text-sm font-medium text-[#739D64] border-[#739D64] mr-1 mb-2 px-3 py-1
+                            className={`inline-block bg-[#E7F0D2] text-[#739D64] border-[#739D64] rounded-full cursor-pointer
+                                text-sm font-medium  mr-1 mb-2 px-3 py-1  hover:bg-green-100
                             `}
+                            onClick={(e) => {
+                                e.stopPropagation(); // 카드 전체 클릭 방지
+                                onClickSpan && onClickSpan(kw); // 선택한 태그 전달
+                            }}
                         >
-                            {kw}
+                            #{kw}
                         </span>
                     ))}
                 </div>

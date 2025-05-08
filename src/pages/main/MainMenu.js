@@ -1,4 +1,4 @@
-// import data from "../../db/data.json";
+import data from "../../db/data.json";
 import {useNavigate} from "react-router-dom";
 import SectionTitle from "../../components/SectionTitle";
 import {
@@ -52,51 +52,51 @@ export default function MainMenu() {
         <div className="">
             <ul className={`border-b border-gray-100 pb-4 space-y-2`}>
                 <li><SectionTitle title={`제주 가이드`}/></li>
-                {/*{data.jejuCategory.map((item) => (*/}
-                {/*    <li*/}
-                {/*        key={item.code}*/}
-                {/*        onClick={()=>navigate(`/guide/gallery/${item.code}`)}*/}
-                {/*        className={`cursor-pointer `}>*/}
-                {/*        <div className={`flex items-center gap-2`}>*/}
-                {/*            {iconMap[item.img]}*/}
-                {/*            {item.label}*/}
-                {/*        </div>*/}
-                {/*    </li>*/}
-                {/*))}*/}
+                {data.jejuCategory.map((item) => (
+                    <li
+                        key={item.code}
+                        onClick={()=>navigate(`/guide/gallery/${item.code}`)}
+                        className={`cursor-pointer `}>
+                        <div className={`flex items-center gap-2`}>
+                            {iconMap[item.img]}
+                            {item.label}
+                        </div>
+                    </li>
+                ))}
             </ul>
 
             <ul className={`border-b border-gray-100 py-4 space-y-2`}>
                 <li><SectionTitle title={`제주 테마여행`}/></li>
-                {/*{data.jejuThemeCategory.map((item) => (*/}
-                {/*    <li*/}
-                {/*        key={item.code}*/}
-                {/*        onClick={() => navigate(`/theme/gallery/${item.code}`)}*/}
-                {/*        className={`cursor-pointer`}>*/}
+                {data.jejuThemeCategory.map((item) => (
+                    <li
+                        key={item.code}
+                        onClick={() => navigate(`/theme/gallery/${item.code}`)}
+                        className={`cursor-pointer`}>
 
-                {/*        <div className={`flex items-center gap-2`}>*/}
+                        <div className={`flex items-center gap-2`}>
 
-                {/*            {iconMap[item.img]}*/}
-                {/*            {item.label}*/}
-                {/*        </div>*/}
-                {/*    </li>*/}
-                {/*))}*/}
+                            {iconMap[item.img]}
+                            {item.label}
+                        </div>
+                    </li>
+                ))}
             </ul>
 
             <ul className={`border-b border-gray-100 py-4 space-y-2`}>
                 <li><SectionTitle title={`제주 무대공연`}/></li>
-                {/*{data.jejuStageCategory.map((item) => (*/}
-                {/*    <li*/}
-                {/*        key={item.code}*/}
-                {/*        onClick={() => navigate(`/stage/gallery/${item.code}`)}*/}
-                {/*        className={`cursor-pointer`}*/}
-                {/*    >*/}
-                {/*        <div className={`flex items-center gap-2`}>*/}
+                {data.jejuStageCategory.map((item) => (
+                    <li
+                        key={item.code}
+                        onClick={() => navigate(`/stage/gallery/${item.code}`)}
+                        className={`cursor-pointer`}
+                    >
+                        <div className={`flex items-center gap-2`}>
 
-                {/*            {iconMap[item.img]}*/}
-                {/*            {item.label}*/}
-                {/*        </div>*/}
-                {/*    </li>*/}
-                {/*))}*/}
+                            {iconMap[item.img]}
+                            {item.label}
+                        </div>
+                    </li>
+                ))}
             </ul>
 
             <ul className={`py-4 space-y-2`}>

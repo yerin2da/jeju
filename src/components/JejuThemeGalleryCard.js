@@ -26,14 +26,16 @@ export default function JejuThemeGalleryCard({ item }) {
                         className="w-3/5 h-full cursor-pointer"
                         onClick={() =>
                             handleImageClick(
-                                `${process.env.PUBLIC_URL}/img/theme/${item.spotAreaId}.jpg`
+                                `${process.env.PUBLIC_URL}/img/theme/${item.code}/${item.id}.jpg`
                             )
                         }
                     >
                         <IconImage
                             className="w-full h-full object-cover rounded-xl"
-                            imageSrc={`${process.env.PUBLIC_URL}/img/theme/${item.spotAreaId}.jpg`}
-                            title={item.spotName}
+                            imageSrc={
+                                `${process.env.PUBLIC_URL}/img/theme/${item.code}/${item.id}.jpg`
+                            }
+                            title={item.title}
                         />
                     </div>
 
@@ -44,25 +46,25 @@ export default function JejuThemeGalleryCard({ item }) {
                                 className="w-full h-1/2 cursor-pointer"
                                 onClick={() =>
                                     handleImageClick(
-                                        `${process.env.PUBLIC_URL}/img/theme/${item.spotAreaId}_${num}.jpg`
+                                        `${process.env.PUBLIC_URL}/img/theme/${item.code}/${item.id}_${num}.jpg`
                                     )
                                 }
                             >
                                 <IconImage
                                     className="w-full h-full object-cover rounded-xl"
-                                    imageSrc={`${process.env.PUBLIC_URL}/img/theme/${item.spotAreaId}_${num}.jpg`}
-                                    title={item.spotName}
+                                    imageSrc={`${process.env.PUBLIC_URL}/img/theme/${item.code}/${item.id}_${num}.jpg`}
+                                    title={item.title}
                                 />
                             </div>
                         ))}
                     </div>
                 </div>
 
-                <div className="font-bold text-xl mt-4 mb-2">{item.spotName}</div>
-                <div className="text-gray-700">
-                    <p className="text-sm font-medium multi-ellipsis">{item.thema}</p>
-                    <p className="text-sm font-medium multi-ellipsis">{item.spotAreaId}</p>
-                </div>
+                <div className="font-bold text-xl mt-4 mb-2">{item.title}</div>
+                {/*<div className="text-gray-700">*/}
+                {/*    <p className="text-sm font-medium multi-ellipsis">{item.thema}</p>*/}
+                {/*    <p className="text-sm font-medium multi-ellipsis">{item.spotAreaId}</p>*/}
+                {/*</div>*/}
             </div>
 
             {/* 모달 */}

@@ -6,7 +6,7 @@ import { categoryState, pageState } from "../store/noticeState";
 import {useRecoilState} from "recoil";
 
 import TabMenuSlider from "../components/TabMenuSlider";
-// import data from "../db/data.json";
+import data from "../db/data.json";
 import SearchInput from "../components/SearchInput";
 
 
@@ -191,7 +191,7 @@ export default function Guide() {
                 {/* 대분류 탭 */}
                 <TabMenuSlider
                     spaceBetween={3}
-                    // data={data.guideCategory}
+                    data={data.guideCategory}
                     onClick={handleSelC1}
                     selTab={selC1}
                     tClass={`bg-mainColor text-white`}
@@ -218,7 +218,7 @@ export default function Guide() {
                      onClick={() => handleItemClick(item.id)}
                      className={`cursor-pointer border-t border-textLightGray py-6 flex flex-col gap-3`}>
                     <p className="text-base font-normal multi-ellipsis">
-                        {/*[{data.guideCategory?.find(cat => cat.code === item.code)?.label}]*/}
+                        [{data.guideCategory?.find(cat => cat.code === item.code)?.label}]
                         <span className="pl-1">{item.title}</span>
                     </p>
                     <p className={`text-sm text-textDarkGray`}>{item.date}</p>

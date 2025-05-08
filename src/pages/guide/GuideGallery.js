@@ -1,132 +1,107 @@
-// import data from "../../db/data.json";
-import React, {useEffect, useRef, useState} from 'react';
+import data from "../../db/data.json";
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import GuideGalleryCard from "./GuideGalleryCard";
-import {useRecoilState} from "recoil";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
-import {ImSpinner2} from "react-icons/im";
-import {pageState} from "../../store/noticeState";
+import { useRecoilState } from "recoil";
+import { useNavigate, useParams } from "react-router-dom";
+import { ImSpinner2 } from "react-icons/im";
+import { pageState } from "../../store/noticeState";
 import TabMenuSlider from "../../components/TabMenuSlider";
 import SearchInput from "../../components/SearchInput";
 import NoResult from "../../components/NoResult";
 import PaginationSimple from "../../components/PaginationSimple";
 
-
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
-
-
-
 const GuideGallery = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-
-    const [tdata, setTdata] = useState([])//전체 데이터
-
+    const [tdata, setTdata] = useState([]);
 
     const { category } = useParams();
     const initCategory = category || 'c1';
-
     const [selC1, setSelC1] = useState(initCategory);
-    const [selectedTag, setSelectedTag] = useState(null);//중메뉴
 
-    const [inputValue, setInputValue] = useState(""); // 인풋 필드 값
-    const [searchKeyword, setSearchKeyword] = useState(""); // 검색어 (실제 필터에 사용)
+    const [selectedPopularTags, setSelectedPopularTags] = useState([]);
+    const [selectedAllTags, setSelectedAllTags] = useState([]);
 
-    const [currentPage, setCurrentPage] = useRecoilState(pageState); // 현재 페이지
-    const [totalPages, setTotalPages] = useState(1);   // 총 페이지 수
+    const [inputValue, setInputValue] = useState("");
+    const [searchKeyword, setSearchKeyword] = useState("");
 
-    const itemsPerPage = 9; // 한 페이지당 글 목록 수
+    const [currentPage, setCurrentPage] = useRecoilState(pageState);
+    const [totalPages, setTotalPages] = useState(1);
+
+    const itemsPerPage = 9;
     const startIndex = (currentPage - 1) * itemsPerPage;
 
-    // 4. 데이터 필터링 및 페이징
+    const popularTags = ['유네스코', '오름', '액티비티', '숲', '포토스팟'];
+
+    // 태그 선택 토글 핸들러
+    const toggleTag = (tag, selectedTags, setTags) => {
+        if (selectedTags.includes(tag)) {
+            setTags(selectedTags.filter(t => t !== tag));// 이미 있으면 제거
+        } else {
+            setTags([...selectedTags, tag]);// 없으면 추가
+        }
+    };
+
+    // 데이터 가져오기
+    const getFetchAllData = async (category) => {
+        setIsLoading(true);
+        try {
+            const { data } = await axios.get(`${process.env.PUBLIC_URL}/db/all.json`);
+            setTdata(data.guide || []);
+        } catch (error) {
+            console.error("전체 데이터 로딩 실패:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    // 필터링
     const filteredData = tdata.filter(item => {
-        // const matchCategory =  item.contentscd?.value === selC1;
-        const matchKeyword =
+        const matchCategory = item.contentscd?.value === selC1; //c1~c5
+
+        const matchKeyword = //검색어(제목, 태그, 주소 포함)
             searchKeyword === "" ||
             item.title?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             item.alltag?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
             item.address?.toLowerCase().includes(searchKeyword.toLowerCase());
 
-        const matchTag =
-            !selectedTag ||                         // 태그 선택 안 했거나
-            (item.alltag && item.alltag.includes(selectedTag)); // 태그 포함하면 true
+        const alltags = item.alltag //태그 가공
+            ?.split(/[,#]/)
+            .map(tag => tag.trim())
+            .filter(Boolean) || [];
 
-        return  matchKeyword && matchTag;
+        //콘텐츠에 선택된 인기태그랑 태그가 들어있는지 확인하기
+        const matchPopularTags = selectedPopularTags.every(tag => item.alltag?.includes(tag)); //인기태그
+        const matchAllTags = selectedAllTags.every(tag => alltags.includes(tag));//태그
+
+        return matchCategory && matchKeyword && matchPopularTags && matchAllTags;
     });
 
-    const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);//시작 인덱스, 마지막 인덱스
-
-    const getFetchAllData = async (category) => {
-        const pageSize = 100;
-        let allItems = [];
-        setIsLoading(true); // 로딩 시작
-
-        try {
-            // 1. 먼저 첫 페이지를 요청해서 총 페이지 수 알아냄
-            const firstPageUrl = `${apiBaseUrl}/api/jeju-festival?locale=kr&category=${category}&page=1&pageSize=${pageSize}`;
-            const { data: firstPageData } = await axios.get(firstPageUrl);
-
-            allItems = [...firstPageData.items];
-            const totalPages = firstPageData.pageCount;
-
-            // 2. 2페이지부터 마지막 페이지까지 병렬로 요청
-            const pagePromises = [];
-
-            for (let page = 2; page <= totalPages; page++) {
-                const url = `${apiBaseUrl}/api/jeju-festival?locale=kr&category=${category}&page=${page}&pageSize=${pageSize}`;
-                pagePromises.push(axios.get(url));
-            }
-
-            const results = await Promise.all(pagePromises);
-
-            // 3. 나머지 페이지 데이터 합치기
-            results.forEach(res => {
-                if (res.data.items?.length) {
-                    allItems = [...allItems, ...res.data.items];
-                }
-            });
-
-            setTdata(allItems);
-            console.log(` 전체 ${allItems.length}개 데이터 병렬 로드 완료`);
-            console.log("가이드 응답 :", results);
-
-        } catch (error) {
-            console.error(' 전체 데이터 병렬 로딩 실패:', error);
-        } finally {
-            setIsLoading(false); // 로딩 종료
-        }
-    };
+    const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
 
     useEffect(() => {
         const currentCategory = category || 'c1';
-
         setSelC1(currentCategory);
         getFetchAllData(currentCategory);
-    }, [category]); //  category 기준으로 패칭
+    }, [category]);
 
-
-    // 카테고리 변경
+    // 카테고리 전환
     const handleSelC1 = (code) => {
         setSelC1(code);
-        setSelectedTag(null); // #태그 선택 초기화
-        navigate(`/guide/gallery/${code}`); //  URL 업데이트
+        navigate(`/guide/gallery/${code}`);
         getFetchAllData(code);
-
-        setCurrentPage(1); // 카테고리 변경 시 첫 페이지로
+        setCurrentPage(1);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    //게시글 클릭
     const handleItemClick = (id, code) => {
         navigate(`/guide/gallery/${code}/${id}`, { state: { id } });
-    }
+    };
 
-    //검색어 입력
     const handleInputChange = (e) => {
         const value = e.target.value;
         setInputValue(value);
-
-        // 인풋이 비었을 때 전체 데이터 다시 보여주기
         if (value === "") {
             setSearchKeyword("");
             setCurrentPage(1);
@@ -134,43 +109,25 @@ const GuideGallery = () => {
         }
     };
 
-    //검색 버튼
     const handleSearch = () => {
         setSearchKeyword(inputValue);
         setCurrentPage(1);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    // 5. 페이지 수 업데이트
+    // 페이지 수 업데이트
     useEffect(() => {
         const total = filteredData.length;
-        const pagesCalc = Math.ceil(total / itemsPerPage);//페이징
+        const pagesCalc = Math.ceil(total / itemsPerPage);
         setTotalPages(pagesCalc);
     }, [filteredData]);
-
-    //중메뉴 인기태그 모음
-    const extractedTags = Array.from(
-        new Set(
-            tdata
-                .flatMap(item =>
-                    item.alltag
-                        ?.split(/[,#]/)         // 쉼표나 # 기준으로 잘라서
-                        .map(tag => tag.trim()) // 공백 제거
-                        .filter(Boolean)        // 빈 값 제거
-                )
-        )
-    );
-
-    const popularTags = ['유네스코', '오름', '액티비티', '숲', '포토스팟'];
-
-    const displayTags = popularTags.filter(tag => extractedTags.includes(tag));
 
 
     return (
         <div>
             <div className="sticky top-0 bg-white py-5 z-10">
                 {/* 검색창 */}
-                <div className={`pb-5`}>
+                <div className="pb-5">
                     <SearchInput
                         inputPlaceholder={`검색어를 입력해주세요`}
                         value={inputValue}
@@ -179,66 +136,94 @@ const GuideGallery = () => {
                     />
                 </div>
 
-                {/* 대분류 탭 */}
-                <TabMenuSlider
-                    spaceBetween={3}
-                    // data2={data2.jejuCategory}
-                    onClick={handleSelC1}
-                    selTab={selC1}
-                    tClass={`bg-black text-white`}
-                    fClass={`text-textBlack bg-gray-100`}
-                    btnClass={``}
-                />
-
-                {/*중메뉴 탭*/}
-                <div className="flex flex-wrap gap-4 py-4">
-                    {displayTags.map((tag) => (
-                        <button
-                            key={tag}
-                            onClick={() => setSelectedTag(tag)}
-                            className={`py-4 rounded-full text-sm tx ${
-                                selectedTag === tag ? 'text-mainColor' : 'text-gray-500'
-                            }`}
-                        >
-                            #{tag}
-                        </button>
-                    ))}
+                <div className={`pb-5`}>
+                    {/* 대분류 탭 */}
+                    <TabMenuSlider
+                        spaceBetween={3}
+                        data={data.jejuCategory}
+                        onClick={handleSelC1}
+                        selTab={selC1}
+                        tClass={`bg-black text-white`}
+                        fClass={`text-textBlack bg-gray-100`}
+                        btnClass={``}
+                    />
                 </div>
-            </div>
 
-
-
-                {isLoading ? (
-                    <div
-                        className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600 transition-opacity duration-700 opacity-100 pointer-events-none">
-                        <ImSpinner2 className="animate-spin text-3xl text-gray-600"/>
-                        <p>관광지 정보를 불러오고 있어요</p>
-                    </div>
-                ) : (
-                    <div className={` cursor-pointer `}>
-                        {/*글 목록*/}
-                        {paginatedData.length !== 0 ?
-                            (
-                                paginatedData.map((item) =>
-                                    <GuideGalleryCard
-                                        key={item.contentsid}
-                                        onClick={() => handleItemClick(item.contentsid, selC1)}
-                                        item={item}
-                                    />)
-                            ) : (
-                                <NoResult/>
-                            )}
-
-                        {/*페이지네이션*/}
-                        <PaginationSimple
-                            currentPage={currentPage}
-                            totalPages={totalPages}
-                            setCurrentPage={setCurrentPage}
-                        />
+                {/* 선택된 태그 */}
+                {[...selectedPopularTags, ...selectedAllTags].length > 0 && (
+                    <div className="w-full flex gap-2 py-2 flex-wrap items-center pb-3">
+                        {selectedPopularTags.map(tag => (
+                            <span
+                                key={`selected-pop-${tag}`}
+                                className="inline-flex items-center bg-yellow-100 text-yellow-800 text-sm px-3 py-1.5 rounded-full border border-yellow-300 cursor-pointer hover:bg-yellow-200"
+                                onClick={() => toggleTag(tag, selectedPopularTags, setSelectedPopularTags)}
+                            >
+                                #{tag}
+                                <span className="ml-2 text-xs text-yellow-600 font-bold">✕</span>
+                            </span>
+                        ))}
+                        {selectedAllTags.map(tag => (
+                            <span
+                                key={`selected-all-${tag}`}
+                                className="inline-flex items-center border bg-[#E7F0D2] text-[#739D64] border-[#739D64] text-sm px-3 py-1 rounded-full cursor-pointer hover:bg-green-100"
+                                onClick={() => toggleTag(tag, selectedAllTags, setSelectedAllTags)}
+                            >
+                                #{tag}
+                                <span className="ml-2 text-xs text-green-700 font-bold">✕</span>
+                            </span>
+                        ))}
                     </div>
                 )}
-            </div>
-            );
-            };
 
-            export default GuideGallery;
+
+                {/* 인기태그 버튼 */}
+                <div className={`text-sm `}>
+                    <p className={`text-gray-400 font-semibold pb-2`}>인기태그</p>
+                    <div className="flex flex-wrap gap-3 ">
+                        {popularTags.map(tag => (
+                            <button
+                                key={`pop-${tag}`}
+                                onClick={() => toggleTag(tag, selectedPopularTags, setSelectedPopularTags)}
+                                className={` bg-gray-100 text-gray-500 text-sm px-3 py-1 rounded-full border border-gray-200 cursor-pointer hover:bg-gray-200`}
+                            >
+                                #{tag}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
+
+            {/* 로딩 */}
+            {isLoading ? (
+                <div className="flex flex-col items-center justify-center gap-2 py-20 text-gray-600">
+                    <ImSpinner2 className="animate-spin text-3xl"/>
+                    <p>관광지 정보를 불러오고 있어요</p>
+                </div>
+            ) : (
+                <div>
+                    {paginatedData.length !== 0 ? (
+                        paginatedData.map(item => (
+                            <GuideGalleryCard
+                                key={item.contentsid}
+                                item={item}
+                                onClick={() => handleItemClick(item.contentsid, selC1)}
+                                onClickSpan={(kw) => toggleTag(kw, selectedAllTags, setSelectedAllTags)}
+                            />
+                        ))
+                    ) : (
+                        <NoResult />
+                    )}
+
+                    <PaginationSimple
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        setCurrentPage={setCurrentPage}
+                    />
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default GuideGallery;
