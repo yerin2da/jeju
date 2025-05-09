@@ -17,7 +17,7 @@ export default function Layout() {
 
 
     return (
-        <div className="flex flex-col w-full h-screen max-w-screen-md mx-auto border-l border-r  border-gray-100">
+        <div className="flex flex-col w-full h-screen max-w-screen-md mx-auto border-l border-r border-gray-100">
             <Header />
 
             <main

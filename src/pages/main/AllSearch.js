@@ -5,9 +5,8 @@ import AllSearchCard from "../../components/AllSearchCard";
 import SearchCard from "../SearchCard";
 import SectionTitle from "../../components/SectionTitle";
 
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
-export default function MainSearch() {
+export default function AllSearch() {
     const location = useLocation();
     const keyword = location.state?.keyword || '';
 

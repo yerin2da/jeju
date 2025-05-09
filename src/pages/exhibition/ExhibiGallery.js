@@ -21,28 +21,14 @@ export default function ExhibiGallery() {
 
 
     const getFetchData = async (pageNo = 1) => {
+        setIsLoading(true);
         try {
-            setIsLoading(true);
-            const { data } = await axios.get(`${apiBaseUrl}/api/jeju-culture`, {
-                params: {
-                    pageNo,
-                    numOfRows: itemsPerPage,
-                    dtype: "전시",
-                    title: "제주",
-                    type: "json"
-                },
-                headers: {
-                    Accept: "application/json"
-                }
-            });
+            const { data } = await axios.get(`${process.env.PUBLIC_URL}/db/all.json`);
+            const filteredData = (data.stage || []).filter(item => item.dtype === "전시");
 
-            console.log("✅ API 응답:", data);
+            setTdata(filteredData);
 
-            const items = data.response?.body?.items?.item || [];
-            setTdata(items);
-
-
-            const totalCount = 50;
+            const totalCount = 10;
             const pages = Math.ceil(totalCount / itemsPerPage);
             setTotalPages(pages);
 

@@ -209,7 +209,7 @@
 //                         return (
 //                             <li key={monenyIdx} className="mb-4 border rounded-xl p-4 border-textLightGray">
 //                                 <div className="flex justify-between items-center mb-3">
-//                                     <p className="font-semibold flex items-center gap-1">
+//                                     <p className="font324223-semibold flex items-center gap-1">
 //                                         {unit.coin === "N"
 //                                             ? "💵"
 //                                             : "🪙"

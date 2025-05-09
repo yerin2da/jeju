@@ -6,36 +6,26 @@ import {useEffect, useState} from "react";
 import {FiMapPin} from "react-icons/fi";
 import WFullButton from "../../components/WFullButton";
 
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 export default function JejuFestival() {
     const [tdata, setTdata] = useState([])//전체 데이터
 
     useEffect(() => {
         const getFetchData = async () => {
             try {
-                const { data } = await axios.get(`${apiBaseUrl}/api/jeju-festival`, {
-                    params: {
-                        page:1,
-                        locale:"ko",
-                        category:"c5",
-                    },
-                    headers: {
-                        Accept: "application/json"
-                    }
+                const { data } = await axios.get(`${process.env.PUBLIC_URL}/db/all.json`);
+                const filtered = (data.guide || [])
+                    .filter(item => item.contentscd?.value === "c5")
+                    .reverse()             // 최신순
+                    .slice(0, 6);          // 6개만
 
-                });
-
-                const data4 = data.items.slice(0, 6);//4개만 보여주기
-                setTdata(data4);
-                console.log('축제&행사 응답데이터 : ', data4);
-
+                setTdata(filtered);
             } catch (error) {
-                console.error('api응답 실패 :', error);
+                console.error("전체 데이터 로딩 실패:", error);
             }
         };
 
         getFetchData();
-    }, []);
+    }, [tdata]);
 
     const navigate = useNavigate();
 
@@ -65,7 +55,7 @@ export default function JejuFestival() {
                 title={<>제주에서 <span className={`text-mainColor`}>즐기자!</span></>}
             />
             <ul className={`grid grid-cols-2 xs:grid-cols-3 gap-x-2 gap-y-4 items-stretch`}>
-                {tdata.map((item, idx) => {
+                {tdata.reverse().map((item, idx) => {
                     const imgPath = item?.repPhoto?.photoid?.imgpath;
                     const imgThumPath = item?.repPhoto?.photoid?.thumbnailpath;
                     const default2 = `${process.env.PUBLIC_URL}/img/default2.jpg`;
@@ -91,7 +81,7 @@ export default function JejuFestival() {
             </ul>
 
             <WFullButton
-                onClick={()=> navigate(`guide/gallery/c5`)}
+                onClick={()=>  navigate("/guide/gallery/c5?category=c5")}
                 tit={`축제&행사모음`}
                 tit2={`전체보기`}
             />

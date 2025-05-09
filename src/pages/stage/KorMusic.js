@@ -18,39 +18,26 @@ export default function KorMusic() {
 
     const [isLoading, setIsLoading] = useState(false);
 
-
     const getFetchData = async (pageNo = 1) => {
+        setIsLoading(true);
         try {
-            setIsLoading(true);
-            const { data } = await axios.get(`${apiBaseUrl}/api/jeju-culture`, {
-                params: {
-                    pageNo,
-                    numOfRows: itemsPerPage,
-                    dtype: "국악",
-                    title: "제주",
-                    type: "json"
-                },
-                headers: {
-                    Accept: "application/json"
-                }
-            });
+            const { data } = await axios.get(`${process.env.PUBLIC_URL}/db/all.json`);
+            const filteredData = (data.stage || [])
+                .filter(item => item.dtype === "국악")
 
-            console.log("✅ API 응답:", data);
+            setTdata(filteredData);
 
-            const items = data.response?.body?.items?.item || [];
-            setTdata(items);
-
-            const totalCount = 9;
+            const totalCount = 10;
             const pages = Math.ceil(totalCount / itemsPerPage);
             setTotalPages(pages);
 
         } catch (error) {
-            console.error("❌ 프록시 API 에러 발생:", error);
-            setTdata([]);
-        } finally{
+            console.error("전체 데이터 로딩 실패:", error);
+        } finally {
             setIsLoading(false);
         }
     };
+
     useEffect(() => {
         getFetchData(currentPage);
         console.log(currentPage)

@@ -45,12 +45,12 @@ export default function AllSearchCard({ item }){
         >
             <img className={`aspect-[4/3] w-full object-cover border border-gray-100 rounded-md`}
                  src={getImagePath(item)}
-                 alt={item.repPhoto?.descseo || item.title}
+                 alt={item.title}
             />
 
             <div className={`py-2`}>
                 <div className={`font-medium text-sm leading-tight line-clamp-2`}>
-                    {item.repPhoto?.descseo || item.title}
+                    {item.title}
                 </div>
             </div>
 

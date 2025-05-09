@@ -93,7 +93,7 @@ const JejuThemeGallery = () => {
 
     return (
         <div>
-            <div className="sticky top-0 bg-white z-10 py-5">
+            <div className="bg-white z-10 py-5">
                 <div className={`pb-5`}>
                     <SearchInput
                         inputPlaceholder={`검색어를 입력해주세요`}

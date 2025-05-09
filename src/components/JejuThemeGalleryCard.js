@@ -61,10 +61,7 @@ export default function JejuThemeGalleryCard({ item }) {
                 </div>
 
                 <div className="font-bold text-xl mt-4 mb-2">{item.title}</div>
-                {/*<div className="text-gray-700">*/}
-                {/*    <p className="text-sm font-medium multi-ellipsis">{item.thema}</p>*/}
-                {/*    <p className="text-sm font-medium multi-ellipsis">{item.spotAreaId}</p>*/}
-                {/*</div>*/}
+                <div className="text-gray-700 text-sm font-medium">{item.text}</div>
             </div>
 
             {/* 모달 */}

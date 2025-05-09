@@ -10,7 +10,7 @@ export default function Chat() {
     const nickname = useRecoilValue(nicknameState);//닉네임
 
     useEffect(() => {
-        socket.current = io('http://192.168.0.113:3000/');//서버
+        // socket.current = io('http://192.168.0.113:3000/');//서버
 
         socket.current.on('chat', (msg) => {//메시지 받기('chat':이벤트 등록)
             setChat((prev) => [...prev, msg]);

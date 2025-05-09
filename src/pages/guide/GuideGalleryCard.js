@@ -31,12 +31,12 @@ export default function GuideGalleryCard({item,onClick, onClickSpan}) {
         >
              <img className={`h-48 w-full object-cover cursor-pointer`}
                   src={getImageGuide(item)}
-                  alt = {item.repPhoto?.descseo}
+                  alt = {item.title}
              />
 
             <div className={`px-6 py-4`}>
                 <div className={`font-bold text-xl mb-2 cursor-pointer`}>
-                    {item.repPhoto?.descseo}
+                    {item.title}
                 </div>
                 <div className={`text-gray-700`}>
                     <p className={`text-sm xs:text-base font-medium multi-ellipsis`}>{item.introduction}</p>

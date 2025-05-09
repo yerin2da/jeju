@@ -20,26 +20,13 @@ export default function MusicalGallery() {
 
 
     const getFetchData = async (pageNo = 1) => {
+        setIsLoading(true);
         try {
-            setIsLoading(true);
-            const { data } = await axios.get(`${apiBaseUrl}/api/jeju-culture`, {
-                params: {
-                    pageNo,
-                    numOfRows: itemsPerPage,
-                    dtype: "뮤지컬",
-                    title: "제주",
-                    type: "json"
-                },
-                headers: {
-                    Accept: "application/json"
-                }
-            });
+            const { data } = await axios.get(`${process.env.PUBLIC_URL}/db/all.json`);
+            const filteredData = (data.stage || [])
+                .filter(item => item.dtype === "뮤지컬")
 
-            console.log("✅ API 응답:", data);
-
-            const items = data.response?.body?.items?.item || [];
-            setTdata(items);
-
+            setTdata(filteredData);
 
             const totalCount = 10;
             const pages = Math.ceil(totalCount / itemsPerPage);

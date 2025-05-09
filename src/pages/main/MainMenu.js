@@ -21,11 +21,12 @@ import { RiMovie2Line } from "react-icons/ri";
 import { GiPagoda } from "react-icons/gi";
 import {useRecoilValue} from "recoil";
 import {isLoggedInState} from "../../recoil/atoms";
-
+import { RxPerson } from "react-icons/rx";
+import { LuHotel } from "react-icons/lu";
 export const iconMap = {
     shop: <HiOutlineShoppingBag />,
     map: <HiOutlineMap />,
-    hotel: <LiaHotelSolid />,
+    hotel: <LuHotel />,
     food: <CiForkAndKnife />,
     festival: <MdOutlineFestival/>,
 
@@ -33,7 +34,7 @@ export const iconMap = {
     couple: <IoMdHeartEmpty />,
     tour: <TbBus />,
     hanra: <TbMountain />,
-    person: <PiPersonLight />,
+    person: <RxPerson  />,
     days2: <LuTent />,
 
     korMusic: <GiPagoda/>,
@@ -50,13 +51,13 @@ export default function MainMenu() {
 
     return (
         <div className="">
-            <ul className={`border-b border-gray-100 pb-4 space-y-2`}>
+            <ul className={`border-b border-gray-100 pb-4 space-y-3`}>
                 <li><SectionTitle title={`제주 가이드`}/></li>
                 {data.jejuCategory.map((item) => (
                     <li
                         key={item.code}
                         onClick={()=>navigate(`/guide/gallery/${item.code}`)}
-                        className={`cursor-pointer `}>
+                        className={`cursor-pointer hover:text-mainColor`}>
                         <div className={`flex items-center gap-2`}>
                             {iconMap[item.img]}
                             {item.label}
@@ -65,13 +66,13 @@ export default function MainMenu() {
                 ))}
             </ul>
 
-            <ul className={`border-b border-gray-100 py-4 space-y-2`}>
+            <ul className={`border-b border-gray-100 py-4 space-y-3`}>
                 <li><SectionTitle title={`제주 테마여행`}/></li>
                 {data.jejuThemeCategory.map((item) => (
                     <li
                         key={item.code}
                         onClick={() => navigate(`/theme/gallery/${item.code}`)}
-                        className={`cursor-pointer`}>
+                        className={`cursor-pointer hover:text-mainColor`}>
 
                         <div className={`flex items-center gap-2`}>
 
@@ -82,14 +83,14 @@ export default function MainMenu() {
                 ))}
             </ul>
 
-            <ul className={`border-b border-gray-100 py-4 space-y-2`}>
+            <ul className={`border-b border-gray-100 py-4 space-y-3`}>
                 <li><SectionTitle title={`제주 무대공연`}/></li>
                 {data.jejuStageCategory.map((item) => (
                     <li
                         key={item.code}
                         onClick={() => navigate(`/stage/gallery/${item.code}`)}
-                        className={`cursor-pointer`}
-                    >
+                        className={`cursor-pointer hover:text-mainColor`}>
+
                         <div className={`flex items-center gap-2`}>
 
                             {iconMap[item.img]}
@@ -99,25 +100,30 @@ export default function MainMenu() {
                 ))}
             </ul>
 
-            <ul className={`py-4 space-y-2`}>
+            <ul className={`py-4 space-y-3`}>
                 <li
                     onClick={() => navigate(`/heart`)}
+                    className={`cursor-pointer hover:text-mainColor`}
                 >찜
                 </li>
 
                 <li
                     onClick={() => navigate(`/mypage`)}
+                    className={`cursor-pointer hover:text-mainColor`}
                 >내정보
                 </li>
 
                 <li
                     onClick={() => navigate(`/login`)}
-                    className={`cursor-pointer`}
+                    className={`cursor-pointer hover:text-mainColor`}
                 >
                     {isLoggedIn ? "로그아웃" : "로그인"}
                 </li>
 
-                <li onClick={() => navigate(`/register`)}>
+                <li
+                    onClick={() => navigate(`/register`)}
+                    className={`cursor-pointer hover:text-mainColor`}
+                >
                     {!isLoggedIn && "회원가입"}
                 </li>
             </ul>

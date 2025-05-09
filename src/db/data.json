@@ -7,14 +7,15 @@
     { "code": "etc", "label": "기타 공지" }
   ],
   "jejuCategory" : [
+    { "label": "관광지",
+    "code": "c1",
+    "img": "map"
+    },
     { "label": "쇼핑",
       "code": "c2",
       "img": "shop"
     },
-    { "label": "관광지",
-      "code": "c1",
-      "img": "map"
-    },
+
     { "label": "숙소",
       "code": "c3",
       "img": "hotel"

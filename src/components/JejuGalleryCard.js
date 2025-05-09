@@ -28,11 +28,11 @@
 //              />
 //
 //             <div className={`px-6 py-4`}>
-//                 <div className={`font-bold text-xl mb-2`}>
+//                 <div className={`font324223-bold text-xl mb-2`}>
 //                     {item.repPhoto.descseo}
 //                 </div>
 //                 <div className={`text-gray-700`}>
-//                     <p className={`text-sm font-medium multi-ellipsis`}>{item.introduction}</p>
+//                     <p className={`text-sm font324223-medium multi-ellipsis`}>{item.introduction}</p>
 //                     <p className={`text-xs text-gray-500`}>{item.address}</p>
 //                 </div>
 //                 <div className={`pt-4 pb-2`}>
@@ -40,7 +40,7 @@
 //                         <span
 //                             key={idx}
 //                             className={`inline-block bg-gray-100 rounded-full
-//                                 text-sm font-semibold text-gray-500 mr-2 mb-2 px-2 py-0.5
+//                                 text-sm font324223-semibold text-gray-500 mr-2 mb-2 px-2 py-0.5
 //                             `}
 //                         >
 //                             {kw}

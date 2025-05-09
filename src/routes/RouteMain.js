@@ -24,7 +24,7 @@ import MusicGallery from "../pages/stage/MusicGallery";
 import GuideDetail from "../pages/guide/GuideDetail";
 import PlayGallery from "../pages/stage/PlayGallery";
 import KorMusic from "../pages/stage/KorMusic";
-import MainSearch from "../pages/main/MainSearch";
+import AllSearch from "../pages/main/AllSearch";
 import MainMenu from "../pages/main/MainMenu";
 
 
@@ -38,7 +38,7 @@ export default function RouteMain() {
 
                 {/* 메인 */}
                 <Route path="/" element={<Main />} />
-                <Route path="/mainSearch" element={<MainSearch />} />
+                <Route path="/mainSearch" element={<AllSearch />} />
                 <Route path="/mainMenu" element={<MainMenu />} />
 
 

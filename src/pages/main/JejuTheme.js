@@ -76,7 +76,7 @@ export default function JejuTheme() {
         </Swiper>
         <div className={`mx-5`}>
             <WFullButton
-                onClick={()=> navigate(`/theme/gallery`)}
+                onClick={()=> navigate(`/theme/gallery/family`)}
                 tit={`테마여행모음`}
                 tit2={`전체보기`}
             />

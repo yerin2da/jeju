@@ -200,7 +200,7 @@
 //                 </div>
 //             </div>
 //
-//             <div className={`font-bold text-base pb-2`}>댓글 {tdata.length}</div>
+//             <div className={`font324223-bold text-base pb-2`}>댓글 {tdata.length}</div>
 //
 //             <ul className="w-full">
 //                 {tdata.map(item => (
