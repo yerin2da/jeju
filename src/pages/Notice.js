@@ -8,81 +8,81 @@ import {useRecoilState} from "recoil";
 import TabMenuSlider from "../components/TabMenuSlider";
 import data from "../db/data.json";
 import SearchInput from "../components/SearchInput";
-
-
-const noticeList = [
-    {
-        id: 1,
-        code: "system",
-        title: "거래 요청 및 채팅 서비스 일시 중단 안내",
-        date: "2024-03-10",
-        content: "서버 점검으로 인한 서비스 일시 중단 안내입니다.",
-    },
-    {
-        id: 2,
-        code: "update",
-        title: "거래 후기 시스템 개선 및 UI 개편 안내",
-        date: "2024-03-08",
-        content: "새로운 기능이 추가된 앱 업데이트가 완료되었습니다.",
-    },
-    {
-        id: 3,
-        code: "security",
-        title: "계정 보호를 위한 OTP 인증 필수 적용",
-        date: "2024-03-05",
-        content: "보안 강화를 위한 패치가 적용되었습니다.",
-    },
-    {
-        id: 4,
-        code: "etc",
-        title: "외화 등록 후 거래 대기 시간 변경",
-        date: "2024-03-01",
-        content: "기타 공지사항 내용을 확인해 주세요.",
-    },
-    {
-        id: 5,
-        code: "system",
-        title: "긴급 서버 점검",
-        date: "2024-02-28",
-        content: "긴급 서버 점검으로 인해 서비스가 중단됩니다.",
-    },
-    {
-        id: 6,
-        code: "system",
-        title: "6",
-        date: "6",
-        content: "6",
-    },{
-        id: 7,
-        code: "system",
-        title: "7",
-        date: "6",
-        content: "6",
-    },{
-        id: 8,
-        code: "system",
-        title: "8",
-        date: "6",
-        content: "6",
-    },{
-        id: 9,
-        code: "system",
-        title: "9",
-        date: "6",
-        content: "6",
-    },{
-        id: 10,
-        code: "system",
-        title: "10",
-        date: "6",
-        content: "6",
-    },
-];
+//
+//
+// const noticeList = [
+//     {
+//         id: 1,
+//         code: "system",
+//         title: "거래 요청 및 채팅 서비스 일시 중단 안내",
+//         date: "2024-03-10",
+//         content: "서버 점검으로 인한 서비스 일시 중단 안내입니다.",
+//     },
+//     {
+//         id: 2,
+//         code: "update",
+//         title: "시스템 개선 및 UI 개편 안내",
+//         date: "2024-03-08",
+//         content: "새로운 기능이 추가된 웹 업데이트가 완료되었습니다.",
+//     },
+//     {
+//         id: 3,
+//         code: "security",
+//         title: "계정 보호를 위한 OTP 인증 필수 적용",
+//         date: "2024-03-05",
+//         content: "보안 강화를 위한 패치가 적용되었습니다.",
+//     },
+//     {
+//         id: 4,
+//         code: "etc",
+//         title: "외화 등록 후 거래 대기 시간 변경",
+//         date: "2024-03-01",
+//         content: "기타 공지사항 내용을 확인해 주세요.",
+//     },
+//     {
+//         id: 5,
+//         code: "system",
+//         title: "긴급 서버 점검",
+//         date: "2024-02-28",
+//         content: "긴급 서버 점검으로 인해 서비스가 중단됩니다.",
+//     },
+//     {
+//         id: 6,
+//         code: "system",
+//         title: "6",
+//         date: "6",
+//         content: "6",
+//     },{
+//         id: 7,
+//         code: "system",
+//         title: "7",
+//         date: "6",
+//         content: "6",
+//     },{
+//         id: 8,
+//         code: "system",
+//         title: "8",
+//         date: "6",
+//         content: "6",
+//     },{
+//         id: 9,
+//         code: "system",
+//         title: "9",
+//         date: "6",
+//         content: "6",
+//     },{
+//         id: 10,
+//         code: "system",
+//         title: "10",
+//         date: "6",
+//         content: "6",
+//     },
+// ];
 
 export default function Guide() {
 
     const url = "guide";
-    const [tdata, setTdata] = useState(noticeList); // 전체 데이터 (목록)
+    const [tdata, setTdata] = useState(data.noticeList); // 전체 데이터 (목록)
     const [selC1, setSelC1] = useRecoilState(categoryState);      // 선택한 카테고리
 
     const [inputValue, setInputValue] = useState(""); // 인풋 필드 값
@@ -144,14 +144,15 @@ export default function Guide() {
     //  3. 데이터 가져오기
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const { data } = await axios.get(url);
-                console.log("응답 데이터 구조 확인:", data);
-                setTdata(data);
-            } catch (error) {
-                console.warn("더미 데이터로 대체합니다.");
-                setTdata(noticeList);
-            }
+            // try {
+            //     const { data } = await axios.get(url);
+            //     console.log("응답 데이터 구조 확인:", data);
+            //     setTdata(data);
+            // } catch (error) {
+            //     console.warn("더미 데이터로 대체합니다.");
+            setTdata(data.noticeList);
+
+            // }
         };
 
         fetchData();
@@ -204,16 +205,13 @@ export default function Guide() {
                         inputPlaceholder={`검색어를 입력해주세요`}
                         value={inputValue}
                         onChange={handleInputChange}
-                        // onKeyDown={(e) => {
-                        //     if (e.key === 'Enter') handleSearch();
-                        // }}
                         onSearch={handleSearch}
                     />
                 </div>
             </div>
 
             {/* 글 목록 */}
-            {paginatedData.map((item) => (
+            {paginatedData.reverse().map((item) => (
                 <div key={item.id}
                      onClick={() => handleItemClick(item.id)}
                      className={`cursor-pointer border-t border-textLightGray py-6 flex flex-col gap-3`}>

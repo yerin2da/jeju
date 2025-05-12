@@ -7,12 +7,12 @@ export default function ExhibiGalleryComponent({ item })
     return (
         <div
             onClick={() => window.open(item.url, "_blank")}
-            className={`relative w-full h-100 flex flex-col`}>
+            className={`group cursor-pointer relative w-full h-100 flex flex-col`}>
 
             {/* 포스터 이미지 */}
             <div className={`h-40 xs:h-60 overflow-hidden relative z-2 rounded-lg border border-gray-100`}>
                 <img
-                    className={`w-full h-full object-cover`}
+                    className={`w-full h-full object-cover duration-300 group-hover:scale-110`}
                     src={item.imageObject ? item.imageObject : `${process.env.PUBLIC_URL}/img/default.jpg`}
                     alt={item.title}
                 />

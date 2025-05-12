@@ -2,7 +2,7 @@ import data from "../../db/data.json";
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
 import { ImSpinner2 } from "react-icons/im";
 import { pageState } from "../../store/noticeState";
 import TabMenuSlider from "../../components/TabMenuSlider";
@@ -29,6 +29,23 @@ const JejuThemeGallery = () => {
     const itemsPerPage = 4;
     const startIndex = (currentPage - 1) * itemsPerPage;
 
+    const [searchParams, setSearchParams] = useSearchParams();
+    const category = searchParams.get("category") || "family";
+    const pageFromParams = parseInt(searchParams.get("page") || "1", 10);
+
+    useEffect(() => {
+        setCurrentPage(pageFromParams);
+    }, [pageFromParams]);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+
+        const newParams = new URLSearchParams(searchParams);
+        newParams.set("category", selC1); // 현재 선택된 카테고리
+        newParams.set("page", page);      // 새로운 페이지 번호
+        setSearchParams(newParams);       // URL 갱신
+    };
+
     const filteredData = tdata.filter(item => {
         const matchCategory = item.code === selC1;
         const matchKeyword =
@@ -53,8 +70,6 @@ const JejuThemeGallery = () => {
         }
     };
 
-    const { category } = useParams();
-
     useEffect(() => {
         const currentCategory = category || 'family';
         setSelC1(currentCategory);
@@ -63,9 +78,14 @@ const JejuThemeGallery = () => {
 
     const handleSelC1 = (code) => {
         setSelC1(code);
-        navigate(`/theme/gallery/${code}`);
-        getFetchAllData();
         setCurrentPage(1);
+
+        const newParams = new URLSearchParams(searchParams);
+        newParams.set("category", code);
+        newParams.set("page", "1");
+        setSearchParams(newParams); // URL 갱신
+
+        getFetchAllData();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
@@ -132,7 +152,7 @@ const JejuThemeGallery = () => {
                     <PaginationSimple
                         currentPage={currentPage}
                         totalPages={totalPages}
-                        setCurrentPage={setCurrentPage}
+                        setCurrentPage={handlePageChange}
                     />
                 </>
             )}

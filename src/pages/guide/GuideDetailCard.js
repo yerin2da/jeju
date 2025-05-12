@@ -24,13 +24,13 @@ export default function GuideDetailCard({item,onClick}) {
         >
             <img className={`h-52 xs:h-72 sm:h-[24rem] w-full object-cover`}
                  src={imgPath || default2}
-                 alt={item.repPhoto?.descseo}
+                 alt={item.title}
             />
 
             <div className={`p-5 space-y-6`}>
                 <div className={``}>
                     <div className={`font-bold text-xl pb-1`}>
-                        {item.repPhoto?.descseo}
+                        {item.title}
                     </div>
                     <p className={`text-sm xs:text-base text-gray-500`}>{item.address}</p>
                 </div>

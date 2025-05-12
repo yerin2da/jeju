@@ -12,9 +12,9 @@ const GalleryComponent = ({item,
     return (
         <div
             onClick={() => window.open(item.url, "_blank")}
-            className={`contentsBox !p-0 overflow-hidden !rounded-2xl bg-white ${wrapClass}`}>
-            <div className={`relative`}>
-                <img className={`${imgClass} h-40 w-full object-cover`}
+            className={`cursor-pointer group contentsBox !p-0 overflow-hidden !rounded-2xl bg-white ${wrapClass}`}>
+            <div className={`relative overflow-hidden`}>
+                <img className={`${imgClass} h-40 w-full object-cover duration-300 group-hover:scale-110`}
                      src={item.imageObject ? item.imageObject : `${process.env.PUBLIC_URL}/img/default.jpg`}
                      alt={item.title}
                 />

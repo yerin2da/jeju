@@ -6,7 +6,7 @@ export default function InfoComponent7({title,
                                            onClick=null})
 {
     return (
-        <div className={` cursor-pointer h-fit w-full bg-white rounded-xl overflow-hidden`}>
+        <div className={`group cursor-pointer h-fit w-full bg-white rounded-xl overflow-hidden`}>
             <div
                 onClick={onClick}
                 className={`w-full

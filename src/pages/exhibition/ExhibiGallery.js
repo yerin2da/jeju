@@ -26,19 +26,20 @@ export default function ExhibiGallery() {
             const { data } = await axios.get(`${process.env.PUBLIC_URL}/db/all.json`);
             const filteredData = (data.stage || []).filter(item => item.dtype === "전시");
 
-            setTdata(filteredData);
+            const totalCount = filteredData.length;
+            const startIndex = (pageNo - 1) * itemsPerPage;
+            const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
 
-            const totalCount = 10;
-            const pages = Math.ceil(totalCount / itemsPerPage);
-            setTotalPages(pages);
-
+            setTdata(paginatedData);
+            setTotalPages(Math.ceil(totalCount / itemsPerPage));
         } catch (error) {
             console.error("❌ 프록시 API 에러 발생:", error);
             setTdata([]);
-        } finally{
+        } finally {
             setIsLoading(false);
         }
     };
+
     useEffect(() => {
         getFetchData(currentPage);
         console.log(currentPage)
@@ -54,7 +55,7 @@ export default function ExhibiGallery() {
             ) : (
                 <div>
                     {tdata && tdata.length > 0 ? (
-                        <ul className={`grid grid-cols-2  gap-x-2 gap-y-4 items-stretch`}>
+                        <ul className={`grid grid-cols-2 gap-x-2 gap-y-6 items-stretch`}>
                             {tdata.map((item, idx) => (
                             <li key={idx}
                                 className="h-full flex cursor-pointer"

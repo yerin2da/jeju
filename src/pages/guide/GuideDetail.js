@@ -1,48 +1,35 @@
-import { useLocation, useParams } from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import { useSearchParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import GuideGalleryCard from "./GuideGalleryCard";
 import GuideDetailCard from "./GuideDetailCard";
 import Comment from "../../13paging/Comment";
-import {ImSpinner2} from "react-icons/im";
-
-const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
+import { ImSpinner2 } from "react-icons/im";
 
 export default function GuideDetail() {
-    const location = useLocation();
-    const [tdata, setTdata] = useState([])//전체 데이터
+    const [searchParams] = useSearchParams();
+    const [tdata, setTdata] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const { cid,  category } = useParams();  // URL 파라미터로 cid 받기
-    console.log("params category:", category);
-    console.log("params cid:", cid);
 
-    const id = location.state?.id || cid;  // state 없으면 cid 사용
+    const category = searchParams.get("category");
+    const id = searchParams.get("id");
 
     useEffect(() => {
         const getFetchData = async () => {
+            setIsLoading(true);
             try {
-                const { data } = await axios.get(`${apiBaseUrl}/api/jeju-festival`, {
-                    params: {
-                        locale:"ko",
-                        cid:id
-                    },
-                    headers: {
-                        Accept: "application/json"
-                    }
-                });
-
-                setTdata(data.items);
-                console.log('상세 응답데이터 : ', data.items);
+                const { data } = await axios.get(`${process.env.PUBLIC_URL}/db/all.json`);
+                const matched = data.guide.find(i => String(i.contentsid) === String(id));
+                setTdata(matched); // 객체 하나만
 
             } catch (error) {
-                console.error('api응답 실패 :', error);
-            }  finally {
-                setIsLoading(false); // 로딩 종료
+                console.error("데이터 로딩 실패:", error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
         getFetchData();
-    }, []);
+    }, [id]);
 
     return (
         <div>
@@ -51,22 +38,15 @@ export default function GuideDetail() {
                     <ImSpinner2 className="animate-spin text-3xl text-gray-600" />
                     <p>상세 정보를 불러오고 있어요</p>
                 </div>
-            ) : (
+            ) : tdata ? (
                 <>
-                    {tdata && tdata.length > 0 ? (
-                        <>
-                            {tdata.map((item) => (
-                                <GuideDetailCard key={item.contentsid} item={item} />
-                            ))}
-
-                            <div className="py-2">
-                                <Comment postId={cid} />
-                            </div>
-                        </>
-                    ) : (
-                        <p className="text-center py-10 text-gray-500">데이터가 없습니다.</p>
-                    )}
+                    <GuideDetailCard item={tdata} />
+                    <div className="py-2">
+                        <Comment postId={id} />
+                    </div>
                 </>
+            ) : (
+                <p className="text-center py-10 text-gray-500">해당 정보를 찾을 수 없습니다.</p>
             )}
         </div>
     );

@@ -81,7 +81,9 @@ export default function JejuFestival() {
             </ul>
 
             <WFullButton
-                onClick={()=>  navigate("/guide/gallery/c5?category=c5")}
+                onClick={()=>
+                    navigate(`/guide/gallery?category=c5`)
+                }
                 tit={`축제&행사모음`}
                 tit2={`전체보기`}
             />

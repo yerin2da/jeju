@@ -56,7 +56,7 @@ export default function MainMenu() {
                 {data.jejuCategory.map((item) => (
                     <li
                         key={item.code}
-                        onClick={()=>navigate(`/guide/gallery/${item.code}`)}
+                        onClick={()=>navigate(`/guide/gallery?category=${item.code}`)}
                         className={`cursor-pointer hover:text-mainColor`}>
                         <div className={`flex items-center gap-2`}>
                             {iconMap[item.img]}
@@ -71,7 +71,7 @@ export default function MainMenu() {
                 {data.jejuThemeCategory.map((item) => (
                     <li
                         key={item.code}
-                        onClick={() => navigate(`/theme/gallery/${item.code}`)}
+                        onClick={() => navigate(`/theme/gallery?category=${item.code}`)}
                         className={`cursor-pointer hover:text-mainColor`}>
 
                         <div className={`flex items-center gap-2`}>

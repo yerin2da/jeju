@@ -8,7 +8,7 @@ export default function JejuGuide() {
     const navigate = useNavigate();
 
     const handleClick = (code) => {
-        navigate(`/guide/gallery/${code}`);
+        navigate(`/guide/gallery?category=${code}`);
     };
 
     return (
@@ -29,7 +29,7 @@ export default function JejuGuide() {
                 <li key={idx}
                     className={`relative cursor-pointer `}
                 >
-                    {item.code === "c2"
+                    {item.code === "c1"
                         ? (<div className={`absolute -top-2 left-1/2 -translate-x-1/2
                              bg-gradient-to-r from-purple-500 to-pink-500 min-w-fit
                              text-white rounded-full text-center px-3 py-0.5 

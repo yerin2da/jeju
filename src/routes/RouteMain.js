@@ -44,12 +44,11 @@ export default function RouteMain() {
 
                 {/*가이드*/}
                 <Route path="/guide/gallery" element={<GuideGallery/>} />
-                <Route path="/guide/gallery/:category" element={<GuideGallery />} />
-                <Route path="/guide/gallery/:category/:cid" element={<GuideDetail />} />
+                <Route path="/guide/gallery/detail" element={<GuideDetail />} />
 
 
                 {/*테마*/}
-                <Route path="/theme/gallery/:category" element={<ThemeGallery/>} />
+                <Route path="/theme/gallery" element={<ThemeGallery/>} />
 
                 {/*전시*/}
                 <Route path="/stage/gallery/exhibition" element={<ExhibiGallery/>} />

@@ -7,14 +7,14 @@ export default function MusicGalleryComponent({item,
     return (
         <div
             onClick={() => window.open(item.url, "_blank")}
-            className={`relative w-full h-80 flex flex-col`}>
+            className={`group cursor-pointer relative w-full h-80 flex flex-col`}>
 
             <div className="absolute bottom-0 left-0 w-full h-[60%] bg-white"></div>{/* 오버레이 */}
 
             {/* 포스터 이미지 */}
             <div className={` w-full h-80 overflow-hidden relative z-2 border`}>
                 <img
-                    className={`w-full h-full object-cover`}
+                    className={`w-full h-full object-cover duration-300 group-hover:scale-110`}
                     src={item.imageObject ? item.imageObject : `${process.env.PUBLIC_URL}/img/default.jpg`}
                     alt={item.title}
                 />

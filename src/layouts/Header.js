@@ -12,23 +12,20 @@ export default function Header() {
     const currentPath = location.pathname;
 
     const captions = {//페이지 제목
-        "/sell": "동전 팔기",
-        "/sell/complete": "동전 팔기",
-        "/buy": "동전리스트",
         "/notice": "공지사항",
         "/register": "회원가입",
         "/guide": "이용가이드",
-        "/wallet": "내지갑",
+        "/guide/:id": "이용가이드 상세",
 
-        "/exhibition/gallery":"제주 BEST 전시",
+        "/stage/gallery/exhibition":"제주 BEST 전시",
         "/guide/gallery":"여행 가이드",
-        "/guide/gallery/:category":"여행 가이드",
-        "/guide/gallery/:category/:cid":"상세 정보",
-        "/musical/gallery":"뮤지컬 모음",
-        "/music/gallery":"음악 모음",
-        "/play/gallery":"연극 모음",
-        "/korMusic/gallery":"국악 모음",
-        "/theme/gallery":"테마 여행",
+        "/guide/gallery/detail":"여행 가이드 상세",
+        // "/guide/gallery/:category/:cid":"상세 정보",
+        "/stage/gallery/musical":"뮤지컬 모음",
+        "/stage/gallery/music":"음악회 모음",
+        "/stage/gallery/play":"연극 모음",
+        "/stage/gallery/korMusic":"국악 모음",
+        "/theme/gallery/:category":"테마 여행",
     };
 
     // 캡션 자동 매칭
@@ -71,7 +68,7 @@ export default function Header() {
                             <Link to="/">Jejucom</Link>
                         </h1>
                         <IoSearch
-                            className={`cursor-pointer`}
+                            className={`cursor-pointer hover:text-mainColor`}
                             onClick={() => navigate("/mainSearch")}
                         />
                     </div>
@@ -102,7 +99,7 @@ export default function Header() {
                     // 공지사항
                     <LuBell
                         onClick={()=> navigate("/notice")}
-                        className={`cursor-pointer`} />
+                        className={`cursor-pointer hover:text-mainColor`} />
                 )}
                 {/*    <HambergerButton className="" />*/}
             </div>

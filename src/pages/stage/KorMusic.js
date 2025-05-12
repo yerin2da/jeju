@@ -25,14 +25,15 @@ export default function KorMusic() {
             const filteredData = (data.stage || [])
                 .filter(item => item.dtype === "국악")
 
-            setTdata(filteredData);
+            const totalCount = filteredData.length;
+            const startIndex = (pageNo - 1) * itemsPerPage;
+            const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
 
-            const totalCount = 10;
-            const pages = Math.ceil(totalCount / itemsPerPage);
-            setTotalPages(pages);
-
+            setTdata(paginatedData);
+            setTotalPages(Math.ceil(totalCount / itemsPerPage));
         } catch (error) {
-            console.error("전체 데이터 로딩 실패:", error);
+            console.error("❌ 프록시 API 에러 발생:", error);
+            setTdata([]);
         } finally {
             setIsLoading(false);
         }
@@ -54,7 +55,7 @@ export default function KorMusic() {
             ) : (
                 <>
                     {tdata && tdata.length > 0 ? (
-                        <ul className="grid grid-cols-2 gap-2 items-stretch">
+                        <ul className="grid grid-cols-2 gap-x-2 gap-y-6 items-stretch">
                             {tdata.map((item, idx) => {
                                 const match = item.title.match(/\[(.*?)\]\s*(.*)/);// match[0]전체 일치한 문자열
                                 const regionSort = match ? match[1] : "";// match[1]첫 번째 캡처 그룹 (지역명)

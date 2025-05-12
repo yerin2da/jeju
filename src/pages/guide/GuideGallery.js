@@ -15,58 +15,34 @@ const GuideGallery = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [tdata, setTdata] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
 
-    //쿼리스트링 - 히스토리 기억
-    const [searchParams, setSearchParams] = useSearchParams();// URL의 쿼리 파라미터를 읽고 수정할 수 있게 해주는 훅
-
-    const category = searchParams.get("category") || "c1";//URL에서 "category"라는 쿼리 파라미터 값을 가져옴
-
-    const popularFromURL = searchParams.get("popular")?.split(",") || [];//인기태그 파라미터
-
-    const tagsFromURL = searchParams.get("tags")?.split(",") || [];//초록태그 파라미터
+    const category = searchParams.get("category") || "c1";
+    const page = parseInt(searchParams.get("page") || "1", 10);
+    const popularFromURL = searchParams.get("popular")?.split(",").filter(Boolean) || [];
+    const tagsFromURL = searchParams.get("tags")?.split(",").filter(Boolean) || [];
 
     const [selC1, setSelC1] = useState(category);
-
     const [selectedPopularTags, setSelectedPopularTags] = useState(popularFromURL);
-
     const [selectedAllTags, setSelectedAllTags] = useState(tagsFromURL);
-
-    useEffect(() => {
-        const params = new URLSearchParams();//URLSearchParams 객체를 새로 생성
-
-        if (selC1) params.set("category", selC1);//selC1이 존재하면 "category" 파라미터를 설정
-
-        if (selectedPopularTags.length > 0) params.set("popular", selectedPopularTags.join(","));
-
-        if (selectedAllTags.length > 0) params.set("tags", selectedAllTags.join(","));
-
-        setSearchParams(params);//쿼리 파라미터를 URL에 반영
-
-    }, [selC1, selectedPopularTags, selectedAllTags]);
-
-
     const [inputValue, setInputValue] = useState("");
     const [searchKeyword, setSearchKeyword] = useState("");
-
-    const [currentPage, setCurrentPage] = useRecoilState(pageState);
     const [totalPages, setTotalPages] = useState(1);
 
     const itemsPerPage = 9;
-    const startIndex = (currentPage - 1) * itemsPerPage;
+    const startIndex = (page - 1) * itemsPerPage;
 
     const popularTags = ['유네스코', '오름', '액티비티', '올레', '경관/포토'];
 
-    // 태그 선택 토글 핸들러
     const toggleTag = (tag, selectedTags, setTags) => {
         if (selectedTags.includes(tag)) {
-            setTags(selectedTags.filter(t => t !== tag));// 이미 있으면 제거
+            setTags(selectedTags.filter(t => t !== tag));
         } else {
-            setTags([...selectedTags, tag]);// 없으면 추가
+            setTags([...selectedTags, tag]);
         }
     };
 
-    // 데이터 가져오기
-    const getFetchAllData = async (category) => {
+    const getFetchAllData = async () => {
         setIsLoading(true);
         try {
             const { data } = await axios.get(`${process.env.PUBLIC_URL}/db/all.json`);
@@ -79,68 +55,63 @@ const GuideGallery = () => {
     };
 
     useEffect(() => {
-        if (selC1) {
-            getFetchAllData(selC1); // selC1이 바뀔 때마다 fetch
-        }
+        getFetchAllData();
     }, [selC1]);
 
+    useEffect(() => {
+        const prevCategory = searchParams.get("category") || "";
+        const prevPopular = searchParams.get("popular") || "";
+        const prevTags = searchParams.get("tags") || "";
 
-    // 필터링
-    const filteredData = tdata.filter(item => {
-        const matchCategory = item.contentscd?.value === selC1; //c1~c5
+        const newPopular = selectedPopularTags.join(",");
+        const newTags = selectedAllTags.join(",");
 
-        const matchKeyword = //검색어(제목, 태그, 주소 포함)
-            searchKeyword === "" ||
-            item.title?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-            item.alltag?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-            item.address?.toLowerCase().includes(searchKeyword.toLowerCase());
+        const params = new URLSearchParams(searchParams);
+        params.set("category", selC1);
 
-        const alltags = item.alltag //태그 가공
-            ?.split(/[,#]/)
-            .map(tag => tag.trim())
-            .filter(Boolean) || [];
+        if (selectedPopularTags.length > 0) {
+            params.set("popular", newPopular);
+        } else {
+            params.delete("popular");
+        }
 
-        //콘텐츠에 선택된 인기태그랑 태그가 들어있는지 확인하기
-        const matchPopularTags = selectedPopularTags.every(tag => item.alltag?.includes(tag)); //인기태그
-        const matchAllTags = selectedAllTags.every(tag => alltags.includes(tag));//태그
+        if (selectedAllTags.length > 0) {
+            params.set("tags", newTags);
+        } else {
+            params.delete("tags");
+        }
 
-        return matchCategory && matchKeyword && matchPopularTags && matchAllTags;
-    });
+        const changed =
+            prevCategory !== selC1 ||
+            prevPopular !== newPopular ||
+            prevTags !== newTags;
 
-    //정렬 (인기태그기준)
-    const sortedData = selectedPopularTags.length > 0
-        ? [...filteredData].reverse().sort((a, b) => {//기존 filteredData 배열을 얕은 복사하여 sortedData로 정렬 가능한 새 배열을 만듦
+        if (changed) {
+            params.set("page", "1");
+        }
 
-            const tag = selectedPopularTags[0];//선택된 태그 중 앞에것을 기준으로 적용
+        setSearchParams(params, { replace: true });
 
-            const aPriority = a.priority?.[tag] ?? 9999;//우선순위 있으면 값, 없으면 맨 뒤로
-            const bPriority = b.priority?.[tag] ?? 9999;
+    }, [selC1, selectedPopularTags, selectedAllTags]);
 
-            return aPriority - bPriority;//a가 b보다 우선순위가 낮으면 앞으로 오도록 정렬(음수면 a가 더 작다는 것)
-            })
-        : [...filteredData].reverse().sort((a, b) => {//미선택시
-            const aHasPriority = a.priority ? 1 : 0;
-            const bHasPriority = b.priority ? 1 : 0;
+    useEffect(() => {
+        const updatedPopular = searchParams.get("popular")?.split(",").filter(Boolean) || [];
+        const updatedTags = searchParams.get("tags")?.split(",").filter(Boolean) || [];
 
-            if (aHasPriority !== bHasPriority) {
-                return bHasPriority - aHasPriority; // priority 있는 애가 앞으로
-            }
-            return 0; // 동일한 경우에는 순서 유지
-        });
+        setSelectedPopularTags(updatedPopular);
+        setSelectedAllTags(updatedTags);
+    }, [searchParams]);
 
-    const paginatedData = sortedData.slice(startIndex, startIndex + itemsPerPage);
+    const handlePageChange = (newPage) => {
+        const params = new URLSearchParams(searchParams);
+        params.set("page", newPage.toString());
+        setSearchParams(params, { replace: true });
 
-    // 카테고리 전환
-    const handleSelC1 = (code) => {
-        setSelC1(code);
-        navigate(`/guide/gallery/${code}`);
-        getFetchAllData(code);
-        setCurrentPage(1);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    const handleItemClick = (id, code) => {
-        navigate(`/guide/gallery/${code}/${id}`, { state: { id } });
+    const handleSelC1 = (code) => {
+        setSelC1(code);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleInputChange = (e) => {
@@ -148,22 +119,56 @@ const GuideGallery = () => {
         setInputValue(value);
         if (value === "") {
             setSearchKeyword("");
-            setCurrentPage(1);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            handlePageChange(1);
         }
     };
 
     const handleSearch = () => {
         setSearchKeyword(inputValue);
-        setCurrentPage(1);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        handlePageChange(1);
     };
 
-    // 페이지 수 업데이트
+    const handleItemClick = (id, code) => {
+        navigate(`/guide/gallery/detail?category=${code}&id=${id}`, {
+            state: { id },
+        });
+    };
+
+    const filteredData = tdata.filter(item => {
+        const matchCategory = item.contentscd?.value === selC1;
+        const matchKeyword =
+            searchKeyword === "" ||
+            item.title?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+            item.alltag?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+            item.address?.toLowerCase().includes(searchKeyword.toLowerCase());
+
+        const alltags = item.alltag?.split(/[,#]/).map(tag => tag.trim()).filter(Boolean) || [];
+
+        const matchPopularTags = selectedPopularTags.every(tag => item.alltag?.includes(tag));
+        const matchAllTags = selectedAllTags.every(tag => alltags.includes(tag));
+
+        return matchCategory && matchKeyword && matchPopularTags && matchAllTags;
+    });
+
+    const sortedData = selectedPopularTags.length > 0
+        ? [...filteredData].reverse().sort((a, b) => {
+            const tag = selectedPopularTags[0];
+            const aPriority = a.priority?.[tag] ?? 9999;
+            const bPriority = b.priority?.[tag] ?? 9999;
+            return aPriority - bPriority;
+        })
+        : [...filteredData].reverse().sort((a, b) => {
+            const aHasPriority = a.priority ? 1 : 0;
+            const bHasPriority = b.priority ? 1 : 0;
+            return bHasPriority - aHasPriority;
+        });
+
+    const paginatedData = sortedData.slice(startIndex, startIndex + itemsPerPage);
+
     useEffect(() => {
         const total = filteredData.length;
         const pagesCalc = Math.ceil(total / itemsPerPage);
-        setTotalPages(pagesCalc);
+        setTotalPages(pagesCalc || 1);
     }, [filteredData]);
 
 
@@ -183,13 +188,13 @@ const GuideGallery = () => {
                 <div className={`pb-5`}>
                     {/* 대분류 탭 */}
                     <TabMenuSlider
-                        spaceBetween={3}
+                        spaceBetween={20}
                         data={data.jejuCategory}
                         onClick={handleSelC1}
                         selTab={selC1}
-                        tClass={`bg-black text-white`}
-                        fClass={`text-textBlack bg-gray-100`}
-                        btnClass={``}
+                        tClass={` border-black`}
+                        fClass={`!border-transparent`}
+                        btnClass={`!rounded-none text-textBlack border-0 !border-b-2 !px-0 !py-1`}
                     />
                 </div>
 
@@ -199,7 +204,7 @@ const GuideGallery = () => {
                         {selectedPopularTags.map(tag => (
                             <span
                                 key={`selected-pop-${tag}`}
-                                className="inline-flex items-center bg-yellow-100 text-yellow-800 text-sm px-3 py-1.5 rounded-full border border-yellow-300 cursor-pointer hover:bg-yellow-200"
+                                className="inline-flex items-center bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full border border-yellow-300 cursor-pointer hover:bg-yellow-200"
                                 onClick={() => toggleTag(tag, selectedPopularTags, setSelectedPopularTags)}
                             >
                                 #{tag}
@@ -260,9 +265,9 @@ const GuideGallery = () => {
                     )}
 
                     <PaginationSimple
-                        currentPage={currentPage}
+                        currentPage={page} // 쿼리스트링에서 직접 가져온 page 값
                         totalPages={totalPages}
-                        setCurrentPage={setCurrentPage}
+                        setCurrentPage={handlePageChange}
                     />
                 </div>
             )}

@@ -23,7 +23,7 @@ export default function JejuThemeGalleryCard({ item }) {
             <div className="px-6 py-4">
                 <div className="flex gap-2 h-60">
                     <div
-                        className="w-3/5 h-full cursor-pointer"
+                        className="w-3/5 h-full cursor-pointer overflow-hidden rounded-xl"
                         onClick={() =>
                             handleImageClick(
                                 `${process.env.PUBLIC_URL}/img/theme/${item.code}/${item.id}.jpg`
@@ -31,7 +31,7 @@ export default function JejuThemeGalleryCard({ item }) {
                         }
                     >
                         <IconImage
-                            className="w-full h-full object-cover rounded-xl"
+                            className="w-full h-full object-cover"
                             imageSrc={
                                 `${process.env.PUBLIC_URL}/img/theme/${item.code}/${item.id}.jpg`
                             }
@@ -43,7 +43,7 @@ export default function JejuThemeGalleryCard({ item }) {
                         {[2, 3].map((num) => (
                             <div
                                 key={num}
-                                className="w-full h-1/2 cursor-pointer"
+                                className="w-full h-1/2 cursor-pointer overflow-hidden rounded-xl"
                                 onClick={() =>
                                     handleImageClick(
                                         `${process.env.PUBLIC_URL}/img/theme/${item.code}/${item.id}_${num}.jpg`
@@ -51,7 +51,7 @@ export default function JejuThemeGalleryCard({ item }) {
                                 }
                             >
                                 <IconImage
-                                    className="w-full h-full object-cover rounded-xl"
+                                    className="w-full h-full object-cover"
                                     imageSrc={`${process.env.PUBLIC_URL}/img/theme/${item.code}/${item.id}_${num}.jpg`}
                                     title={item.title}
                                 />
@@ -75,7 +75,7 @@ export default function JejuThemeGalleryCard({ item }) {
                         <img
                             src={modalImage}
                             alt="확대 이미지"
-                            className="w-full max-h-[80vh] object-contain rounded-lg shadow-lg border-2 border-white"
+                            className="w-full max-h-[60vh] object-cover rounded-lg shadow-lg border-2 border-white"
                             onClick={(e) => e.stopPropagation()} // 이미지 클릭 시 모달 닫힘 방지
                         />
 

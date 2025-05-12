@@ -10,7 +10,7 @@ export default function JejuTheme() {
     const navigate = useNavigate();
 
     const handleClick = (code) => {
-        navigate(`theme/gallery/${code}`);
+        navigate(`theme/gallery?category=${code}`);
     };
 
     return (
@@ -76,7 +76,7 @@ export default function JejuTheme() {
         </Swiper>
         <div className={`mx-5`}>
             <WFullButton
-                onClick={()=> navigate(`/theme/gallery/family`)}
+                onClick={()=> navigate(`/theme/gallery?category=family`)}
                 tit={`테마여행모음`}
                 tit2={`전체보기`}
             />
