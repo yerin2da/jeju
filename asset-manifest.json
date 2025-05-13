@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/jeju/static/css/main.13195872.css",
-    "main.js": "/jeju/static/js/main.96adb0fc.js",
+    "main.css": "/jeju/static/css/main.1326f711.css",
+    "main.js": "/jeju/static/js/main.3c6efeec.js",
     "static/js/206.20029892.chunk.js": "/jeju/static/js/206.20029892.chunk.js",
     "index.html": "/jeju/index.html"
   },
   "entrypoints": [
-    "static/css/main.13195872.css",
-    "static/js/main.96adb0fc.js"
+    "static/css/main.1326f711.css",
+    "static/js/main.3c6efeec.js"
   ]
 }
