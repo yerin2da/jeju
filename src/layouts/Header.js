@@ -6,6 +6,7 @@ import React, {useRef} from "react";
 import SearchInput from "../components/SearchInput";
 import { LuBell } from "react-icons/lu";
 import 'swiper/css';
+import IconImage from "../components/IconImage";
 
 export default function Header() {
     const location = useLocation();
@@ -63,9 +64,14 @@ export default function Header() {
 
             <div className={`h-full flex items-center justify-between`}>
                 {showLogo ? (
-                    <div className={` w-full pr-6 flex items-center justify-between`}>
-                        <h1 className="text-3xl font-semibold text-mainColor">
-                            <Link to="/">Jejucom</Link>
+                    <div className={` w-full pr-6 flex items-center justify-between h-full`}>
+                        <h1 className="font-semibold text-mainColor">
+                            <IconImage
+                                title={`로고`}
+                                imageSrc={`${process.env.PUBLIC_URL}/logo.png`}
+                                className={`h-16 cursor-pointer`}
+                                onClick={() => navigate("/")}
+                            />
                         </h1>
                         <IoSearch
                             className={`cursor-pointer hover:text-mainColor`}
