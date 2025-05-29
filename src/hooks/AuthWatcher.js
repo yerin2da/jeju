@@ -25,8 +25,8 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
 
                     "/guide",
                     "/guide/gallery",
-                    "/guide/gallery/:category",
-                    "/guide/gallery/:category/:cid",
+                    // "/guide/gallery/:category",
+                    // "/guide/gallery/:category/:cid",
 
                     "/stage/gallery/exhibition",
                     "/stage/gallery/musical",
@@ -42,7 +42,9 @@ export default function AuthWatcher() {//로컬 auth값 변경시 로그아웃
 
                 ].includes(path)
                 || matchPath("/notice/:id", path)
-                || matchPath("/guide/gallery/:category/:cid", path)
+                || matchPath("/guide/gallery/detail/:category/:id", path)
+
+                // || matchPath("/guide/gallery/:category/:cid", path)
                 ||matchPath("/guide/gallery/:category", path)
                 ||matchPath("/theme/gallery/:category", path)
             ) {

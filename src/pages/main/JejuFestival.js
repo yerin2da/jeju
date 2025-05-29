@@ -25,12 +25,12 @@ export default function JejuFestival() {
         };
 
         getFetchData();
-    }, [tdata]);
+    }, []);
 
     const navigate = useNavigate();
 
-    const handleClick = (code) => {
-        navigate(`guide/gallery/c5/${code}`);
+    const handleClick = (id) => {
+        navigate(`/guide/gallery/detail?category=c5&id=${id}`);
     };
 
 
@@ -55,13 +55,14 @@ export default function JejuFestival() {
                 title={<>제주에서 <span className={`text-mainColor`}>즐기자!</span></>}
             />
             <ul className={`grid grid-cols-2 xs:grid-cols-3 gap-x-2 gap-y-4 items-stretch`}>
-                {tdata.reverse().map((item, idx) => {
+                {tdata.map((item, idx) => {
                     const imgPath = item?.repPhoto?.photoid?.imgpath;
                     const imgThumPath = item?.repPhoto?.photoid?.thumbnailpath;
                     const default2 = `${process.env.PUBLIC_URL}/img/default2.jpg`;
 
                     return (
                         <li key={idx} className={`flex cursor-pointer `}>
+
                             <InfoComponent2
                                 onClick={() => handleClick(item.contentsid)}
                                 imageSrc={imgThumPath || imgPath || default2}
