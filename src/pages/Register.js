@@ -210,7 +210,7 @@ export default function Register() {
     return (
         <form className={`w-full px-4 pt-6 pb-8 bg-white SignUp`} >
             <div className={`w-full flex flex-col pt-2`}>
-                <p className={`text-xs self-end pb-2`}><span className={`text-subColor2`}>*</span> 필수입력사항</p>
+                <p className={`text-xs self-end pb-2`}><span className={`text-mainColor`}>*</span> 필수입력사항</p>
                 <div className={`w-full h-[1px] bg-textBlack mb-4`}></div>
             </div>
             <RegisterInput
@@ -229,7 +229,7 @@ export default function Register() {
                     type="button"
                     caption={`중복확인`}
                     handleClick={existIdCheck}
-                    bcolor="btnBorder-subColor2"
+                    bcolor="btnBorder-mainColor"
                     className={`w-28 text-sm whitespace-nowrap ml-2`}
                 />
             </RegisterInput>
@@ -298,7 +298,7 @@ export default function Register() {
                     type="button"
                     caption={`인증번호 전송`}
                     handleClick={sendAuthCode}
-                    bcolor="btn-subColor2"
+                    bcolor="btn-mainColor"
                     className={`w-28 text-sm whitespace-nowrap ml-2`}
                 />
             </RegisterInput>
@@ -341,7 +341,7 @@ export default function Register() {
             <TailButton
                 type="button"
                 caption={`가입하기`}
-                bcolor="btn-subColor2"
+                bcolor="btn-mainColor"
                 className={`w-full mt-2`}
                 handleClick={handleSubmit}
             />

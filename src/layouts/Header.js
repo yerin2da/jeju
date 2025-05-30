@@ -65,13 +65,14 @@ export default function Header() {
             <div className={`h-full flex items-center justify-between`}>
                 {showLogo ? (
                     <div className={` w-full pr-6 flex items-center justify-between h-full`}>
-                        <h1 className="font-semibold text-mainColor">
+                       
+                        <h1 onClick={() => navigate("/")}
+                            className="font-bold text-mainColor text-3xl flex items-center gap-3">
                             <IconImage
                                 title={`로고`}
                                 imageSrc={`${process.env.PUBLIC_URL}/logo.png`}
-                                className={`h-16 cursor-pointer`}
-                                onClick={() => navigate("/")}
-                            />
+                                className={`h-12 cursor-pointer`}
+                            />제주마실
                         </h1>
                         <IoSearch
                             className={`cursor-pointer hover:text-mainColor`}

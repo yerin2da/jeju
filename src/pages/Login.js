@@ -133,7 +133,7 @@ export default function Login() {
                         <ToggleCheckIcon isChecked={rememberUsername}
                                          onClick={handleRememberChange}
                                          className={`text-lg cursor-pointer`}
-                                         btnColor="subColor2"
+                                         btnColor="mainColor"
                         />
                         <span className="my-2">아이디 저장</span>
                     </div>
@@ -148,14 +148,14 @@ export default function Login() {
             <TailButton
                 caption="로그인"
                 handleClick={handleLogin}
-                bcolor="btn-subColor2"
+                bcolor="btn-mainColor"
                 className={`w-full mb-2`}
             />
 
             <TailButton
                 caption="회원가입"
                 handleClick={() => navigate("/register")}
-                bcolor="btnBorder-subColor2"
+                bcolor="btnBorder-mainColor"
                 className={`w-full mb-6`}
             />
 
