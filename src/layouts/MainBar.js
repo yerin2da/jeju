@@ -23,8 +23,8 @@ export default function MainBar() {
                              Icon={IoSearch}
                              label={'검색'}
                     />
-                    <NavIcon to="/heart" Icon={ FaRegHeart } label={'찜'} className={`scale-x-[0.9] scale-y-[0.9]`}/>
-                    <NavIcon to="/mypage" Icon={ MdOutlinePersonOutline } label={'내정보'} className={`scale-x-[1.1] scale-y-[1.1]`}/>
+                    <NavIcon to="/login" Icon={ FaRegHeart } label={'찜'} className={`scale-x-[0.9] scale-y-[0.9]`}/>
+                    <NavIcon to="/login" Icon={ MdOutlinePersonOutline } label={'내정보'} className={`scale-x-[1.1] scale-y-[1.1]`}/>
                     <NavIcon to="/mainMenu" Icon={FaBars} label={'전체'} className={`scale-x-[0.8] scale-y-[0.8]`}/>
 
             </footer>

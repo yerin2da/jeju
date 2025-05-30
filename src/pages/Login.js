@@ -159,15 +159,15 @@ export default function Login() {
                 className={`w-full mb-6`}
             />
 
-            <div className={`flex flex-col items-center justify-center`}>
-                <p>간편로그인</p>
+            {/*<div className={`flex flex-col items-center justify-center`}>*/}
+            {/*    <p>간편로그인</p>*/}
 
-                <div className={`flex items-center gap-2`}>
-                    <p>카카오</p>
-                    <p>네이버</p>
-                    <p>구글</p>
-                </div>
-            </div>
+            {/*    <div className={`flex items-center gap-2`}>*/}
+            {/*        <p>카카오</p>*/}
+            {/*        <p>네이버</p>*/}
+            {/*        <p>구글</p>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
         </form>
     );
