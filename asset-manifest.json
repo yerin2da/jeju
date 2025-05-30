@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/jeju/static/css/main.1326f711.css",
-    "main.js": "/jeju/static/js/main.defca0c6.js",
+    "main.js": "/jeju/static/js/main.458c19e9.js",
     "static/js/206.20029892.chunk.js": "/jeju/static/js/206.20029892.chunk.js",
     "index.html": "/jeju/index.html"
   },
   "entrypoints": [
     "static/css/main.1326f711.css",
-    "static/js/main.defca0c6.js"
+    "static/js/main.458c19e9.js"
   ]
 }
